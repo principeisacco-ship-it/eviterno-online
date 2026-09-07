@@ -939,4 +939,11 @@ document.getElementById('cpSetSave').onclick=()=>{const mode=cpSet.querySelector
   cpSet.classList.remove('show');
   toast(mode==='custom'?'EVA ora usa il tuo agente':'EVA ora usa Claude');
   cpStatus.textContent='Online';};
+/* il pannello riflette la configurazione reale: online mostra già "Il tuo agente" + /api/chat */
+(function initSet(){
+  cpSet.querySelectorAll('.opt').forEach(o=>o.classList.toggle('sel', o.dataset.mode===AGENT_CONFIG.mode));
+  const ep=document.getElementById('setEndpoint');
+  ep.value=AGENT_CONFIG.customEndpoint||'';
+  ep.style.display=AGENT_CONFIG.mode==='custom'?'block':'none';
+})();
 </script>

@@ -1,3 +1,10 @@
+# ============================================================
+#  EVITERNO ONLINE · un'unica app (pagina + copilota EVA)
+#  Serve index.html su "/" e l'endpoint EVA su "/api/chat".
+#  La chiave Groq si legge da variabile d'ambiente GROQ_API_KEY
+#  (che imposterai come "secret" sul servizio di hosting).
+# ============================================================
+
 import os
 from fastapi import FastAPI, Request
 from fastapi.responses import HTMLResponse
@@ -15,7 +22,9 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 @app.get("/", response_class=HTMLResponse)
 async def home():
     with open(os.path.join(HERE, "index.html"), encoding="utf-8") as f:
-        return f.read()
+        html = f.read()
+    # Niente cache: ogni aggiornamento è subito visibile, nessuna versione vecchia.
+    return HTMLResponse(html, headers={"Cache-Control": "no-store, max-age=0"})
 
 
 @app.post("/api/chat")
@@ -50,4 +59,5 @@ async def chat(req: Request):
 
 if __name__ == "__main__":
     import uvicorn
+    # HF Spaces usa 7860; Render (e altri) impostano PORT.
     uvicorn.run(app, host="0.0.0.0", port=int(os.getenv("PORT", 7860)))
