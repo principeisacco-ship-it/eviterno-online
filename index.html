@@ -409,7 +409,7 @@
   </div>
   <div class="cp-log" id="cpLog"></div>
   <div class="chips" id="cpChips">
-    <div class="chip">Aggiungi obiettivo: leggere 20 min al giorno</div><div class="chip">Connettimi con Sara nella Community</div><div class="chip">Cambia il mio focus su Successo</div>
+    <div class="chip">✨ Genera il mio sistema</div><div class="chip">Voglio lanciare il mio brand</div><div class="chip">Connettimi con Sara nella Community</div>
   </div>
   <div class="cp-in"><input id="cpInput" placeholder="Scrivi a EVA…" autocomplete="off"><button id="cpSend">➤</button></div>
 
@@ -436,7 +436,9 @@
                     e legge la risposta da reply | message | text | content[].text
    Puoi anche cambiarlo a runtime dal ⚙ nel copilota.
    ============================================================ */
-const AGENT_CONFIG = { mode:'claude', customEndpoint:'' };
+const AGENT_CONFIG = (location.protocol === 'file:')
+  ? { mode:'claude', customEndpoint:'' }              /* aperto come file locale */
+  : { mode:'custom', customEndpoint:'/api/chat' };    /* servito online: EVA usa il backend integrato */
 
 /* ============================================================
    STATO UTENTE + DATI DASHBOARD (in memoria)
@@ -794,7 +796,7 @@ Regole del blocco:
 - Per riferirti a obiettivi, traguardi, percorsi o persone esistenti usa gli INDICI numerici che trovi in STATO ATTUALE.
 - Puoi mettere PIÙ azioni nello stesso array se l'utente chiede più cose in una volta.
 Azioni disponibili:
-- {"type":"add_goal","title":"testo obiettivo"}
+- {"type":"add_goal","title":"testo obiettivo","milestones":["passo 1","passo 2","passo 3"]}  (milestones è OPZIONALE: se lo metti, crea le tappe su misura; 3-5 tappe brevi e concrete, in ordine logico)
 - {"type":"add_milestone","goal": indice_obiettivo, "title":"testo traguardo"}
 - {"type":"complete_milestone","goal": indice_obiettivo, "milestone": indice_traguardo}
 - {"type":"complete_goal","goal": indice_obiettivo}   (segna fatti tutti i traguardi)
@@ -804,7 +806,15 @@ Azioni disponibili:
 - {"type":"connect_person","person": indice_persona}   (connettiti a una persona della Community)
 - {"type":"set_focus","pillar":"crescita|community|obiettivi|successo"}   (cambia il focus dell'utente)
 - {"type":"open_dashboard","pillar":"crescita|community|obiettivi|successo|hub"}
-Dopo un'azione, conferma a parole in modo naturale (es. "Fatto, ho aggiunto l'obiettivo").`;}
+Dopo un'azione, conferma a parole in modo naturale (es. "Fatto, ho aggiunto l'obiettivo").
+
+GENERA IL SISTEMA (funzione speciale):
+Quando l'utente ti chiede di "generare/costruire il suo sistema", di fargli un piano, oppure ti descrive un GRANDE obiettivo o sogno (es. "voglio lanciare il mio brand"), non limitarti a parlare: COSTRUISCI TUTTO l'infinito su misura per lui in un unico messaggio. Rispondi con 2-3 frasi motivanti che presentano il piano, poi un blocco eva-actions che contiene INSIEME:
+  1) un {"type":"add_goal"} con l'obiettivo grande e 3-5 "milestones" su misura, in ordine logico e concreto;
+  2) uno o due {"type":"add_track"} con percorsi di Crescita coerenti con quell'obiettivo (es. per un brand: "Personal Branding", "Vendite");
+  3) opzionale {"type":"set_focus"} se un pilastro è chiaramente centrale per quell'obiettivo;
+  4) infine {"type":"open_dashboard","pillar":"obiettivi"} per mostrargli subito il piano creato.
+Rendi tutto specifico per il SUO obiettivo reale, mai generico.`;}
 function contextBlock(){const sec=currentSection==='hub'?'la home (Hub 3D)':'la dashboard '+P(currentSection).t;
   return `CONTESTO UTENTE: nome=${USER.name||'ospite'}, focus=${P(USER.focus).t}, obiettivo="${USER.goal||'non ancora definito'}". `+
   `L'utente sta guardando ${sec}. Tienine conto e sii pertinente a questa sezione.\n\n`+stateBlock();}
@@ -847,8 +857,11 @@ function extractActions(text){const m=text.match(/```eva-actions\s*([\s\S]*?)```
   return{clean:text.replace(m[0],'').trim(),actions};}
 function runActions(actions){let changed=new Set(),opened=null;
   actions.forEach(a=>{try{
-    if(a.type==='add_goal'&&a.title){DATA.obiettivi.goals.push({t:a.title,
-      milestones:[{t:'Definisci il primo passo',done:false},{t:'Agisci',done:false}]});
+    if(a.type==='add_goal'&&a.title){
+      const ms=Array.isArray(a.milestones)&&a.milestones.length
+        ? a.milestones.slice(0,6).map(m=>({t:(typeof m==='string'?m:(m&&m.t)||'Passo'),done:false}))
+        : [{t:'Definisci il primo passo',done:false},{t:'Agisci',done:false}];
+      DATA.obiettivi.goals.push({t:a.title,milestones:ms});
       changed.add('obiettivi');toast('Obiettivo aggiunto 🎯');}
     else if(a.type==='add_milestone'&&a.title){const gi=resolveGoal(a.goal);
       if(gi>=0){DATA.obiettivi.goals[gi].milestones.push({t:a.title,done:false});changed.add('obiettivi');toast('Traguardo aggiunto');}}
@@ -878,7 +891,7 @@ function runActions(actions){let changed=new Set(),opened=null;
   else changed.forEach(id=>{const v=document.getElementById('view-'+id);if(v&&v.classList.contains('show'))renderDashboard(id);});}
 
 function openCp(){cpWin.classList.add('show');
-  if(!greeted){greeted=true;evaSay(`Ciao ${USER.name||''} 👋 sono **EVA**, il tuo copilota.\nConosco il tuo focus (**${P(USER.focus).t}**) e posso anche **agire per te**: creare obiettivi, spuntare traguardi, aprire le sezioni. Dimmi cosa vuoi fare.`);}
+  if(!greeted){greeted=true;evaSay(`Ciao ${USER.name||''} 👋 sono **EVA**, il tuo copilota.\nDimmi il tuo grande obiettivo e in un attimo **ti costruisco l'intero sistema su misura** — obiettivi, tappe e percorsi, tutti insieme. ✨\n\nProva: dimmi cosa vuoi realizzare, oppure tocca "Genera il mio sistema".`);}
   setTimeout(()=>cpInput.focus(),300);}
 function closeCp(){cpWin.classList.remove('show');cpSet.classList.remove('show');}
 cpFab.onclick=openCp; document.getElementById('cpClose').onclick=closeCp;
