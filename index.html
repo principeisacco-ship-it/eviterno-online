@@ -64,6 +64,13 @@
 
   .bottombar{position:absolute;left:0;right:0;bottom:clamp(16px,3.4vh,34px);
     display:flex;justify-content:space-between;align-items:flex-end;padding:0 clamp(18px,4vw,52px);gap:16px}
+  .right-controls{display:flex;align-items:center;gap:10px}
+  .lang-switch{display:flex;gap:4px;background:rgba(14,12,32,.5);border:1px solid var(--line);
+    border-radius:40px;padding:5px;backdrop-filter:blur(10px)}
+  .lang-switch button{background:none;border:none;font-size:16px;line-height:1;padding:6px 8px;
+    border-radius:30px;cursor:pointer;opacity:.55;transition:.2s}
+  .lang-switch button:hover{opacity:.85;background:rgba(255,255,255,.06)}
+  .lang-switch button.sel{opacity:1;background:rgba(120,150,255,.16)}
   .btn{font-family:var(--disp);font-weight:600;letter-spacing:.16em;text-transform:uppercase;font-size:12px;
     border:1px solid var(--line);background:rgba(14,12,32,.5);color:var(--ice);padding:12px 20px;
     border-radius:40px;cursor:pointer;backdrop-filter:blur(10px);transition:.25s;display:inline-flex;align-items:center;gap:9px}
@@ -80,6 +87,7 @@
   .user-pill .un{font-family:var(--disp);letter-spacing:.1em;font-size:12px}
   .user-pill .av{width:30px;height:30px;border-radius:50%;background:var(--grad-flat);display:grid;
     place-items:center;font-family:var(--disp);font-weight:700;font-size:13px;color:#fff}
+  .premium-badge{font-size:13px;filter:drop-shadow(0 0 4px rgba(255,200,60,.6))}
 
   /* ===== Generic glass panel ===== */
   .panel{background:var(--panel);backdrop-filter:blur(18px);border:1px solid var(--line);
@@ -98,6 +106,35 @@
   .vrow .vi{flex:0 0 34px;height:34px;border-radius:10px;display:grid;place-items:center;border:1px solid var(--line);color:var(--cyan);font-size:16px}
   .vrow .vt b{font-family:var(--disp);letter-spacing:.16em;font-size:12.5px;text-transform:uppercase;display:block}
   .vrow .vt span{color:var(--muted);font-weight:300;font-size:12.5px;line-height:1.5}
+
+  .premium-panel{position:fixed;z-index:5;left:50%;top:50%;transform:translate(-50%,-48%) scale(.98);
+    width:min(640px,92vw);max-height:86vh;overflow-y:auto;padding:32px 34px;opacity:0;visibility:hidden;
+    transition:.32s cubic-bezier(.2,.7,.2,1)}
+  .premium-panel.show{opacity:1;visibility:visible;transform:translate(-50%,-50%)}
+  .premium-panel .x{position:absolute;top:16px;right:18px;cursor:pointer;color:var(--muted);font-size:22px;background:none;border:none}
+  .premium-panel .x:hover{color:var(--ice)}
+  .premium-panel h4{font-family:var(--disp);font-weight:700;letter-spacing:.1em;font-size:22px;margin:0 0 8px}
+  .premium-sub{color:var(--muted);font-weight:300;font-size:13.5px;line-height:1.5;margin:0 0 24px;max-width:480px}
+  .tier-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:26px}
+  .tier-card{border:1px solid var(--line);border-radius:16px;padding:20px}
+  .tier-card.featured{border-color:var(--cyan);box-shadow:0 0 30px -10px rgba(77,225,255,.4);position:relative}
+  .tier-name{font-family:var(--disp);letter-spacing:.14em;font-size:12px;text-transform:uppercase;color:var(--muted)}
+  .tier-card.featured .tier-name{color:var(--cyan)}
+  .tier-price{font-family:var(--disp);font-weight:700;font-size:28px;margin:8px 0 14px}
+  .tier-price small{font-family:var(--body);font-size:12px;color:var(--muted);font-weight:400;margin-left:3px}
+  .tier-card ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:9px}
+  .tier-card li{font-size:12.5px;color:var(--muted);line-height:1.4;padding-left:18px;position:relative}
+  .tier-card li::before{content:'✓';position:absolute;left:0;color:var(--cyan)}
+  .tier-card.featured li::before{content:'★';color:var(--magenta)}
+  .tier-card .gate-btn{margin-top:16px;padding:11px}
+  .tutor-block{border-top:1px solid var(--line);padding-top:22px}
+  .tutor-block .eb{font-family:var(--disp);letter-spacing:.24em;font-size:10.5px;color:var(--muted);
+    text-transform:uppercase;margin-bottom:14px}
+  .tutor-row{display:flex;align-items:center;gap:14px;margin-bottom:16px}
+  .tutor-av{width:52px;height:52px;border-radius:50%;flex:0 0 52px;background:var(--grad-flat);
+    display:grid;place-items:center;font-family:var(--disp);font-weight:700;font-size:19px;color:#fff}
+  .tutor-info b{font-size:15px;display:block}.tutor-info span{color:var(--muted);font-size:12.5px;line-height:1.4}
+  @media(max-width:640px){.tier-grid{grid-template-columns:1fr}}
 
   /* ===== GATE (login + onboarding) ===== */
   #gate{position:fixed;inset:0;z-index:20;display:none;place-items:center;padding:24px;
@@ -124,6 +161,14 @@
     padding:14px;font-family:var(--disp);font-weight:600;letter-spacing:.14em;text-transform:uppercase;
     font-size:13px;cursor:pointer;transition:.2s}
   .gate-btn:hover{filter:brightness(1.12)}
+  .gate-btn.social{background:rgba(255,255,255,.04);border:1px solid var(--line);color:var(--ice);
+    display:flex;align-items:center;justify-content:center;gap:10px;text-transform:none;letter-spacing:.02em;
+    font-family:var(--body);font-weight:500;font-size:14px}
+  .gate-btn.social:hover{border-color:var(--line-2);background:rgba(255,255,255,.07);filter:none}
+  .gate-btn.social svg{flex:0 0 auto}
+  .or-sep{display:flex;align-items:center;gap:12px;margin:18px 0 14px;color:var(--muted-2);
+    font-family:var(--disp);letter-spacing:.14em;font-size:10.5px;text-transform:uppercase}
+  .or-sep::before,.or-sep::after{content:"";flex:1;height:1px;background:var(--line)}
   .gate-alt{text-align:center;margin-top:16px;font-size:12.5px;color:var(--muted)}
   .gate-alt a{color:var(--cyan);cursor:pointer;text-decoration:none;font-weight:500}
   .gate-alt a:hover{text-decoration:underline}
@@ -269,6 +314,15 @@
   .cp-head .hz{margin-left:auto;display:flex;gap:4px}
   .cp-head .hz button{background:none;border:none;color:var(--muted);font-size:17px;cursor:pointer;padding:4px 6px;border-radius:8px}
   .cp-head .hz button:hover{color:var(--ice);background:rgba(255,255,255,.05)}
+  .cp-head .hz button#cpLive.on{color:var(--magenta);background:rgba(201,59,232,.14)}
+  .cp-head .hz button#cpLive.listening{color:#fff;background:var(--magenta);animation:livepulse 1.1s ease-in-out infinite}
+  @keyframes livepulse{0%,100%{box-shadow:0 0 0 0 rgba(201,59,232,.55)}50%{box-shadow:0 0 0 7px rgba(201,59,232,0)}}
+  .live-banner{display:none;align-items:center;gap:8px;padding:9px 18px;font-size:11.5px;color:var(--magenta);
+    border-bottom:1px solid var(--line);font-family:var(--disp);letter-spacing:.08em;text-transform:uppercase}
+  .live-banner.show{display:flex}
+  .live-banner .ld{width:7px;height:7px;border-radius:50%;background:var(--magenta);flex:0 0 7px}
+  .live-banner.listening .ld{animation:livepulse2 1s infinite}
+  @keyframes livepulse2{0%,100%{opacity:1}50%{opacity:.25}}
   .cp-log{flex:1;overflow-y:auto;padding:18px;display:flex;flex-direction:column;gap:14px;scrollbar-width:thin}
   .cp-log::-webkit-scrollbar{width:6px}.cp-log::-webkit-scrollbar-thumb{background:rgba(120,140,220,.25);border-radius:3px}
   .msg{max-width:82%;font-size:13.5px;line-height:1.55;padding:11px 14px;border-radius:14px;white-space:pre-wrap}
@@ -328,25 +382,69 @@
 <!-- ============ HUB OVERLAY ============ -->
 <div class="overlay">
   <header class="top">
-    <div class="eyebrow">Non è solo un'app. <b>È un</b> <i>nuovo sistema</i>.</div>
+    <div class="eyebrow" id="i18n-eyebrow">Non è solo un'app. <b>È un</b> <i>nuovo sistema</i>.</div>
     <div class="wordmark">EVITERNO</div>
-    <div class="tagline"><span class="c">Evolvi.</span><span class="w">Connettiti.</span><span class="m">Domina.</span></div>
+    <div class="tagline"><span class="c" id="i18n-tagC">Evolvi.</span><span class="w" id="i18n-tagW">Connettiti.</span><span class="m" id="i18n-tagM">Domina.</span></div>
     <p class="lede" id="hubLede">La piattaforma che unisce <b>tecnologia</b>, <b>connessioni reali</b> e <b>crescita personale</b>. Il futuro è qui. E tu ne fai parte.</p>
-    <div class="hub-hint">▸ Tocca un nodo per entrare nella sua dashboard</div>
+    <div class="hub-hint" id="i18n-hubHint">▸ Tocca un nodo per entrare nella sua dashboard</div>
   </header>
   <div class="bottombar">
-    <div class="user-pill"><span class="un" id="pillName">Ospite</span><div class="av" id="pillAv">?</div></div>
-    <div class="foot"><b>EVITERNO</b><br>Evolvi · Connettiti · Domina</div>
-    <button class="btn ghost" id="visionBtn">La nostra visione ▸</button>
+    <div class="user-pill"><span class="un" id="pillName">Ospite</span><span class="premium-badge" id="pillPremium" style="display:none">⭐</span><div class="av" id="pillAv">?</div></div>
+    <div class="foot"><b>EVITERNO</b><br><span id="i18n-footTag">Evolvi · Connettiti · Domina</span></div>
+    <div class="right-controls">
+      <div class="lang-switch" id="langSwitch"></div>
+      <button class="btn ghost" id="premiumBtn" data-i18n="premiumBtn">⭐ Premium</button>
+      <button class="btn ghost" id="visionBtn">La nostra visione ▸</button>
+    </div>
   </div>
 </div>
 
 <div class="panel" id="vision">
   <button class="x" id="visionClose">×</button>
-  <h4>La nostra visione</h4>
-  <div class="vrow"><div class="vi">◉</div><div class="vt"><b>Unisciamo il mondo</b><span>Abbattiamo le distanze e connettiamo menti, idee e opportunità.</span></div></div>
-  <div class="vrow"><div class="vi" style="color:var(--magenta)">⌘</div><div class="vt"><b>Tecnologia intelligente</b><span>Usiamo la tecnologia per semplificare, potenziare e creare valore.</span></div></div>
-  <div class="vrow"><div class="vi" style="color:var(--blue)">♥</div><div class="vt"><b>Impatto reale</b><span>Costruiamo un ecosistema che genera crescita, libertà e impatto positivo.</span></div></div>
+  <h4 id="i18n-visionTitle">La nostra visione</h4>
+  <div class="vrow"><div class="vi">◉</div><div class="vt"><b id="i18n-vision1t">Unisciamo il mondo</b><span id="i18n-vision1p">Abbattiamo le distanze e connettiamo menti, idee e opportunità.</span></div></div>
+  <div class="vrow"><div class="vi" style="color:var(--magenta)">⌘</div><div class="vt"><b id="i18n-vision2t">Tecnologia intelligente</b><span id="i18n-vision2p">Usiamo la tecnologia per semplificare, potenziare e creare valore.</span></div></div>
+  <div class="vrow"><div class="vi" style="color:var(--blue)">♥</div><div class="vt"><b id="i18n-vision3t">Impatto reale</b><span id="i18n-vision3p">Costruiamo un ecosistema che genera crescita, libertà e impatto positivo.</span></div></div>
+</div>
+
+<!-- ============ PREMIUM / TUTOR ============ -->
+<div class="panel premium-panel" id="premium">
+  <button class="x" id="premiumClose">×</button>
+  <h4 data-i18n="premiumTitle">EVITERNO Premium</h4>
+  <p class="premium-sub" data-i18n="premiumSub">Sblocca EVA avanzata e il tutoraggio 1:1 per accelerare il tuo percorso.</p>
+
+  <div class="tier-grid">
+    <div class="tier-card">
+      <div class="tier-name" data-i18n="freeTitle">Gratis</div>
+      <div class="tier-price">€0</div>
+      <ul>
+        <li data-i18n="freeFeat1">EVA copilota con azioni sulla piattaforma</li>
+        <li data-i18n="freeFeat2">I 4 pilastri completi</li>
+        <li data-i18n="freeFeat3">Modalità Live vocale</li>
+        <li data-i18n="freeFeat4">Account personale con salvataggio</li>
+      </ul>
+    </div>
+    <div class="tier-card featured">
+      <div class="tier-name" data-i18n="premiumTierTitle">Premium</div>
+      <div class="tier-price"><span id="premiumPrice">€9,99</span><small data-i18n="priceSuffix">/mese</small></div>
+      <ul>
+        <li data-i18n="premiumFeat1">EVA Premium — risposte più approfondite e prioritarie</li>
+        <li data-i18n="premiumFeat2">Sessioni 1:1 di coaching con il tutor</li>
+        <li data-i18n="premiumFeat3">Badge Premium sul profilo</li>
+        <li data-i18n="premiumFeat4">Supporto prioritario</li>
+      </ul>
+      <button class="gate-btn" id="upgradeBtn" data-i18n="upgradeBtn">Passa a Premium</button>
+    </div>
+  </div>
+
+  <div class="tutor-block">
+    <div class="eb" data-i18n="tutorSectionTitle">Il tuo tutor</div>
+    <div class="tutor-row">
+      <div class="tutor-av" id="tutorAv">?</div>
+      <div class="tutor-info"><b id="tutorName">Prince Isaac</b><span id="tutorBio">Fondatore di EVITERNO.</span></div>
+    </div>
+    <button class="btn-full" id="tutorBookBtn" data-i18n="tutorBookBtn">Prenota una sessione 1:1</button>
+  </div>
 </div>
 
 <!-- ============ DASHBOARD VIEWS ============ -->
@@ -355,32 +453,100 @@
 <!-- ============ GATE: LOGIN + ONBOARDING ============ -->
 <div id="gate">
   <div class="gate-card">
-    <div class="brand"><div class="wm">EVITERNO</div><div class="tl">Evolvi · Connettiti · Domina</div></div>
+    <div class="brand"><div class="wm">EVITERNO</div><div class="tl" data-i18n="footTag">Evolvi · Connettiti · Domina</div></div>
 
-    <!-- Step 0: login -->
+    <!-- Step 0: primo accesso — crea account -->
     <div class="gstep active" data-step="0">
-      <h2 id="loginTitle">Accedi al sistema</h2>
-      <p class="sub" id="loginSub">Bentornato. Entra per continuare la tua evoluzione.</p>
-      <div class="field"><label>Email</label><input id="inEmail" type="email" placeholder="tu@eviterno.com" autocomplete="username"></div>
-      <div class="field"><label>Password</label><input id="inPass" type="password" placeholder="••••••••" autocomplete="current-password"></div>
-      <button class="gate-btn" id="loginBtn">Accedi</button>
-      <div class="gate-alt" id="toggleAuth">Non hai un account? <a>Creane uno</a></div>
-      <div class="gate-alt"><a id="guestBtn">Continua come ospite ▸</a></div>
+      <h2 data-i18n="loginTitle">Crea il tuo accesso</h2>
+      <p class="sub" data-i18n="loginSub">Scegli username e password: la prossima volta ti basteranno questi per entrare.</p>
+
+      <button class="gate-btn social google" id="googleBtn" type="button">
+        <svg viewBox="0 0 18 18" width="18" height="18"><path fill="#4285F4" d="M17.64 9.2c0-.64-.06-1.25-.16-1.84H9v3.48h4.84a4.14 4.14 0 0 1-1.8 2.72v2.26h2.9c1.7-1.57 2.7-3.88 2.7-6.62z"/><path fill="#34A853" d="M9 18c2.43 0 4.47-.8 5.96-2.18l-2.9-2.26c-.8.54-1.84.86-3.06.86-2.35 0-4.34-1.59-5.05-3.72H.98v2.33A9 9 0 0 0 9 18z"/><path fill="#FBBC05" d="M3.95 10.7A5.4 5.4 0 0 1 3.66 9c0-.59.1-1.17.29-1.7V4.97H.98A9 9 0 0 0 0 9c0 1.45.35 2.83.98 4.03l2.97-2.33z"/><path fill="#EA4335" d="M9 3.58c1.32 0 2.5.45 3.44 1.35l2.58-2.58C13.46.89 11.43 0 9 0A9 9 0 0 0 .98 4.97L3.95 7.3C4.66 5.17 6.65 3.58 9 3.58z"/></svg>
+        <span data-i18n="google">Continua con Google</span>
+      </button>
+      <button class="gate-btn social apple" id="appleBtn" type="button">
+        <svg viewBox="0 0 384 512" width="16" height="16" fill="currentColor"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141 0 184.5 0 273.4c0 26.2 4.8 53.3 14.4 81.2 12.8 37.1 59 128 107.2 126.5 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-83.5 102.6-120.7-65.2-30.7-57.7-90-57.7-91.7zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
+        <span data-i18n="apple">Continua con Apple</span>
+      </button>
+
+      <div class="or-sep"><span data-i18n="or">oppure</span></div>
+
+      <div class="field"><label data-i18n="username">Username</label><input id="inUsername" data-i18n-ph="usernamePh" placeholder="Scegli un username" autocomplete="username"></div>
+      <div class="field"><label data-i18n="password">Password</label><input id="inPass" type="password" data-i18n-ph="passwordPh" placeholder="Scegli una password" autocomplete="new-password"></div>
+      <button class="gate-btn" id="createAccountBtn" data-i18n="createBtn">Crea account ed entra</button>
+
+      <div class="gate-alt"><a id="phoneBtn" data-i18n="phoneLink">Accedi con numero di telefono ▸</a></div>
+      <div class="gate-alt"><a id="guestBtn" data-i18n="guestLink">Continua come ospite ▸</a></div>
+    </div>
+
+    <!-- Step 0r: accesso rapido di ritorno (automatico se esiste già un account su questo browser) -->
+    <div class="gstep" data-step="0r">
+      <h2 data-i18n="returnTitle">Bentornato 👋</h2>
+      <p class="sub" data-i18n="returnSub">Inserisci le tue credenziali per continuare da dove avevi lasciato.</p>
+      <div class="field"><label data-i18n="username">Username</label><input id="rUsername" data-i18n-ph="returnUserPh" placeholder="Il tuo username" autocomplete="username"></div>
+      <div class="field"><label data-i18n="password">Password</label><input id="rPass" type="password" data-i18n-ph="returnPassPh" placeholder="••••••••" autocomplete="current-password"></div>
+      <button class="gate-btn" id="returnLoginBtn" data-i18n="loginBtn">Accedi</button>
+      <div class="gate-alt"><a id="forgotBtn" data-i18n="forgotLink">Password dimenticata? Recupera credenziali</a></div>
+      <div class="gate-alt"><a id="newAccountBtn" data-i18n="newAccLink">Usa un altro account ▸</a></div>
+    </div>
+
+    <!-- Step 0f: recupero credenziali -->
+    <div class="gstep" data-step="0f">
+      <h2 data-i18n="recoverTitle">Recupera credenziali</h2>
+      <p class="sub" data-i18n="recoverSub">Inserisci il tuo username e il codice di recupero che ti abbiamo mostrato alla creazione dell'account.</p>
+      <div class="field"><label data-i18n="username">Username</label><input id="fUsername" data-i18n-ph="returnUserPh" placeholder="Il tuo username"></div>
+      <div class="field"><label data-i18n="recoveryCode">Codice di recupero</label><input id="fCode" placeholder="Es. A1B2C3D4" style="text-transform:uppercase"></div>
+      <div class="field"><label data-i18n="newPassword">Nuova password</label><input id="fNewPass" type="password" data-i18n-ph="passwordPh" placeholder="Scegli una nuova password"></div>
+      <button class="gate-btn" id="resetPassBtn" data-i18n="resetBtn">Reimposta password</button>
+      <div class="gate-alt"><a id="backToReturnBtn" data-i18n="backLogin">◂ Torna al login</a></div>
+    </div>
+
+    <!-- Step 0s: personalizza le credenziali suggerite (dopo Google/Apple/telefono) -->
+    <div class="gstep" data-step="0s">
+      <h2 data-i18n="chooseCredTitle">Scegli le tue credenziali</h2>
+      <p class="sub" data-i18n="chooseCredSub">Ti abbiamo suggerito questi valori: personalizzali come preferisci, o tienili così.</p>
+      <div class="field"><label data-i18n="username">Username</label><input id="sUsername" autocomplete="username"></div>
+      <div class="field"><label data-i18n="password">Password</label><input id="sPassword" type="text" autocomplete="new-password"></div>
+      <button class="gate-btn" id="createSocialAccountBtn" data-i18n="createSocialBtn">Crea il mio account ▸</button>
+    </div>
+
+    <!-- Step 0c: credenziali create — da salvare -->
+    <div class="gstep" data-step="0c">
+      <h2 data-i18n="credTitle">Salva le tue credenziali 🔐</h2>
+      <p class="sub" data-i18n="credSub">Ti servono per accedere la prossima volta. Il codice di recupero ti serve solo se dimentichi la password.</p>
+      <div class="field"><label data-i18n="username">Username</label><input id="credUsername" readonly></div>
+      <div class="field"><label data-i18n="password">Password</label><input id="credPass" readonly></div>
+      <div class="field"><label data-i18n="recoveryCode">Codice di recupero</label><input id="credCode" readonly></div>
+      <button class="gate-btn" id="credContinueBtn" data-i18n="credContinue">Ho salvato tutto, continua ▸</button>
+    </div>
+
+    <!-- Step 0b: phone login -->
+    <div class="gstep" data-step="0b">
+      <h2 data-i18n="phoneTitle">Accedi con il telefono</h2>
+      <p class="sub" data-i18n="phoneSub">Ti inviamo un codice via SMS per accedere in sicurezza.</p>
+      <div class="field"><label data-i18n="phoneNum">Numero di telefono</label><input id="inPhone" type="tel" placeholder="+39 333 1234567" autocomplete="tel"></div>
+      <button class="gate-btn" id="sendCodeBtn" data-i18n="sendCode">Invia codice</button>
+      <div class="field" id="otpField" style="display:none;margin-top:14px">
+        <label data-i18n="otpLabel">Codice ricevuto via SMS</label>
+        <input id="inOtp" type="text" inputmode="numeric" maxlength="6" placeholder="••••••">
+      </div>
+      <button class="gate-btn" id="verifyOtpBtn" style="display:none" data-i18n="verifyBtn">Verifica e continua</button>
+      <div class="gate-alt"><a id="backToLoginBtn" data-i18n="backLogin">◂ Torna al login</a></div>
     </div>
 
     <!-- Step 1: name -->
     <div class="gstep" data-step="1">
-      <h2>Come ti chiami?</h2>
-      <p class="sub">EVA, il tuo copilota, userà il tuo nome per personalizzare il percorso.</p>
-      <div class="field"><label>Il tuo nome</label><input id="inName" placeholder="Es. Alex" autocomplete="given-name"></div>
-      <button class="gate-btn" data-next>Continua</button>
+      <h2 data-i18n="step1Title">Come ti chiami?</h2>
+      <p class="sub" data-i18n="step1Sub">EVA, il tuo copilota, userà il tuo nome per personalizzare il percorso.</p>
+      <div class="field"><label data-i18n="yourName">Il tuo nome</label><input id="inName" placeholder="Es. Alex" autocomplete="given-name"></div>
+      <button class="gate-btn" data-next data-i18n="continueBtn">Continua</button>
       <div class="steps-dots"><i></i><i class="on"></i><i></i><i></i></div>
     </div>
 
     <!-- Step 2: focus -->
     <div class="gstep" data-step="2">
-      <h2>Su cosa vuoi concentrarti?</h2>
-      <p class="sub">Scegli il pilastro che conta di più per te adesso. Potrai cambiarlo quando vuoi.</p>
+      <h2 data-i18n="step2Title">Su cosa vuoi concentrarti?</h2>
+      <p class="sub" data-i18n="step2Sub">Scegli il pilastro che conta di più per te adesso. Potrai cambiarlo quando vuoi.</p>
       <div class="focus-grid" id="focusGrid"></div>
       <button class="gate-btn" data-next>Continua</button>
       <div class="steps-dots"><i></i><i></i><i class="on"></i><i></i></div>
@@ -388,10 +554,10 @@
 
     <!-- Step 3: goal -->
     <div class="gstep" data-step="3">
-      <h2>Qual è il tuo primo obiettivo?</h2>
-      <p class="sub">Un traguardo concreto. Lo ritroverai già pronto nella dashboard Obiettivi.</p>
-      <div class="field"><label>Obiettivo</label><input id="inGoal" placeholder="Es. Lanciare il mio progetto in 30 giorni"></div>
-      <button class="gate-btn" id="finishBtn">Entra in EVITERNO ▸</button>
+      <h2 data-i18n="step3Title">Qual è il tuo primo obiettivo?</h2>
+      <p class="sub" data-i18n="step3Sub">Un traguardo concreto. Lo ritroverai già pronto nella dashboard Obiettivi.</p>
+      <div class="field"><label data-i18n="goalLabel">Obiettivo</label><input id="inGoal" data-i18n-ph="goalPh" placeholder="Es. Lanciare il mio progetto in 30 giorni"></div>
+      <button class="gate-btn" id="finishBtn" data-i18n="enterBtn">Entra in EVITERNO ▸</button>
       <div class="steps-dots"><i></i><i></i><i></i><i class="on"></i></div>
     </div>
   </div>
@@ -400,16 +566,17 @@
 <!-- ============ COPILOT ============ -->
 <div id="copilot">
   <div class="cp-fab" id="cpFab"><div class="cp-orb"></div>
-    <div class="cp-txt"><b>EVA</b><span>Copilota EVITERNO</span></div></div>
+    <div class="cp-txt"><b data-i18n="evaTitle">EVA</b><span data-i18n="evaSub">Copilota EVITERNO</span></div></div>
 </div>
 <div class="cp-win" id="cpWin">
   <div class="cp-head"><div class="cp-orb"></div>
-    <div><b>EVA</b><div class="st" id="cpStatus">Online</div></div>
-    <div class="hz"><button id="cpGear" title="Motore AI">⚙</button><button id="cpClose" title="Chiudi">×</button></div>
+    <div><b data-i18n="evaTitle">EVA</b><div class="st" id="cpStatus" data-i18n="online">Online</div></div>
+    <div class="hz"><button id="cpLive" title="Modalità Live — parla con EVA a voce">🎙️</button><button id="cpGear" title="Motore AI">⚙</button><button id="cpClose" title="Chiudi">×</button></div>
   </div>
+  <div class="live-banner" id="liveBanner"><div class="ld"></div><span id="liveBannerTxt">Live attiva</span></div>
   <div class="cp-log" id="cpLog"></div>
   <div class="chips" id="cpChips">
-    <div class="chip">✨ Genera il mio sistema</div><div class="chip">Voglio lanciare il mio brand</div><div class="chip">Connettimi con Sara nella Community</div>
+    <div class="chip" data-i18n="chip1">✨ Genera il mio sistema</div><div class="chip" data-i18n="chip2">Voglio lanciare il mio brand</div><div class="chip" data-i18n="chip3">Connettimi con Sara nella Community</div>
   </div>
   <div class="cp-in"><input id="cpInput" placeholder="Scrivi a EVA…" autocomplete="off"><button id="cpSend">➤</button></div>
 
@@ -429,6 +596,248 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script>
 /* ============================================================
+   SICUREZZA — sanificazione testo utente
+   Qualsiasi testo scritto dall'utente (nome, obiettivi, traguardi,
+   messaggi in chat) passa da qui prima di finire nella pagina, per
+   evitare che caratteri HTML vengano interpretati come codice.
+   ============================================================ */
+function escapeHtml(s){
+  return String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
+/* ============================================================
+   LINGUA — sistema di traduzione dell'interfaccia
+   currentLang decide cosa mostra l'interfaccia statica, cosa dice
+   EVA (testo e voce) e in che lingua ascolta il riconoscimento vocale.
+   Il testo scritto dagli utenti (nomi, obiettivi, traguardi) non
+   viene mai tradotto: è loro e resta com'è.
+   ============================================================ */
+const SUPPORTED_LANGS=['it','en','es','fr'];
+const LANG_META={it:{label:'Italiano',flag:'🇮🇹',speech:'it-IT'},en:{label:'English',flag:'🇬🇧',speech:'en-US'},
+  es:{label:'Español',flag:'🇪🇸',speech:'es-ES'},fr:{label:'Français',flag:'🇫🇷',speech:'fr-FR'}};
+let currentLang=(()=>{try{const s=localStorage.getItem('eviterno_lang');if(s&&SUPPORTED_LANGS.includes(s))return s;}catch(e){}return 'it';})();
+
+const I18N={
+  it:{ eyebrow:"Non è solo un'app. È un nuovo sistema.", tag_c:'Evolvi.', tag_w:'Connettiti.', tag_m:'Domina.',
+    lede:'La piattaforma che unisce <b>tecnologia</b>, <b>connessioni reali</b> e <b>crescita personale</b>. Il futuro è qui. E tu ne fai parte.',
+    hubHint:'▸ Tocca un nodo per entrare nella sua dashboard', footTag:'Evolvi · Connettiti · Domina',
+    visionBtn:'La nostra visione ▸', visionTitle:'La nostra visione',
+    vision1t:'Unisciamo il mondo', vision1p:'Abbattiamo le distanze e connettiamo menti, idee e opportunità.',
+    vision2t:'Tecnologia intelligente', vision2p:'Usiamo la tecnologia per semplificare, potenziare e creare valore.',
+    vision3t:'Impatto reale', vision3p:"Costruiamo un ecosistema che genera crescita, libertà e impatto positivo.",
+    loginTitle:'Crea il tuo accesso', loginSub:'Scegli username e password: la prossima volta ti basteranno questi per entrare.',
+    google:'Continua con Google', apple:'Continua con Apple', or:'oppure',
+    username:'Username', password:'Password', usernamePh:'Scegli un username', passwordPh:'Scegli una password',
+    createBtn:'Crea account ed entra', phoneLink:'Accedi con numero di telefono ▸', guestLink:'Continua come ospite ▸',
+    returnTitle:'Bentornato 👋', returnSub:'Inserisci le tue credenziali per continuare da dove avevi lasciato.',
+    returnUserPh:'Il tuo username', returnPassPh:'••••••••', loginBtn:'Accedi',
+    forgotLink:'Password dimenticata? Recupera credenziali', newAccLink:'Usa un altro account ▸',
+    recoverTitle:'Recupera credenziali', recoverSub:"Inserisci il tuo username e il codice di recupero che ti abbiamo mostrato alla creazione dell'account.",
+    recoveryCode:'Codice di recupero', newPassword:'Nuova password', resetBtn:'Reimposta password', backLogin:'◂ Torna al login',
+    credTitle:'Salva le tue credenziali 🔐', credSub:'Ti servono per accedere la prossima volta. Il codice di recupero ti serve solo se dimentichi la password.',
+    credContinue:'Ho salvato tutto, continua ▸',
+    phoneTitle:'Accedi con il telefono', phoneSub:'Ti inviamo un codice via SMS per accedere in sicurezza.',
+    phoneNum:'Numero di telefono', sendCode:'Invia codice', otpLabel:'Codice ricevuto via SMS', verifyBtn:'Verifica e continua',
+    step1Title:'Come ti chiami?', step1Sub:'EVA, il tuo copilota, userà il tuo nome per personalizzare il percorso.',
+    yourName:'Il tuo nome', continueBtn:'Continua',
+    step2Title:'Su cosa vuoi concentrarti?', step2Sub:'Scegli il pilastro che conta di più per te adesso. Potrai cambiarlo quando vuoi.',
+    step3Title:'Qual è il tuo primo obiettivo?', step3Sub:'Un traguardo concreto. Lo ritroverai già pronto nella dashboard Obiettivi.',
+    goalLabel:'Obiettivo', goalPh:'Es. Lanciare il mio progetto in 30 giorni', enterBtn:'Entra in EVITERNO ▸',
+    pillarLabel:'Pilastro', evaTitle:'EVA', evaSub:'Copilota EVITERNO', online:'Online', thinking:'Sta elaborando…',
+    askEva:'Chiedi a EVA', backHub:'◂ Hub',
+    dashCrescitaSub:'Il tuo motore di evoluzione: livello, costanza e percorsi attivi.',
+    dashCommunitySub:'La rete di persone ambiziose che condividono la tua visione.',
+    dashObiettiviSub:'Trasforma le intenzioni in traguardi. Spunta i passi, avanza la barra.',
+    dashSuccessoSub:'La mappa dei tuoi risultati: punteggio, traguardi e riconoscimenti.',
+    lvlLabel:'Livello attuale', streakLabel:'Giorni consecutivi', streakDesc:'La costanza è tutto',
+    weekActivity:'Attività settimana', activeTracks:'Percorsi attivi', completeLesson:'＋ Completa una lezione (+50 XP)',
+    nextMilestone:'Prossimo traguardo', nextMilestoneDesc:l=>`A <b style="color:var(--ice)">Livello ${l}</b> sblocchi nuovi percorsi avanzati e un badge esclusivo.`,
+    toLevel:l=>`al livello ${l}`,
+    members:'Membri', onlineNow:'Online adesso', liveNow:'● in tempo reale', upcomingEvents:'Eventi in arrivo',
+    join:'Partecipa', peopleToKnow:'Persone da conoscere', connect:'Connetti', connected:'Connesso ✓',
+    yourGroups:'I tuoi gruppi', open:'Apri',
+    overallCompletion:'Completamento generale', goalsCount:n=>`${n} obiettivi`, yourGoals:'I tuoi obiettivi',
+    addGoalPh:'Aggiungi un nuovo obiettivo…', add:'Aggiungi',
+    score:'Punteggio EVITERNO', rank:'Rango', milestones:'traguardi', achievements:'Riconoscimenti',
+    unlocked:'Sbloccato', locked:'Bloccato', yourTimeline:'La tua timeline',
+    liveOn:'Modalità Live attiva — parla pure con EVA 🎙️', liveOff:'Modalità Live disattivata',
+    liveListening:'Ti sto ascoltando…', liveSpeaking:'EVA sta parlando…', liveIdle:'Live attiva — tocca 🎙️ per parlare',
+    micDenied:'Permesso microfono negato. Attivalo nelle impostazioni del browser.',
+    liveUnsupported:'Il tuo browser non supporta la modalità Live vocale 🎙️',
+    chip1:'✨ Genera il mio sistema', chip2:'Voglio lanciare il mio brand', chip3:'Connettimi con Sara nella Community', openDashHint:'▸ Apri dashboard', welcomeBack:(n,f)=>`Bentornato, <b>${n}</b>. Il tuo focus è <b>${f}</b>. Tocca un nodo per entrare, o chiedi a EVA.`,
+    welcomeToast:'Benvenuto in EVITERNO ⚡', guestName:'Ospite', premiumBtn:'⭐ Premium', premiumTitle:'EVITERNO Premium', premiumSub:'Sblocca EVA avanzata e il tutoraggio 1:1 per accelerare il tuo percorso.', freeTitle:'Gratis', premiumTierTitle:'Premium', freeFeat1:'EVA copilota con azioni sulla piattaforma', freeFeat2:'I 4 pilastri completi', freeFeat3:'Modalità Live vocale', freeFeat4:'Account personale con salvataggio', premiumFeat1:'EVA Premium — risposte più approfondite e prioritarie', premiumFeat2:'Sessioni 1:1 di coaching con il tutor', premiumFeat3:'Badge Premium sul profilo', premiumFeat4:'Supporto prioritario', tutorSectionTitle:'Il tuo tutor', tutorBookBtn:'Prenota una sessione 1:1', upgradeBtn:'Passa a Premium', priceSuffix:'/mese', alreadyPremium:'Sei già Premium ⭐', premiumSuccessToast:'Pagamento completato! Benvenuto in Premium ⭐', premiumCancelToast:'Pagamento annullato', stripeNotConfigured:'Il pagamento non è ancora configurato. Il proprietario deve impostare il link Stripe.', chooseCredTitle:'Scegli le tue credenziali', chooseCredSub:'Ti abbiamo suggerito questi valori: personalizzali come preferisci, o tienili così.', createSocialBtn:'Crea il mio account ▸',
+  },
+  en:{ eyebrow:"It's not just an app. It's a new system.", tag_c:'Evolve.', tag_w:'Connect.', tag_m:'Dominate.',
+    lede:'The platform that unites <b>technology</b>, <b>real connections</b> and <b>personal growth</b>. The future is here. And you\'re part of it.',
+    hubHint:'▸ Tap a node to enter its dashboard', footTag:'Evolve · Connect · Dominate',
+    visionBtn:'Our vision ▸', visionTitle:'Our vision',
+    vision1t:'We unite the world', vision1p:'We break down distances and connect minds, ideas and opportunities.',
+    vision2t:'Smart technology', vision2p:'We use technology to simplify, empower and create real value.',
+    vision3t:'Real impact', vision3p:'We build an ecosystem that generates growth, freedom and positive impact.',
+    loginTitle:'Create your access', loginSub:"Choose a username and password: next time that's all you'll need.",
+    google:'Continue with Google', apple:'Continue with Apple', or:'or',
+    username:'Username', password:'Password', usernamePh:'Choose a username', passwordPh:'Choose a password',
+    createBtn:'Create account and enter', phoneLink:'Sign in with phone number ▸', guestLink:'Continue as guest ▸',
+    returnTitle:'Welcome back 👋', returnSub:'Enter your credentials to continue where you left off.',
+    returnUserPh:'Your username', returnPassPh:'••••••••', loginBtn:'Sign in',
+    forgotLink:'Forgot password? Recover credentials', newAccLink:'Use another account ▸',
+    recoverTitle:'Recover credentials', recoverSub:'Enter your username and the recovery code we showed you when you created your account.',
+    recoveryCode:'Recovery code', newPassword:'New password', resetBtn:'Reset password', backLogin:'◂ Back to login',
+    credTitle:'Save your credentials 🔐', credSub:"You'll need these to log in next time. The recovery code is only needed if you forget your password.",
+    credContinue:"I've saved everything, continue ▸",
+    phoneTitle:'Sign in with phone', phoneSub:'We\'ll send you a code via SMS to sign in securely.',
+    phoneNum:'Phone number', sendCode:'Send code', otpLabel:'Code received via SMS', verifyBtn:'Verify and continue',
+    step1Title:"What's your name?", step1Sub:'EVA, your copilot, will use your name to personalize your journey.',
+    yourName:'Your name', continueBtn:'Continue',
+    step2Title:'What do you want to focus on?', step2Sub:'Pick the pillar that matters most to you right now. You can change it anytime.',
+    step3Title:"What's your first goal?", step3Sub:"A concrete milestone. You'll find it ready in the Goals dashboard.",
+    goalLabel:'Goal', goalPh:'E.g. Launch my project in 30 days', enterBtn:'Enter EVITERNO ▸',
+    pillarLabel:'Pillar', evaTitle:'EVA', evaSub:'EVITERNO Copilot', online:'Online', thinking:'Thinking…',
+    askEva:'Ask EVA', backHub:'◂ Hub',
+    dashCrescitaSub:'Your engine of growth: level, consistency and active tracks.',
+    dashCommunitySub:'The network of ambitious people who share your vision.',
+    dashObiettiviSub:'Turn intentions into milestones. Check off steps, move the bar.',
+    dashSuccessoSub:'The map of your results: score, milestones and recognitions.',
+    lvlLabel:'Current level', streakLabel:'Day streak', streakDesc:'Consistency is everything',
+    weekActivity:'Weekly activity', activeTracks:'Active tracks', completeLesson:'＋ Complete a lesson (+50 XP)',
+    nextMilestone:'Next milestone', nextMilestoneDesc:l=>`At <b style="color:var(--ice)">Level ${l}</b> you unlock new advanced tracks and an exclusive badge.`,
+    toLevel:l=>`to level ${l}`,
+    members:'Members', onlineNow:'Online now', liveNow:'● live', upcomingEvents:'Upcoming events',
+    join:'Join', peopleToKnow:'People to know', connect:'Connect', connected:'Connected ✓',
+    yourGroups:'Your groups', open:'Open',
+    overallCompletion:'Overall completion', goalsCount:n=>`${n} goals`, yourGoals:'Your goals',
+    addGoalPh:'Add a new goal…', add:'Add',
+    score:'EVITERNO score', rank:'Rank', milestones:'milestones', achievements:'Achievements',
+    unlocked:'Unlocked', locked:'Locked', yourTimeline:'Your timeline',
+    liveOn:'Live mode active — talk to EVA 🎙️', liveOff:'Live mode disabled',
+    liveListening:"Listening…", liveSpeaking:'EVA is speaking…', liveIdle:'Live active — tap 🎙️ to talk',
+    micDenied:'Microphone permission denied. Enable it in your browser settings.',
+    liveUnsupported:"Your browser doesn't support voice Live mode 🎙️",
+    chip1:'✨ Generate my system', chip2:'I want to launch my brand', chip3:'Connect me with Sara in Community', openDashHint:'▸ Open dashboard', welcomeBack:(n,f)=>`Welcome back, <b>${n}</b>. Your focus is <b>${f}</b>. Tap a node to enter, or ask EVA.`,
+    welcomeToast:'Welcome to EVITERNO ⚡', guestName:'Guest', premiumBtn:'⭐ Premium', premiumTitle:'EVITERNO Premium', premiumSub:'Unlock advanced EVA and 1:1 tutoring to speed up your journey.', freeTitle:'Free', premiumTierTitle:'Premium', freeFeat1:'EVA copilot with platform actions', freeFeat2:'All 4 pillars', freeFeat3:'Voice Live mode', freeFeat4:'Personal account with saving', premiumFeat1:'Premium EVA — deeper, priority responses', premiumFeat2:'1:1 coaching sessions with the tutor', premiumFeat3:'Premium badge on profile', premiumFeat4:'Priority support', tutorSectionTitle:'Your tutor', tutorBookBtn:'Book a 1:1 session', upgradeBtn:'Upgrade to Premium', priceSuffix:'/month', alreadyPremium:"You're already Premium ⭐", premiumSuccessToast:'Payment complete! Welcome to Premium ⭐', premiumCancelToast:'Payment cancelled', stripeNotConfigured:'Payment is not configured yet. The owner needs to set up the Stripe link.', chooseCredTitle:'Choose your credentials', chooseCredSub:"We suggested these values: customize them as you like, or keep them as they are.", createSocialBtn:'Create my account ▸',
+  },
+  es:{ eyebrow:'No es solo una app. Es un nuevo sistema.', tag_c:'Evoluciona.', tag_w:'Conéctate.', tag_m:'Domina.',
+    lede:'La plataforma que une <b>tecnología</b>, <b>conexiones reales</b> y <b>crecimiento personal</b>. El futuro está aquí. Y tú formas parte.',
+    hubHint:'▸ Toca un nodo para entrar en su panel', footTag:'Evoluciona · Conéctate · Domina',
+    visionBtn:'Nuestra visión ▸', visionTitle:'Nuestra visión',
+    vision1t:'Unimos el mundo', vision1p:'Reducimos las distancias y conectamos mentes, ideas y oportunidades.',
+    vision2t:'Tecnología inteligente', vision2p:'Usamos la tecnología para simplificar, potenciar y crear valor real.',
+    vision3t:'Impacto real', vision3p:'Construimos un ecosistema que genera crecimiento, libertad e impacto positivo.',
+    loginTitle:'Crea tu acceso', loginSub:'Elige un usuario y contraseña: la próxima vez solo necesitarás esto.',
+    google:'Continuar con Google', apple:'Continuar con Apple', or:'o',
+    username:'Usuario', password:'Contraseña', usernamePh:'Elige un usuario', passwordPh:'Elige una contraseña',
+    createBtn:'Crear cuenta y entrar', phoneLink:'Acceder con número de teléfono ▸', guestLink:'Continuar como invitado ▸',
+    returnTitle:'Bienvenido de nuevo 👋', returnSub:'Introduce tus credenciales para continuar donde lo dejaste.',
+    returnUserPh:'Tu usuario', returnPassPh:'••••••••', loginBtn:'Acceder',
+    forgotLink:'¿Olvidaste tu contraseña? Recupera credenciales', newAccLink:'Usar otra cuenta ▸',
+    recoverTitle:'Recuperar credenciales', recoverSub:'Introduce tu usuario y el código de recuperación que te mostramos al crear la cuenta.',
+    recoveryCode:'Código de recuperación', newPassword:'Nueva contraseña', resetBtn:'Restablecer contraseña', backLogin:'◂ Volver al acceso',
+    credTitle:'Guarda tus credenciales 🔐', credSub:'Las necesitarás para acceder la próxima vez. El código de recuperación solo se usa si olvidas la contraseña.',
+    credContinue:'Ya guardé todo, continuar ▸',
+    phoneTitle:'Acceder con teléfono', phoneSub:'Te enviamos un código por SMS para acceder de forma segura.',
+    phoneNum:'Número de teléfono', sendCode:'Enviar código', otpLabel:'Código recibido por SMS', verifyBtn:'Verificar y continuar',
+    step1Title:'¿Cómo te llamas?', step1Sub:'EVA, tu copiloto, usará tu nombre para personalizar tu camino.',
+    yourName:'Tu nombre', continueBtn:'Continuar',
+    step2Title:'¿En qué quieres enfocarte?', step2Sub:'Elige el pilar que más te importa ahora. Podrás cambiarlo cuando quieras.',
+    step3Title:'¿Cuál es tu primer objetivo?', step3Sub:'Una meta concreta. La encontrarás lista en el panel de Objetivos.',
+    goalLabel:'Objetivo', goalPh:'Ej. Lanzar mi proyecto en 30 días', enterBtn:'Entrar a EVITERNO ▸',
+    pillarLabel:'Pilar', evaTitle:'EVA', evaSub:'Copiloto EVITERNO', online:'En línea', thinking:'Pensando…',
+    askEva:'Preguntar a EVA', backHub:'◂ Hub',
+    dashCrescitaSub:'Tu motor de crecimiento: nivel, constancia y rutas activas.',
+    dashCommunitySub:'La red de personas ambiciosas que comparten tu visión.',
+    dashObiettiviSub:'Convierte intenciones en metas. Marca los pasos, avanza la barra.',
+    dashSuccessoSub:'El mapa de tus resultados: puntuación, metas y reconocimientos.',
+    lvlLabel:'Nivel actual', streakLabel:'Días consecutivos', streakDesc:'La constancia lo es todo',
+    weekActivity:'Actividad semanal', activeTracks:'Rutas activas', completeLesson:'＋ Completa una lección (+50 XP)',
+    nextMilestone:'Próxima meta', nextMilestoneDesc:l=>`En el <b style="color:var(--ice)">Nivel ${l}</b> desbloqueas nuevas rutas avanzadas y una insignia exclusiva.`,
+    toLevel:l=>`al nivel ${l}`,
+    members:'Miembros', onlineNow:'En línea ahora', liveNow:'● en vivo', upcomingEvents:'Próximos eventos',
+    join:'Unirse', peopleToKnow:'Personas para conocer', connect:'Conectar', connected:'Conectado ✓',
+    yourGroups:'Tus grupos', open:'Abrir',
+    overallCompletion:'Progreso general', goalsCount:n=>`${n} objetivos`, yourGoals:'Tus objetivos',
+    addGoalPh:'Añade un nuevo objetivo…', add:'Añadir',
+    score:'Puntuación EVITERNO', rank:'Rango', milestones:'metas', achievements:'Reconocimientos',
+    unlocked:'Desbloqueado', locked:'Bloqueado', yourTimeline:'Tu cronología',
+    liveOn:'Modo Live activo — habla con EVA 🎙️', liveOff:'Modo Live desactivado',
+    liveListening:'Te estoy escuchando…', liveSpeaking:'EVA está hablando…', liveIdle:'Live activo — toca 🎙️ para hablar',
+    micDenied:'Permiso de micrófono denegado. Actívalo en la configuración del navegador.',
+    liveUnsupported:'Tu navegador no admite el modo Live por voz 🎙️',
+    chip1:'✨ Generar mi sistema', chip2:'Quiero lanzar mi marca', chip3:'Conéctame con Sara en Community', openDashHint:'▸ Abrir panel', welcomeBack:(n,f)=>`Bienvenido, <b>${n}</b>. Tu enfoque es <b>${f}</b>. Toca un nodo para entrar, o pregúntale a EVA.`,
+    welcomeToast:'Bienvenido a EVITERNO ⚡', guestName:'Invitado', premiumBtn:'⭐ Premium', premiumTitle:'EVITERNO Premium', premiumSub:'Desbloquea EVA avanzada y tutoría 1:1 para acelerar tu camino.', freeTitle:'Gratis', premiumTierTitle:'Premium', freeFeat1:'EVA copiloto con acciones en la plataforma', freeFeat2:'Los 4 pilares completos', freeFeat3:'Modo Live por voz', freeFeat4:'Cuenta personal con guardado', premiumFeat1:'EVA Premium — respuestas más profundas y prioritarias', premiumFeat2:'Sesiones 1:1 de coaching con el tutor', premiumFeat3:'Insignia Premium en el perfil', premiumFeat4:'Soporte prioritario', tutorSectionTitle:'Tu tutor', tutorBookBtn:'Reservar una sesión 1:1', upgradeBtn:'Pasar a Premium', priceSuffix:'/mes', alreadyPremium:'Ya eres Premium ⭐', premiumSuccessToast:'¡Pago completado! Bienvenido a Premium ⭐', premiumCancelToast:'Pago cancelado', stripeNotConfigured:'El pago aún no está configurado. El propietario debe configurar el enlace de Stripe.', chooseCredTitle:'Elige tus credenciales', chooseCredSub:'Te sugerimos estos valores: personalízalos como prefieras, o déjalos así.', createSocialBtn:'Crear mi cuenta ▸',
+  },
+  fr:{ eyebrow:"Ce n'est pas juste une application. C'est un nouveau système.", tag_c:'Évolue.', tag_w:'Connecte-toi.', tag_m:'Domine.',
+    lede:'La plateforme qui unit <b>technologie</b>, <b>connexions réelles</b> et <b>développement personnel</b>. Le futur est là. Et vous en faites partie.',
+    hubHint:'▸ Touchez un nœud pour entrer dans son tableau de bord', footTag:'Évolue · Connecte-toi · Domine',
+    visionBtn:'Notre vision ▸', visionTitle:'Notre vision',
+    vision1t:'Nous unissons le monde', vision1p:'Nous réduisons les distances et connectons esprits, idées et opportunités.',
+    vision2t:'Technologie intelligente', vision2p:'Nous utilisons la technologie pour simplifier, renforcer et créer de la valeur réelle.',
+    vision3t:'Impact réel', vision3p:'Nous construisons un écosystème qui génère croissance, liberté et impact positif.',
+    loginTitle:'Créez votre accès', loginSub:'Choisissez un identifiant et un mot de passe : la prochaine fois, cela suffira.',
+    google:'Continuer avec Google', apple:'Continuer avec Apple', or:'ou',
+    username:'Identifiant', password:'Mot de passe', usernamePh:'Choisissez un identifiant', passwordPh:'Choisissez un mot de passe',
+    createBtn:'Créer le compte et entrer', phoneLink:'Se connecter avec un numéro de téléphone ▸', guestLink:'Continuer en invité ▸',
+    returnTitle:'Bon retour 👋', returnSub:'Entrez vos identifiants pour continuer là où vous en étiez.',
+    returnUserPh:'Votre identifiant', returnPassPh:'••••••••', loginBtn:'Se connecter',
+    forgotLink:'Mot de passe oublié ? Récupérer les identifiants', newAccLink:'Utiliser un autre compte ▸',
+    recoverTitle:'Récupérer les identifiants', recoverSub:"Entrez votre identifiant et le code de récupération affiché lors de la création du compte.",
+    recoveryCode:'Code de récupération', newPassword:'Nouveau mot de passe', resetBtn:'Réinitialiser le mot de passe', backLogin:'◂ Retour à la connexion',
+    credTitle:'Enregistrez vos identifiants 🔐', credSub:'Vous en aurez besoin la prochaine fois. Le code de récupération ne sert qu\'en cas d\'oubli du mot de passe.',
+    credContinue:"J'ai tout enregistré, continuer ▸",
+    phoneTitle:'Connexion par téléphone', phoneSub:'Nous vous envoyons un code par SMS pour vous connecter en toute sécurité.',
+    phoneNum:'Numéro de téléphone', sendCode:'Envoyer le code', otpLabel:'Code reçu par SMS', verifyBtn:'Vérifier et continuer',
+    step1Title:'Comment vous appelez-vous ?', step1Sub:'EVA, votre copilote, utilisera votre prénom pour personnaliser votre parcours.',
+    yourName:'Votre prénom', continueBtn:'Continuer',
+    step2Title:'Sur quoi voulez-vous vous concentrer ?', step2Sub:'Choisissez le pilier qui compte le plus pour vous maintenant. Vous pourrez le changer à tout moment.',
+    step3Title:'Quel est votre premier objectif ?', step3Sub:'Un objectif concret. Vous le retrouverez déjà prêt dans le tableau de bord Objectifs.',
+    goalLabel:'Objectif', goalPh:'Ex. Lancer mon projet en 30 jours', enterBtn:'Entrer dans EVITERNO ▸',
+    pillarLabel:'Pilier', evaTitle:'EVA', evaSub:'Copilote EVITERNO', online:'En ligne', thinking:'Réflexion…',
+    askEva:'Demander à EVA', backHub:'◂ Hub',
+    dashCrescitaSub:'Votre moteur de croissance : niveau, régularité et parcours actifs.',
+    dashCommunitySub:'Le réseau de personnes ambitieuses qui partagent votre vision.',
+    dashObiettiviSub:'Transformez vos intentions en objectifs. Cochez les étapes, avancez la barre.',
+    dashSuccessoSub:'La carte de vos résultats : score, objectifs et récompenses.',
+    lvlLabel:'Niveau actuel', streakLabel:'Jours consécutifs', streakDesc:'La régularité est essentielle',
+    weekActivity:'Activité hebdomadaire', activeTracks:'Parcours actifs', completeLesson:'＋ Terminer une leçon (+50 XP)',
+    nextMilestone:'Prochaine étape', nextMilestoneDesc:l=>`Au <b style="color:var(--ice)">Niveau ${l}</b>, vous débloquez de nouveaux parcours avancés et un badge exclusif.`,
+    toLevel:l=>`vers le niveau ${l}`,
+    members:'Membres', onlineNow:'En ligne maintenant', liveNow:'● en direct', upcomingEvents:'Événements à venir',
+    join:'Participer', peopleToKnow:'Personnes à connaître', connect:'Se connecter', connected:'Connecté ✓',
+    yourGroups:'Vos groupes', open:'Ouvrir',
+    overallCompletion:'Progression globale', goalsCount:n=>`${n} objectifs`, yourGoals:'Vos objectifs',
+    addGoalPh:'Ajouter un nouvel objectif…', add:'Ajouter',
+    score:'Score EVITERNO', rank:'Rang', milestones:'étapes', achievements:'Récompenses',
+    unlocked:'Débloqué', locked:'Verrouillé', yourTimeline:'Votre chronologie',
+    liveOn:'Mode Live actif — parlez à EVA 🎙️', liveOff:'Mode Live désactivé',
+    liveListening:'Je vous écoute…', liveSpeaking:'EVA est en train de parler…', liveIdle:'Live actif — touchez 🎙️ pour parler',
+    micDenied:'Permission micro refusée. Activez-la dans les réglages du navigateur.',
+    liveUnsupported:'Votre navigateur ne prend pas en charge le mode Live vocal 🎙️',
+    chip1:'✨ Générer mon système', chip2:'Je veux lancer ma marque', chip3:'Connecte-moi avec Sara dans Community', openDashHint:'▸ Ouvrir le tableau de bord', welcomeBack:(n,f)=>`Bon retour, <b>${n}</b>. Votre focus est <b>${f}</b>. Touchez un nœud pour entrer, ou demandez à EVA.`,
+    welcomeToast:'Bienvenue sur EVITERNO ⚡', guestName:'Invité', premiumBtn:'⭐ Premium', premiumTitle:'EVITERNO Premium', premiumSub:'Débloquez EVA avancée et le coaching 1:1 pour accélérer votre parcours.', freeTitle:'Gratuit', premiumTierTitle:'Premium', freeFeat1:'Copilote EVA avec actions sur la plateforme', freeFeat2:'Les 4 piliers complets', freeFeat3:'Mode Live vocal', freeFeat4:'Compte personnel avec sauvegarde', premiumFeat1:'EVA Premium — réponses plus approfondies et prioritaires', premiumFeat2:'Séances de coaching 1:1 avec le tuteur', premiumFeat3:'Badge Premium sur le profil', premiumFeat4:'Support prioritaire', tutorSectionTitle:'Votre tuteur', tutorBookBtn:'Réserver une séance 1:1', upgradeBtn:'Passer à Premium', priceSuffix:'/mois', alreadyPremium:'Vous êtes déjà Premium ⭐', premiumSuccessToast:'Paiement terminé ! Bienvenue dans Premium ⭐', premiumCancelToast:'Paiement annulé', stripeNotConfigured:"Le paiement n'est pas encore configuré. Le propriétaire doit configurer le lien Stripe.", chooseCredTitle:'Choisissez vos identifiants', chooseCredSub:'Nous avons suggéré ces valeurs : personnalisez-les si vous voulez, ou gardez-les.', createSocialBtn:'Créer mon compte ▸',
+  },
+};
+function t(key){const v=(I18N[currentLang]&&I18N[currentLang][key]);return v!=null?v:(I18N.it[key]!=null?I18N.it[key]:key);}
+
+/* Nomi e descrizioni dei 4 pilastri, per lingua (usati ovunque tramite getter, sempre aggiornati) */
+const PILLAR_I18N={
+  it:{crescita:{t:'Crescita',p:'Strumenti innovativi per la tua evoluzione personale e professionale.'},
+    community:{t:'Community',p:'Persone ambiziose che condividono valori e visione.'},
+    obiettivi:{t:'Obiettivi',p:'Raggiungi ciò che conta davvero con metodi efficaci.'},
+    successo:{t:'Successo',p:'Sblocca il tuo potenziale e crea la vita che meriti.'}},
+  en:{crescita:{t:'Growth',p:'Innovative tools for your personal and professional growth.'},
+    community:{t:'Community',p:'Ambitious people who share your values and vision.'},
+    obiettivi:{t:'Goals',p:'Achieve what truly matters with effective methods.'},
+    successo:{t:'Success',p:'Unlock your potential and build the life you deserve.'}},
+  es:{crescita:{t:'Crecimiento',p:'Herramientas innovadoras para tu evolución personal y profesional.'},
+    community:{t:'Comunidad',p:'Personas ambiciosas que comparten tus valores y visión.'},
+    obiettivi:{t:'Objetivos',p:'Logra lo que realmente importa con métodos eficaces.'},
+    successo:{t:'Éxito',p:'Desbloquea tu potencial y crea la vida que mereces.'}},
+  fr:{crescita:{t:'Croissance',p:'Des outils innovants pour votre évolution personnelle et professionnelle.'},
+    community:{t:'Communauté',p:'Des personnes ambitieuses qui partagent vos valeurs et votre vision.'},
+    obiettivi:{t:'Objectifs',p:'Atteignez ce qui compte vraiment avec des méthodes efficaces.'},
+    successo:{t:'Succès',p:'Libérez votre potentiel et créez la vie que vous méritez.'}},
+};
+
+/* ============================================================
    CONFIGURAZIONE MOTORE AI  ← modifica qui per il tuo agente
    ------------------------------------------------------------
    mode:'claude'  → usa l'API di Claude (default, gira dentro Claude)
@@ -443,17 +852,40 @@ const AGENT_CONFIG = (location.protocol === 'file:')
 /* ============================================================
    STATO UTENTE + DATI DASHBOARD (in memoria)
    ============================================================ */
-const USER = { name:'', email:'', focus:'crescita', goal:'', guest:false };
+const USER = { name:'', email:'', focus:'crescita', goal:'', guest:false, premium:false };
+
+/* ============================================================
+   TUTOR & PREMIUM — configurazione da personalizzare
+   ------------------------------------------------------------
+   bookingLink: dove va chi vuole prenotare una sessione 1:1 con te
+                (email, Calendly, WhatsApp — quello che preferisci).
+   stripeLink:  il tuo "Payment Link" di Stripe per l'abbonamento
+                mensile. Lo crei gratis sulla dashboard Stripe:
+                Prodotti → Crea link di pagamento → ricorrente/mese.
+                Finché resta il placeholder, il pulsante avvisa che
+                va configurato invece di aprire un link finto.
+   ============================================================ */
+const TUTOR_INFO = {
+  name: 'Prince Isaac',
+  bio: 'Fondatore di EVITERNO. Ti affianco 1:1 per trasformare la tua visione in un sistema concreto, passo dopo passo.',
+  bookingLink: 'mailto:tuo@email.com?subject=Prenota%20una%20sessione%201:1%20EVITERNO',
+  stripeLink: '', // ← incolla qui il tuo Payment Link di Stripe (https://buy.stripe.com/...)
+  priceDisplay: '€9,99',
+};
 
 const PILLARS=[
-  {id:'crescita', t:'Crescita',  eb:'Pilastro 01', c:0x4de1ff, hex:'#4de1ff', ic:'⟲', pos:[-7.4,2.3,1.2],
-   p:'Strumenti innovativi per la tua evoluzione personale e professionale.'},
-  {id:'community',t:'Community', eb:'Pilastro 02', c:0x2e7bff, hex:'#2e7bff', ic:'⬡', pos:[-7.4,-2.3,1.2],
-   p:'Persone ambiziose che condividono valori e visione.'},
-  {id:'obiettivi',t:'Obiettivi',eb:'Pilastro 03', c:0x9b6bff, hex:'#9b6bff', ic:'◎', pos:[7.4,2.3,1.2],
-   p:'Raggiungi ciò che conta davvero con metodi efficaci.'},
-  {id:'successo', t:'Successo', eb:'Pilastro 04', c:0xc93be8, hex:'#c93be8', ic:'★', pos:[7.4,-2.3,1.2],
-   p:'Sblocca il tuo potenziale e crea la vita che meriti.'},
+  {id:'crescita', c:0x4de1ff, hex:'#4de1ff', ic:'⟲', pos:[-7.4,2.3,1.2], ebN:1,
+   get t(){return PILLAR_I18N[currentLang].crescita.t;}, get p(){return PILLAR_I18N[currentLang].crescita.p;},
+   get eb(){return `${t('pillarLabel')} 0${this.ebN}`;}},
+  {id:'community',c:0x2e7bff, hex:'#2e7bff', ic:'⬡', pos:[-7.4,-2.3,1.2], ebN:2,
+   get t(){return PILLAR_I18N[currentLang].community.t;}, get p(){return PILLAR_I18N[currentLang].community.p;},
+   get eb(){return `${t('pillarLabel')} 0${this.ebN}`;}},
+  {id:'obiettivi',c:0x9b6bff, hex:'#9b6bff', ic:'◎', pos:[7.4,2.3,1.2], ebN:3,
+   get t(){return PILLAR_I18N[currentLang].obiettivi.t;}, get p(){return PILLAR_I18N[currentLang].obiettivi.p;},
+   get eb(){return `${t('pillarLabel')} 0${this.ebN}`;}},
+  {id:'successo', c:0xc93be8, hex:'#c93be8', ic:'★', pos:[7.4,-2.3,1.2], ebN:4,
+   get t(){return PILLAR_I18N[currentLang].successo.t;}, get p(){return PILLAR_I18N[currentLang].successo.p;},
+   get eb(){return `${t('pillarLabel')} 0${this.ebN}`;}},
 ];
 const P = id => PILLARS.find(x=>x.id===id);
 
@@ -570,11 +1002,18 @@ PILLARS.forEach(p=>{const g=new THREE.Group();
   group.add(g);nodeMeshes.push(g);p.mesh=g;});
 
 const labelsEl=document.getElementById('labels');
-PILLARS.forEach(p=>{const el=document.createElement('div');el.className='node-label';el.style.color=p.hex;
-  el.innerHTML=`<div class="dot"></div><div class="nl-t">${p.t}</div><div class="nl-s">${p.p}</div><div class="enter">▸ Apri dashboard</div>`;
-  el.onclick=()=>openDashboard(p.id);
-  el.onmouseenter=()=>p.mesh.userData.glowT=1;el.onmouseleave=()=>p.mesh.userData.glowT=0;
-  labelsEl.appendChild(el);p.label=el;});
+function renderNodeLabels(){
+  PILLARS.forEach(p=>{
+    if(!p.label){
+      const el=document.createElement('div');el.className='node-label';el.style.color=p.hex;
+      el.onclick=()=>openDashboard(p.id);
+      el.onmouseenter=()=>p.mesh.userData.glowT=1;el.onmouseleave=()=>p.mesh.userData.glowT=0;
+      labelsEl.appendChild(el);p.label=el;
+    }
+    p.label.innerHTML=`<div class="dot"></div><div class="nl-t">${p.t}</div><div class="nl-s">${p.p}</div><div class="enter">${t('openDashHint')}</div>`;
+  });
+}
+renderNodeLabels();
 
 const mouse={x:0,y:0},look={x:0,y:0};
 addEventListener('mousemove',e=>{mouse.x=e.clientX/innerWidth-.5;mouse.y=e.clientY/innerHeight-.5;});
@@ -625,76 +1064,76 @@ PILLARS.forEach(p=>{const v=document.createElement('div');v.className='view';v.i
   v.style.setProperty('--acc',p.hex);viewsEl.appendChild(v);});
 
 function dashHead(p,sub){return `<div class="dash-head">
-  <button class="back" data-hub>◂ Hub</button>
+  <button class="back" data-hub>${t('backHub')}</button>
   <div class="dash-title"><div class="db-dot"></div><div>
     <div class="eb">${p.eb} · EVITERNO</div><h1>${p.t}</h1></div></div>
-  <button class="ask-eva" data-ask="${p.id}"><span class="mo"></span>Chiedi a EVA</button></div>
+  <button class="ask-eva" data-ask="${p.id}"><span class="mo"></span>${t('askEva')}</button></div>
   <p style="color:var(--muted);font-weight:300;max-width:640px;margin:-2px 0 22px;font-size:14px">${sub}</p>`;}
 
 function renderDashboard(id){const v=document.getElementById('view-'+id);const p=P(id);
-  if(id==='crescita')v.innerHTML=dashHead(p,'Il tuo motore di evoluzione: livello, costanza e percorsi attivi.')+renderCrescita();
-  if(id==='community')v.innerHTML=dashHead(p,'La rete di persone ambiziose che condividono la tua visione.')+renderCommunity();
-  if(id==='obiettivi')v.innerHTML=dashHead(p,'Trasforma le intenzioni in traguardi. Spunta i passi, avanza la barra.')+renderObiettivi();
-  if(id==='successo')v.innerHTML=dashHead(p,'La mappa dei tuoi risultati: punteggio, traguardi e riconoscimenti.')+renderSuccesso();
+  if(id==='crescita')v.innerHTML=dashHead(p,t('dashCrescitaSub'))+renderCrescita();
+  if(id==='community')v.innerHTML=dashHead(p,t('dashCommunitySub'))+renderCommunity();
+  if(id==='obiettivi')v.innerHTML=dashHead(p,t('dashObiettiviSub'))+renderObiettivi();
+  if(id==='successo')v.innerHTML=dashHead(p,t('dashSuccessoSub'))+renderSuccesso();
   wireDashboard(v,id);}
 
 function renderCrescita(){const d=DATA.crescita;const wmax=Math.max(...d.week);
   return `<div class="grid">
-    <div class="card col-3"><div class="kpi"><div class="v">Lv ${d.level}</div><div class="l">Livello attuale</div>
+    <div class="card col-3"><div class="kpi"><div class="v">Lv ${d.level}</div><div class="l">${t('lvlLabel')}</div>
       <div class="bar"><i style="width:${Math.round(100*d.xp/d.xpMax)}%"></i></div>
       <div class="d">${d.xp} / ${d.xpMax} XP</div></div></div>
-    <div class="card col-3"><div class="kpi"><div class="v">${d.streak}🔥</div><div class="l">Giorni consecutivi</div>
-      <div class="d">La costanza è tutto</div></div></div>
-    <div class="card col-6"><h3>Attività settimana</h3><div class="week-chart">
+    <div class="card col-3"><div class="kpi"><div class="v">${d.streak}🔥</div><div class="l">${t('streakLabel')}</div>
+      <div class="d">${t('streakDesc')}</div></div></div>
+    <div class="card col-6"><h3>${t('weekActivity')}</h3><div class="week-chart">
       ${['L','M','M','G','V','S','D'].map((g,i)=>`<div class="wb"><i style="height:${Math.round(90*d.week[i]/wmax)}%"></i><span>${g}</span></div>`).join('')}
     </div></div>
-    <div class="card col-7"><h3>Percorsi attivi</h3>
-      ${d.tracks.map(tr=>`<div class="track-row"><div class="th"><b>${tr.n}</b><span>${tr.p}%</span></div>
+    <div class="card col-7"><h3>${t('activeTracks')}</h3>
+      ${d.tracks.map(tr=>`<div class="track-row"><div class="th"><b>${escapeHtml(tr.n)}</b><span>${tr.p}%</span></div>
         <div class="bar"><i style="width:${tr.p}%"></i></div></div>`).join('')}
-      <button class="btn-full" data-lesson>＋ Completa una lezione (+50 XP)</button></div>
-    <div class="card col-5"><h3>Prossimo traguardo</h3>
-      <p style="color:var(--muted);font-size:13.5px;line-height:1.6;margin:0 0 14px">A <b style="color:var(--ice)">Livello ${d.level+1}</b> sblocchi nuovi percorsi avanzati e un badge esclusivo.</p>
-      <div class="ring" style="--p:${Math.round(100*d.xp/d.xpMax)}"><div class="in"><div><b>${Math.round(100*d.xp/d.xpMax)}%</b><span>al livello ${d.level+1}</span></div></div></div>
+      <button class="btn-full" data-lesson>${t('completeLesson')}</button></div>
+    <div class="card col-5"><h3>${t('nextMilestone')}</h3>
+      <p style="color:var(--muted);font-size:13.5px;line-height:1.6;margin:0 0 14px">${t('nextMilestoneDesc')(d.level+1)}</p>
+      <div class="ring" style="--p:${Math.round(100*d.xp/d.xpMax)}"><div class="in"><div><b>${Math.round(100*d.xp/d.xpMax)}%</b><span>${t('toLevel')(d.level+1)}</span></div></div></div>
     </div></div>`;}
 
 function renderCommunity(){const d=DATA.community;
   return `<div class="grid">
-    <div class="card col-3"><div class="kpi"><div class="v">${d.members.toLocaleString('it')}</div><div class="l">Membri</div></div></div>
-    <div class="card col-3"><div class="kpi"><div class="v">${d.online}</div><div class="l">Online adesso</div><div class="d">● in tempo reale</div></div></div>
-    <div class="card col-6"><h3>Eventi in arrivo</h3>
+    <div class="card col-3"><div class="kpi"><div class="v">${d.members.toLocaleString(currentLang)}</div><div class="l">${t('members')}</div></div></div>
+    <div class="card col-3"><div class="kpi"><div class="v">${d.online}</div><div class="l">${t('onlineNow')}</div><div class="d">${t('liveNow')}</div></div></div>
+    <div class="card col-6"><h3>${t('upcomingEvents')}</h3>
       ${d.events.map(e=>`<div class="list-item"><div class="ava">◆</div><div class="li-t"><b>${e.n}</b><span>${e.w}</span></div>
-        <button class="li-act" data-rsvp>Partecipa</button></div>`).join('')}</div>
-    <div class="card col-7"><h3>Persone da conoscere</h3><div id="sugList">
+        <button class="li-act" data-rsvp>${t('join')}</button></div>`).join('')}</div>
+    <div class="card col-7"><h3>${t('peopleToKnow')}</h3><div id="sugList">
       ${d.suggestions.map((s,i)=>`<div class="list-item"><div class="ava">${s.a}</div><div class="li-t"><b>${s.n}</b><span>${s.r}</span></div>
-        <button class="li-act ${s.connected?'done':''}" data-connect="${i}" ${s.connected?'disabled':''}>${s.connected?'Connesso ✓':'Connetti'}</button></div>`).join('')}</div></div>
-    <div class="card col-5"><h3>I tuoi gruppi</h3>
-      ${d.groups.map(g=>`<div class="list-item"><div class="ava">⬡</div><div class="li-t"><b>${g.n}</b><span>${g.m.toLocaleString('it')} membri</span></div>
-        <button class="li-act" data-open-group>Apri</button></div>`).join('')}</div></div>`;}
+        <button class="li-act ${s.connected?'done':''}" data-connect="${i}" ${s.connected?'disabled':''}>${s.connected?t('connected'):t('connect')}</button></div>`).join('')}</div></div>
+    <div class="card col-5"><h3>${t('yourGroups')}</h3>
+      ${d.groups.map(g=>`<div class="list-item"><div class="ava">⬡</div><div class="li-t"><b>${g.n}</b><span>${g.m.toLocaleString(currentLang)} ${t('members').toLowerCase()}</span></div>
+        <button class="li-act" data-open-group>${t('open')}</button></div>`).join('')}</div></div>`;}
 
 function renderObiettivi(){const gs=DATA.obiettivi.goals;
   const overall=gs.length?Math.round(gs.reduce((a,g)=>a+goalPct(g),0)/gs.length):0;
   return `<div class="grid">
-    <div class="card col-4"><h3>Completamento generale</h3>
-      <div class="ring" style="--p:${overall}"><div class="in"><div><b>${overall}%</b><span>${gs.length} obiettivi</span></div></div></div></div>
-    <div class="card col-8"><h3>I tuoi obiettivi</h3><div id="goalList">
-      ${gs.map((g,gi)=>`<div class="goal"><div class="gt"><b>${g.t}</b><span class="gp">${goalPct(g)}%</span></div>
+    <div class="card col-4"><h3>${t('overallCompletion')}</h3>
+      <div class="ring" style="--p:${overall}"><div class="in"><div><b>${overall}%</b><span>${t('goalsCount')(gs.length)}</span></div></div></div></div>
+    <div class="card col-8"><h3>${t('yourGoals')}</h3><div id="goalList">
+      ${gs.map((g,gi)=>`<div class="goal"><div class="gt"><b>${escapeHtml(g.t)}</b><span class="gp">${goalPct(g)}%</span></div>
         <div class="bar"><i style="width:${goalPct(g)}%"></i></div>
         <div class="miles">${g.milestones.map((m,mi)=>`<div class="mile ${m.done?'done':''}" data-mile="${gi}:${mi}">
-          <div class="cbx">${m.done?'✓':''}</div>${m.t}</div>`).join('')}</div></div>`).join('')}
+          <div class="cbx">${m.done?'✓':''}</div>${escapeHtml(m.t)}</div>`).join('')}</div></div>`).join('')}
       </div>
-      <div class="add-row"><input id="newGoal" placeholder="Aggiungi un nuovo obiettivo…">
-        <button data-addgoal>Aggiungi</button></div></div></div>`;}
+      <div class="add-row"><input id="newGoal" placeholder="${t('addGoalPh')}">
+        <button data-addgoal>${t('add')}</button></div></div></div>`;}
 
 function renderSuccesso(){const d=DATA.successo;const got=d.badges.filter(b=>b.got).length;
   return `<div class="grid">
-    <div class="card col-4"><div class="kpi"><div class="v">${d.score.toLocaleString('it')}</div><div class="l">Punteggio EVITERNO</div>
-      <div class="d">Rango: ${d.rank}</div></div>
-      <div class="ring" style="--p:${Math.round(100*got/d.badges.length)};margin-top:14px"><div class="in"><div><b>${got}/${d.badges.length}</b><span>traguardi</span></div></div></div></div>
-    <div class="card col-8"><h3>Riconoscimenti</h3><div class="badges">
-      ${d.badges.map(b=>`<div class="badge ${b.got?'got':'locked'}"><div class="bic">${b.ic}</div><b>${b.n}</b><span>${b.got?'Sbloccato':'Bloccato'}</span></div>`).join('')}
+    <div class="card col-4"><div class="kpi"><div class="v">${d.score.toLocaleString(currentLang)}</div><div class="l">${t('score')}</div>
+      <div class="d">${t('rank')}: ${d.rank}</div></div>
+      <div class="ring" style="--p:${Math.round(100*got/d.badges.length)};margin-top:14px"><div class="in"><div><b>${got}/${d.badges.length}</b><span>${t('milestones')}</span></div></div></div></div>
+    <div class="card col-8"><h3>${t('achievements')}</h3><div class="badges">
+      ${d.badges.map(b=>`<div class="badge ${b.got?'got':'locked'}"><div class="bic">${b.ic}</div><b>${b.n}</b><span>${b.got?t('unlocked'):t('locked')}</span></div>`).join('')}
     </div></div>
-    <div class="card col-12"><h3>La tua timeline</h3><div class="timeline">
-      ${d.timeline.map(t=>`<div class="tl-item"><b>${t.t}</b><span>${t.w}</span></div>`).join('')}
+    <div class="card col-12"><h3>${t('yourTimeline')}</h3><div class="timeline">
+      ${d.timeline.map(tl=>`<div class="tl-item"><b>${tl.t}</b><span>${tl.w}</span></div>`).join('')}
     </div></div></div>`;}
 
 /* ---- interazioni dashboard ---- */
@@ -705,20 +1144,20 @@ function wireDashboard(v,id){
   if(id==='crescita'){v.querySelector('[data-lesson]').onclick=()=>{const d=DATA.crescita;
     d.xp+=50;d.week[6]=(d.week[6]||0)+1;
     if(d.xp>=d.xpMax){d.xp-=d.xpMax;d.level++;unlock('10 lezioni');toast(`Livello ${d.level} raggiunto! 🚀`);}
-    else toast('+50 XP — continua così');renderDashboard('crescita');};}
+    else toast('+50 XP — continua così');renderDashboard('crescita');persist();};}
 
   if(id==='community'){v.querySelectorAll('[data-connect]').forEach(b=>b.onclick=()=>{
     const i=+b.dataset.connect;DATA.community.suggestions[i].connected=true;
-    DATA.community.online++;unlock('Community star');toast('Connessione inviata');renderDashboard('community');});
+    DATA.community.online++;unlock('Community star');toast('Connessione inviata');renderDashboard('community');persist();});
     v.querySelectorAll('[data-rsvp],[data-open-group]').forEach(b=>b.onclick=()=>toast('Aperto nella community'));}
 
   if(id==='obiettivi'){
     v.querySelectorAll('[data-mile]').forEach(m=>m.onclick=()=>{const[gi,mi]=m.dataset.mile.split(':').map(Number);
       const g=DATA.obiettivi.goals[gi];g.milestones[mi].done=!g.milestones[mi].done;
-      if(DATA.obiettivi.goals.every(x=>goalPct(x)===100))unlock('5 obiettivi');renderDashboard('obiettivi');});
+      if(DATA.obiettivi.goals.every(x=>goalPct(x)===100))unlock('5 obiettivi');renderDashboard('obiettivi');persist();});
     const add=()=>{const inp=v.querySelector('#newGoal');const t=inp.value.trim();if(!t)return;
       DATA.obiettivi.goals.push({t,milestones:[{t:'Definisci il primo passo',done:false},{t:'Agisci',done:false}]});
-      renderDashboard('obiettivi');toast('Obiettivo aggiunto 🎯');};
+      renderDashboard('obiettivi');toast('Obiettivo aggiunto 🎯');persist();};
     v.querySelector('[data-addgoal]').onclick=add;
     v.querySelector('#newGoal').addEventListener('keydown',e=>{if(e.key==='Enter')add();});}
 }
@@ -732,6 +1171,41 @@ function show(id){document.getElementById(id).classList.add('show');}
 function hide(id){document.getElementById(id).classList.remove('show');}
 document.getElementById('visionBtn').onclick=()=>show('vision');
 document.getElementById('visionClose').onclick=()=>hide('vision');
+
+/* ============================================================
+   PREMIUM / TUTOR
+   ============================================================ */
+function refreshTutorCard(){
+  document.getElementById('tutorName').textContent=TUTOR_INFO.name;
+  document.getElementById('tutorBio').textContent=TUTOR_INFO.bio;
+  document.getElementById('tutorAv').textContent=(TUTOR_INFO.name||'?').trim().charAt(0).toUpperCase();
+  document.getElementById('premiumPrice').textContent=TUTOR_INFO.priceDisplay;
+  const upBtn=document.getElementById('upgradeBtn');
+  if(USER.premium){upBtn.textContent=t('alreadyPremium');upBtn.disabled=true;}
+  else{upBtn.textContent=t('upgradeBtn');upBtn.disabled=false;}
+}
+document.getElementById('premiumBtn').onclick=()=>{refreshTutorCard();show('premium');};
+document.getElementById('premiumClose').onclick=()=>hide('premium');
+document.getElementById('tutorBookBtn').onclick=()=>{
+  if(TUTOR_INFO.bookingLink)window.open(TUTOR_INFO.bookingLink,'_blank');
+};
+document.getElementById('upgradeBtn').onclick=()=>{
+  if(!TUTOR_INFO.stripeLink){toast(t('stripeNotConfigured'));return;}
+  window.location.href=TUTOR_INFO.stripeLink;
+};
+/* Rileva il ritorno da Stripe (?premium=success | ?premium=cancelled) e sblocca Premium.
+   Nota: il riconoscimento avviene sul browser, coerente col resto del salvataggio locale
+   di questa fase (vedi roadmap: un vero database renderà questo controllo lato server).
+   pendingPremiumUnlock evita che un login fatto subito dopo il pagamento sovrascriva
+   lo sblocco con il vecchio stato salvato: enterApp() lo applica appena l'utente è dentro. */
+let pendingPremiumUnlock=false;
+(function checkPremiumReturn(){
+  const params=new URLSearchParams(window.location.search);
+  const status=params.get('premium');
+  if(status==='success'){pendingPremiumUnlock=true;toast(t('premiumSuccessToast'));}
+  else if(status==='cancelled'){toast(t('premiumCancelToast'));}
+  if(status){window.history.replaceState({},'',window.location.pathname);}
+})();
 let toastT;function toast(msg){const el=document.getElementById('toast');el.textContent=msg;el.classList.add('show');
   clearTimeout(toastT);toastT=setTimeout(()=>el.classList.remove('show'),2400);}
 
@@ -740,37 +1214,231 @@ let toastT;function toast(msg){const el=document.getElementById('toast');el.text
    ============================================================ */
 let signup=false, gstep=0;
 const focusGrid=document.getElementById('focusGrid');
-PILLARS.forEach((p,i)=>{const el=document.createElement('div');el.className='focus-opt'+(i===0?' sel':'');
-  el.style.setProperty('--fc',p.hex);el.dataset.focus=p.id;
-  el.innerHTML=`<div class="fi">${p.ic}</div><b>${p.t}</b><span>${p.p.split(' ').slice(0,4).join(' ')}…</span>`;
-  el.onclick=()=>{focusGrid.querySelectorAll('.focus-opt').forEach(x=>x.classList.remove('sel'));el.classList.add('sel');USER.focus=p.id;};
-  focusGrid.appendChild(el);});
+function renderFocusGrid(){
+  const prevSel=focusGrid.querySelector('.focus-opt.sel');
+  const prevId=prevSel?prevSel.dataset.focus:PILLARS[0].id;
+  focusGrid.innerHTML='';
+  PILLARS.forEach((p)=>{const el=document.createElement('div');el.className='focus-opt'+(p.id===prevId?' sel':'');
+    el.style.setProperty('--fc',p.hex);el.dataset.focus=p.id;
+    el.innerHTML=`<div class="fi">${p.ic}</div><b>${p.t}</b><span>${p.p.split(' ').slice(0,4).join(' ')}…</span>`;
+    el.onclick=()=>{focusGrid.querySelectorAll('.focus-opt').forEach(x=>x.classList.remove('sel'));el.classList.add('sel');USER.focus=p.id;};
+    focusGrid.appendChild(el);});
+}
+renderFocusGrid();
 
-function gotoStep(n){gstep=n;document.querySelectorAll('.gstep').forEach(s=>s.classList.toggle('active',+s.dataset.step===n));}
-document.getElementById('toggleAuth').onclick=()=>{signup=!signup;
-  document.getElementById('loginTitle').textContent=signup?'Crea il tuo account':'Accedi al sistema';
-  document.getElementById('loginSub').textContent=signup?'Inizia oggi la tua evoluzione.':'Bentornato. Entra per continuare.';
-  document.getElementById('loginBtn').textContent=signup?'Crea account':'Accedi';
-  document.querySelector('#toggleAuth').innerHTML=signup?'Hai già un account? <a>Accedi</a>':'Non hai un account? <a>Creane uno</a>';};
-document.getElementById('loginBtn').onclick=()=>{USER.email=document.getElementById('inEmail').value.trim();
-  USER.guest=false;gotoStep(1);setTimeout(()=>document.getElementById('inName').focus(),200);};
-document.getElementById('guestBtn').onclick=()=>{USER.guest=true;gotoStep(1);setTimeout(()=>document.getElementById('inName').focus(),200);};
+function gotoStep(n){gstep=n;document.querySelectorAll('.gstep').forEach(s=>s.classList.toggle('active',s.dataset.step===String(n)));}
+
+/* ============================================================
+   ACCOUNT LOCALE — salvataggio nel browser (localStorage)
+   Non è ancora un vero backend: funziona sullo stesso browser/dispositivo.
+   Password e codice di recupero sono salvati come hash (SHA-256),
+   mai in chiaro: chi legge il browser non vede la password vera.
+   ============================================================ */
+const ACC_KEY='eviterno_accounts_v1', LAST_KEY='eviterno_last_user';
+function loadAccounts(){try{return JSON.parse(localStorage.getItem(ACC_KEY)||'{}');}catch(e){return{};}}
+function saveAccounts(a){try{localStorage.setItem(ACC_KEY,JSON.stringify(a));}catch(e){}}
+function randCode(len){const c='ABCDEFGHJKLMNPQRSTUVWXYZ23456789';let s='';for(let i=0;i<len;i++)s+=c[Math.floor(Math.random()*c.length)];return s;}
+function genUsername(prefix){return prefix+'_'+randCode(5).toLowerCase();}
+async function sha256Hex(str){
+  try{
+    const enc=new TextEncoder().encode(String(str));
+    const buf=await crypto.subtle.digest('SHA-256',enc);
+    return Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,'0')).join('');
+  }catch(e){ // fallback solo se crypto.subtle non è disponibile (es. alcuni contesti file://)
+    let h=0;const s=String(str);for(let i=0;i<s.length;i++){h=(h*31+s.charCodeAt(i))|0;}
+    return 'fb_'+Math.abs(h).toString(16);
+  }
+}
+let currentUsername=null;
+
+async function createAccount(username,password){
+  const accts=loadAccounts();
+  if(accts[username]){toast('Username già in uso, scegline un altro');return null;}
+  const recoveryCode=randCode(8);
+  accts[username]={password:await sha256Hex(password),recoveryCode:await sha256Hex(recoveryCode),
+    profile:{},data:null,createdAt:Date.now()};
+  saveAccounts(accts);currentUsername=username;
+  return recoveryCode; // in chiaro solo qui, per mostrarlo UNA VOLTA all'utente
+}
+function persist(){ // salva profilo + progressi correnti sotto l'account attivo
+  if(!currentUsername)return;
+  const accts=loadAccounts();if(!accts[currentUsername])return;
+  accts[currentUsername].profile={name:USER.name,focus:USER.focus,goal:USER.goal,premium:!!USER.premium};
+  accts[currentUsername].data=DATA;
+  saveAccounts(accts);
+}
+function showCredentials(username,password,recoveryCode){
+  document.getElementById('credUsername').value=username;
+  document.getElementById('credPass').value=password;
+  document.getElementById('credCode').value=recoveryCode;
+  gotoStep('0c');
+}
+
+/* Google / Apple / telefono: propongono username+password suggeriti ma MODIFICABILI
+   dall'utente prima di creare davvero l'account (vedi step 0s) */
+function suggestCredentials(u,p){
+  document.getElementById('sUsername').value=u;
+  document.getElementById('sPassword').value=p;
+  gotoStep('0s');
+}
+document.getElementById('googleBtn').onclick=()=>{suggestCredentials(genUsername('google'),randCode(10));USER.guest=false;};
+document.getElementById('appleBtn').onclick=()=>{suggestCredentials(genUsername('apple'),randCode(10));USER.guest=false;};
+
+document.getElementById('createSocialAccountBtn').onclick=async()=>{
+  const u=document.getElementById('sUsername').value.trim();
+  const p=document.getElementById('sPassword').value;
+  if(!u||!p){toast('Inserisci username e password');return;}
+  if(p.length<4){toast('La password deve avere almeno 4 caratteri');return;}
+  const code=await createAccount(u,p);if(code)showCredentials(u,p,code);
+};
+
+/* Creazione account manuale con username+password scelti dall'utente */
+document.getElementById('createAccountBtn').onclick=async()=>{
+  const u=document.getElementById('inUsername').value.trim();
+  const p=document.getElementById('inPass').value;
+  if(!u||!p){toast('Inserisci username e password');return;}
+  if(p.length<4){toast('La password deve avere almeno 4 caratteri');return;}
+  const code=await createAccount(u,p);if(code){USER.guest=false;showCredentials(u,p,code);}};
+
+document.getElementById('credContinueBtn').onclick=()=>{gotoStep(1);setTimeout(()=>document.getElementById('inName').focus(),200);};
+
+document.getElementById('guestBtn').onclick=()=>{USER.guest=true;currentUsername=null;gotoStep(1);setTimeout(()=>document.getElementById('inName').focus(),200);};
+
+/* Accesso con numero di telefono (invio + verifica codice, simulati) */
+document.getElementById('phoneBtn').onclick=()=>gotoStep('0b');
+document.getElementById('backToLoginBtn').onclick=()=>gotoStep(0);
+document.getElementById('sendCodeBtn').onclick=()=>{
+  const phone=document.getElementById('inPhone').value.trim();
+  if(!phone){toast('Inserisci un numero di telefono');return;}
+  USER.phone=phone;
+  document.getElementById('otpField').style.display='block';
+  document.getElementById('verifyOtpBtn').style.display='block';
+  document.getElementById('sendCodeBtn').textContent='Codice inviato ✓';
+  document.getElementById('sendCodeBtn').disabled=true;
+  toast('Codice inviato via SMS 📱');
+  setTimeout(()=>document.getElementById('inOtp').focus(),200);};
+document.getElementById('verifyOtpBtn').onclick=()=>{
+  const otp=document.getElementById('inOtp').value.trim();
+  if(otp.length<4){toast('Inserisci il codice ricevuto');return;}
+  USER.guest=false;suggestCredentials(genUsername('phone'),randCode(10));
+};
+
+/* Login rapido di ritorno */
+document.getElementById('returnLoginBtn').onclick=async()=>{
+  const u=document.getElementById('rUsername').value.trim();
+  const p=document.getElementById('rPass').value;
+  const accts=loadAccounts();
+  const hashed=await sha256Hex(p);
+  if(accts[u]&&accts[u].password===hashed){
+    currentUsername=u;USER.guest=false;
+    const prof=accts[u].profile||{};
+    USER.name=prof.name||'';USER.focus=prof.focus||USER.focus;USER.goal=prof.goal||'';USER.premium=!!prof.premium;
+    if(accts[u].data){Object.assign(DATA,accts[u].data);}
+    try{localStorage.setItem(LAST_KEY,u);}catch(e){}
+    enterApp();
+  }else{toast('Username o password errati');}
+};
+document.getElementById('forgotBtn').onclick=()=>{
+  const u=document.getElementById('rUsername').value.trim();
+  if(u)document.getElementById('fUsername').value=u;
+  gotoStep('0f');
+};
+document.getElementById('backToReturnBtn').onclick=()=>gotoStep('0r');
+document.getElementById('newAccountBtn').onclick=()=>gotoStep(0);
+document.getElementById('resetPassBtn').onclick=async()=>{
+  const u=document.getElementById('fUsername').value.trim();
+  const code=document.getElementById('fCode').value.trim().toUpperCase();
+  const newPass=document.getElementById('fNewPass').value;
+  if(!u||!code||!newPass){toast('Compila tutti i campi');return;}
+  if(newPass.length<4){toast('La password deve avere almeno 4 caratteri');return;}
+  const accts=loadAccounts();
+  const hashedCode=await sha256Hex(code);
+  if(accts[u]&&accts[u].recoveryCode===hashedCode){
+    accts[u].password=await sha256Hex(newPass);saveAccounts(accts);
+    toast('Password aggiornata ✓ Accedi con la nuova password');
+    document.getElementById('rUsername').value=u;
+    gotoStep('0r');
+  }else{toast('Username o codice di recupero errati');}
+};
+
 document.querySelectorAll('[data-next]').forEach(b=>b.onclick=()=>{
   if(gstep===1){USER.name=document.getElementById('inName').value.trim()||'Esploratore';}
   gotoStep(gstep+1);
   if(gstep===3)setTimeout(()=>document.getElementById('inGoal').focus(),200);});
 document.getElementById('finishBtn').onclick=()=>{USER.goal=document.getElementById('inGoal').value.trim();
-  seedGoals();DATA.successo.timeline.push({t:'Focus: '+P(USER.focus).t,w:'Ora'});finishGate();};
+  seedGoals();DATA.successo.timeline.push({t:'Focus: '+P(USER.focus).t,w:'Ora'});
+  persist();
+  try{if(currentUsername)localStorage.setItem(LAST_KEY,currentUsername);}catch(e){}
+  enterApp();};
 
-function finishGate(){body.classList.remove('gate-open');body.classList.add('authed');hubVisible=true;
+
+function enterApp(){body.classList.remove('gate-open');body.classList.add('authed');hubVisible=true;
+  if(pendingPremiumUnlock){USER.premium=true;pendingPremiumUnlock=false;persist();}
   const init=(USER.name||'?').trim().charAt(0).toUpperCase()||'?';
-  document.getElementById('pillName').textContent=USER.name||'Ospite';
+  document.getElementById('pillName').textContent=USER.name||t('guestName');
   document.getElementById('pillAv').textContent=init;
-  document.getElementById('hubLede').innerHTML=`Bentornato, <b>${USER.name||'esploratore'}</b>. Il tuo focus è <b>${P(USER.focus).t}</b>. Tocca un nodo per entrare, o chiedi a EVA.`;
-  toast('Benvenuto in EVITERNO ⚡');}
+  document.getElementById('pillPremium').style.display=USER.premium?'inline':'none';
+  document.getElementById('hubLede').innerHTML=t('welcomeBack')(escapeHtml(USER.name)||'esploratore',P(USER.focus).t);
+  toast(t('welcomeToast'));
+  renderDashboard('crescita');renderDashboard('community');renderDashboard('obiettivi');renderDashboard('successo');}
 
-/* avvia il gate */
-body.classList.add('gate-open');
+/* ============================================================
+   APPLICAZIONE LINGUA — traduce tutta l'interfaccia statica e
+   ri-renderizza le parti generate dinamicamente (dashboard, nodi,
+   griglia focus). Il testo scritto dagli utenti non viene toccato.
+   ============================================================ */
+function applyTranslations(){
+  document.documentElement.lang=currentLang;
+  document.querySelectorAll('[data-i18n]').forEach(el=>{el.textContent=t(el.getAttribute('data-i18n'));});
+  document.querySelectorAll('[data-i18n-ph]').forEach(el=>{el.placeholder=t(el.getAttribute('data-i18n-ph'));});
+}
+function setLanguage(lang){
+  if(!SUPPORTED_LANGS.includes(lang))return;
+  currentLang=lang;
+  try{localStorage.setItem('eviterno_lang',lang);}catch(e){}
+  applyTranslations();
+  renderNodeLabels();
+  renderFocusGrid();
+  document.querySelectorAll('#langSwitch button').forEach(b=>b.classList.toggle('sel',b.dataset.lang===lang));
+  ['crescita','community','obiettivi','successo'].forEach(id=>{
+    const v=document.getElementById('view-'+id);
+    if(v&&v.classList.contains('show'))renderDashboard(id);
+  });
+  if(body.classList.contains('authed')){
+    document.getElementById('pillName').textContent=USER.name||t('guestName');
+    document.getElementById('hubLede').innerHTML=t('welcomeBack')(escapeHtml(USER.name)||'esploratore',P(USER.focus).t);
+  }
+  // la sessione vocale riparte con la nuova lingua alla prossima attivazione
+  if(recognition){try{recognition.abort&&recognition.abort();}catch(e){}recognition=null;}
+  if(typeof liveMode!=='undefined'&&liveMode)setLiveMode(false);
+}
+(function buildLangSwitch(){
+  const box=document.getElementById('langSwitch');
+  SUPPORTED_LANGS.forEach(l=>{
+    const b=document.createElement('button');b.type='button';b.title=LANG_META[l].label;
+    b.dataset.lang=l;b.textContent=LANG_META[l].flag;
+    if(l===currentLang)b.classList.add('sel');
+    b.onclick=()=>setLanguage(l);
+    box.appendChild(b);
+  });
+})();
+applyTranslations();
+
+/* avvia il gate: se esiste già un account salvato su questo browser, va dritto al login rapido */
+(function initGate(){
+  const accts=loadAccounts();
+  const usernames=Object.keys(accts);
+  if(usernames.length){
+    let last=null;try{last=localStorage.getItem(LAST_KEY);}catch(e){}
+    if(last&&accts[last])document.getElementById('rUsername').value=last;
+    else document.getElementById('rUsername').value=usernames[usernames.length-1];
+    gotoStep('0r');
+    setTimeout(()=>document.getElementById('rPass').focus(),200);
+  }else{
+    gotoStep(0);
+  }
+  body.classList.add('gate-open');
+})();
 
 /* ============================================================
    COPILOTA EVA
@@ -780,10 +1448,11 @@ const cpFab=document.getElementById('cpFab'),cpWin=document.getElementById('cpWi
   cpChips=document.getElementById('cpChips'),cpSet=document.getElementById('cpSet');
 const history=[]; let busy=false, greeted=false;
 
-function baseSystem(){return `Sei EVA, il copilota AI della piattaforma EVITERNO — "Evolvi. Connettiti. Domina."
+function baseSystem(){const langName={it:'italiano',en:'inglese (English)',es:'spagnolo (Español)',fr:'francese (Français)'}[currentLang]||'italiano';
+  return `Sei EVA, il copilota AI della piattaforma EVITERNO — "Evolvi. Connettiti. Domina."
 EVITERNO unisce tecnologia, connessioni reali e crescita personale. I quattro pilastri: Crescita, Community, Obiettivi, Successo.
 Visione: unire il mondo, tecnologia intelligente, impatto reale.
-Rispondi SEMPRE in italiano, tono motivante ma concreto e diretto, senza fronzoli. Risposte brevi (3-5 frasi) salvo richiesta di approfondire. Proponi passi reali.
+Rispondi SEMPRE in ${langName} (questa è la lingua scelta dall'utente nell'interfaccia — non cambiarla anche se l'utente scrive in un'altra lingua, a meno che non te lo chieda esplicitamente), tono motivante ma concreto e diretto, senza fronzoli. Risposte brevi (3-5 frasi) salvo richiesta di approfondire. Proponi passi reali.
 
 AZIONI SULLA PIATTAFORMA:
 Puoi AGIRE davvero sulle dashboard. Quando l'utente ti chiede di fare qualcosa (aggiungere un obiettivo, segnare un traguardo come fatto, aggiungere un traguardo, dare XP di crescita, aprire una sezione), oltre alla tua risposta testuale aggiungi ALLA FINE un blocco azioni, così:
@@ -821,7 +1490,7 @@ function contextBlock(){const sec=currentSection==='hub'?'la home (Hub 3D)':'la 
 function stateBlock(){const c=DATA.crescita,cm=DATA.community;
   const gs=DATA.obiettivi.goals.map((g,i)=>`  [${i}] "${g.t}" (${goalPct(g)}%) traguardi: `+
     g.milestones.map((m,j)=>`(${j})${m.done?'✓':'○'}${m.t}`).join(' ')).join('\n');
-  const tr=c.tracks.map((t,i)=>`[${i}] ${t.n} ${t.p}%`).join(', ');
+  const tr=c.tracks.map((tk,i)=>`[${i}] ${tk.n} ${tk.p}%`).join(', ');
   const pp=cm.suggestions.map((s,i)=>`[${i}] ${s.n}${s.connected?' (connesso)':''}`).join(', ');
   return `STATO ATTUALE (usa questi indici per le azioni)\n`+
     `Focus utente: ${P(USER.focus).t}.\n`+
@@ -883,22 +1552,23 @@ function runActions(actions){let changed=new Set(),opened=null;
         DATA.community.online++;unlock('Community star');changed.add('community');toast('Connessione inviata 🤝');}}
     else if(a.type==='set_focus'&&a.pillar&&P(a.pillar)){USER.focus=a.pillar;
       const el=document.getElementById('hubLede');
-      if(el)el.innerHTML=`Bentornato, <b>${USER.name||'esploratore'}</b>. Il tuo focus è <b>${P(USER.focus).t}</b>. Tocca un nodo per entrare, o chiedi a EVA.`;
+      if(el)el.innerHTML=t('welcomeBack')(escapeHtml(USER.name)||'esploratore',P(USER.focus).t);
       toast('Focus aggiornato: '+P(a.pillar).t);}
     else if(a.type==='open_dashboard'&&a.pillar){if(a.pillar==='hub')goHub();else opened=a.pillar;}
   }catch(e){}});
   if(opened)openDashboard(opened);
-  else changed.forEach(id=>{const v=document.getElementById('view-'+id);if(v&&v.classList.contains('show'))renderDashboard(id);});}
+  else changed.forEach(id=>{const v=document.getElementById('view-'+id);if(v&&v.classList.contains('show'))renderDashboard(id);});
+  persist();}
 
 function openCp(){cpWin.classList.add('show');
   if(!greeted){greeted=true;evaSay(`Ciao ${USER.name||''} 👋 sono **EVA**, il tuo copilota.\nDimmi il tuo grande obiettivo e in un attimo **ti costruisco l'intero sistema su misura** — obiettivi, tappe e percorsi, tutti insieme. ✨\n\nProva: dimmi cosa vuoi realizzare, oppure tocca "Genera il mio sistema".`);}
   setTimeout(()=>cpInput.focus(),300);}
-function closeCp(){cpWin.classList.remove('show');cpSet.classList.remove('show');}
+function closeCp(){cpWin.classList.remove('show');cpSet.classList.remove('show');if(liveMode)setLiveMode(false);}
 cpFab.onclick=openCp; document.getElementById('cpClose').onclick=closeCp;
 document.getElementById('cpGear').onclick=()=>cpSet.classList.toggle('show');
 
 function bubble(cls,txt){const d=document.createElement('div');d.className='msg '+cls;
-  d.innerHTML=txt.replace(/\*\*(.+?)\*\*/g,'<b>$1</b>');cpLog.appendChild(d);cpLog.scrollTop=cpLog.scrollHeight;return d;}
+  d.innerHTML=escapeHtml(txt).replace(/\*\*(.+?)\*\*/g,'<b>$1</b>');cpLog.appendChild(d);cpLog.scrollTop=cpLog.scrollHeight;return d;}
 function evaSay(t){bubble('eva',t);}
 function typing(on){let el=document.getElementById('td');if(on&&!el){el=document.createElement('div');el.id='td';
   el.className='typing';el.innerHTML='<i></i><i></i><i></i>';cpLog.appendChild(el);cpLog.scrollTop=cpLog.scrollHeight;}if(!on&&el)el.remove();}
@@ -920,16 +1590,95 @@ async function callAgent(){
   const data=await res.json();
   return (data.content||[]).filter(b=>b.type==='text').map(b=>b.text).join('\n').trim()||'Non sono riuscita a rispondere ora.';
 }
-async function send(text){if(busy||!text.trim())return;busy=true;coreTarget=1;cpStatus.textContent='Sta elaborando…';
+async function send(text){if(busy||!text.trim())return;busy=true;coreTarget=1;cpStatus.textContent=t('thinking');
   cpChips.style.display='none';bubble('me',text);history.push({role:'user',content:text});cpInput.value='';typing(true);
   try{const raw=await callAgent();const {clean,actions}=extractActions(raw);
     history.push({role:'assistant',content:clean||raw});typing(false);evaSay(clean||'Fatto.');
+    if(liveMode)speakText(clean||'Fatto.');
     if(actions.length)runActions(actions);}
-  catch(err){typing(false);evaSay("⚠️ Non riesco a raggiungere il motore AI.\nSu **Claude** funziona in automatico. Per il **tuo agente**, imposta l'endpoint dal ⚙ e assicurati che accetti richieste da qui.");}
-  finally{busy=false;coreTarget=0;cpStatus.textContent='Online';}}
+  catch(err){typing(false);const errMsg="⚠️ Non riesco a raggiungere il motore AI.\nSu **Claude** funziona in automatico. Per il **tuo agente**, imposta l'endpoint dal ⚙ e assicurati che accetti richieste da qui.";
+    evaSay(errMsg);if(liveMode)speakText("Non riesco a raggiungere il motore AI in questo momento.");}
+  finally{busy=false;coreTarget=0;cpStatus.textContent=t('online');}}
 cpSend.onclick=()=>send(cpInput.value);
 cpInput.onkeydown=e=>{if(e.key==='Enter')send(cpInput.value);};
 cpChips.querySelectorAll('.chip').forEach(c=>c.onclick=()=>send(c.textContent));
+
+/* ============================================================
+   MODALITÀ LIVE — conversazione vocale in tempo reale con EVA
+   Usa le API vocali del browser (gratis, nessun servizio esterno):
+   riconoscimento vocale per ascoltare, sintesi vocale per rispondere.
+   Il ciclo è: ascolta → invia il testo a EVA (stesso canale della
+   chat, quindi le stesse azioni sulla piattaforma funzionano) →
+   EVA risponde anche a voce → si rimette in ascolto da sola.
+   ============================================================ */
+let liveMode=false, listening=false, recognition=null;
+const liveBanner=document.getElementById('liveBanner'), liveBannerTxt=document.getElementById('liveBannerTxt'), cpLiveBtn=document.getElementById('cpLive');
+
+function setupRecognition(){
+  const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+  if(!SR)return null;
+  const r=new SR();
+  r.lang=LANG_META[currentLang].speech;r.continuous=false;r.interimResults=false;
+  r.onresult=(e)=>{
+    const transcript=(e.results[0][0].transcript||'').trim();
+    listening=false;updateLiveUI();
+    if(transcript)send(transcript);
+  };
+  r.onerror=(e)=>{
+    listening=false;updateLiveUI();
+    if(e.error==='not-allowed'||e.error==='service-not-allowed'){
+      toast(t('micDenied'));
+      setLiveMode(false);return;
+    }
+    if(liveMode&&e.error!=='aborted')setTimeout(()=>startListening(),900);
+  };
+  r.onend=()=>{listening=false;updateLiveUI();};
+  return r;
+}
+function startListening(){
+  if(!recognition||!liveMode)return;
+  try{recognition.start();listening=true;updateLiveUI();}catch(e){}
+}
+function stopListening(){
+  if(!recognition)return;
+  try{recognition.stop();}catch(e){}
+  listening=false;updateLiveUI();
+}
+function speakText(text){
+  if(!('speechSynthesis' in window)){if(liveMode)startListening();return;}
+  window.speechSynthesis.cancel();
+  const clean=String(text).replace(/[*_`#]/g,'').replace(/```eva-actions[\s\S]*?```/gi,'');
+  const utter=new SpeechSynthesisUtterance(clean);
+  const speechLang=LANG_META[currentLang].speech;
+  utter.lang=speechLang;utter.rate=1.02;
+  const voices=window.speechSynthesis.getVoices();
+  const langVoice=voices.find(v=>v.lang&&v.lang.toLowerCase().startsWith(currentLang));
+  if(langVoice)utter.voice=langVoice;
+  updateLiveUI('speaking');
+  utter.onend=()=>{updateLiveUI();if(liveMode)startListening();};
+  utter.onerror=()=>{updateLiveUI();if(liveMode)startListening();};
+  window.speechSynthesis.speak(utter);
+}
+function updateLiveUI(state){
+  cpLiveBtn.classList.toggle('on',liveMode);
+  cpLiveBtn.classList.toggle('listening',liveMode&&(listening||state==='speaking'));
+  if(!liveMode){liveBanner.classList.remove('show');return;}
+  liveBanner.classList.add('show');liveBanner.classList.toggle('listening',listening);
+  liveBannerTxt.textContent=state==='speaking'?t('liveSpeaking'):listening?t('liveListening'):t('liveIdle');
+}
+function setLiveMode(on){
+  liveMode=on;
+  if(liveMode){
+    if(!recognition)recognition=setupRecognition();
+    if(!recognition){toast(t('liveUnsupported'));liveMode=false;return;}
+    openCp();updateLiveUI();toast(t('liveOn'));
+    startListening();
+  }else{
+    window.speechSynthesis&&window.speechSynthesis.cancel();
+    stopListening();updateLiveUI();toast(t('liveOff'));
+  }
+}
+cpLiveBtn.onclick=()=>setLiveMode(!liveMode);
 
 /* settings motore AI */
 cpSet.querySelectorAll('.opt').forEach(o=>o.onclick=()=>{cpSet.querySelectorAll('.opt').forEach(x=>x.classList.remove('sel'));
@@ -938,7 +1687,7 @@ document.getElementById('cpSetSave').onclick=()=>{const mode=cpSet.querySelector
   AGENT_CONFIG.mode=mode;AGENT_CONFIG.customEndpoint=document.getElementById('setEndpoint').value.trim();
   cpSet.classList.remove('show');
   toast(mode==='custom'?'EVA ora usa il tuo agente':'EVA ora usa Claude');
-  cpStatus.textContent='Online';};
+  cpStatus.textContent=t('online');};
 /* il pannello riflette la configurazione reale: online mostra già "Il tuo agente" + /api/chat */
 (function initSet(){
   cpSet.querySelectorAll('.opt').forEach(o=>o.classList.toggle('sel', o.dataset.mode===AGENT_CONFIG.mode));
