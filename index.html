@@ -78,7 +78,7 @@
 
   .bottombar{position:absolute;left:0;right:0;bottom:clamp(16px,3.4vh,34px);
     display:flex;justify-content:space-between;align-items:flex-end;padding:0 clamp(18px,4vw,52px);gap:16px}
-  .right-controls{display:flex;align-items:center;gap:10px}
+  .right-controls{display:flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:flex-end}
   .lang-switch{display:flex;gap:4px;background:rgba(14,12,32,.5);border:1px solid var(--line);
     border-radius:40px;padding:5px;backdrop-filter:blur(10px)}
   .lang-switch button{background:none;border:none;font-size:16px;line-height:1;padding:6px 8px;
@@ -469,10 +469,16 @@
   .toast.show{opacity:1;transform:translate(-50%,0)}
 
   @media(max-width:640px){
-    .bottombar{flex-direction:column;align-items:center;gap:12px}.foot{display:none}
+    .bottombar{flex-direction:column;align-items:center;gap:12px;padding:0 14px}.foot{display:none}
+    .right-controls{justify-content:center;width:100%}
+    .right-controls .btn{font-size:10.5px;padding:10px 14px;gap:6px}
+    .lang-switch{order:-1}
     .cp-win{left:0;right:0;bottom:0;width:100%;height:82vh;border-radius:22px 22px 0 0}
     body.dash-open .cp-win{right:0}
     .node-label .nl-s{display:none}
+    .primary-cta{font-size:11px;padding:13px 20px;max-width:88vw;white-space:normal;line-height:1.3;text-align:center}
+    .user-pill{max-width:70vw}
+    .user-pill .un{max-width:110px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:inline-block}
   }
   @media(prefers-reduced-motion:reduce){
     .cp-orb,.primary-cta,#cpLive.listening,.live-banner.listening .ld{animation:none!important}
@@ -2158,16 +2164,43 @@ function stopListening(){
   try{recognition.stop();}catch(e){}
   listening=false;updateLiveUI();
 }
+/* Sceglie la voce migliore disponibile per la lingua corrente.
+   I sistemi operativi spesso hanno più voci per la stessa lingua:
+   una "standard" (meccanica) e una o più "Enhanced/Premium/Neural"
+   (molto più naturali) — quest'ultime vanno scaricate gratis dalle
+   impostazioni del dispositivo, poi il browser le rende disponibili
+   automaticamente qui. Questa funzione le preferisce quando ci sono. */
+function pickBestVoice(voices,lang){
+  const candidates=voices.filter(v=>v.lang&&v.lang.toLowerCase().startsWith(lang));
+  if(!candidates.length)return null;
+  const qualityScore=v=>{
+    const n=(v.name||'').toLowerCase();
+    if(n.includes('enhanced'))return 4;
+    if(n.includes('premium'))return 4;
+    if(n.includes('neural'))return 3;
+    if(n.includes('natural'))return 3;
+    if(n.includes('siri'))return 2;
+    if(n.includes('compact'))return 0;
+    return 1;
+  };
+  return candidates.sort((a,b)=>qualityScore(b)-qualityScore(a))[0];
+}
+let cachedVoices=[];
+function refreshVoiceCache(){cachedVoices=window.speechSynthesis.getVoices();}
+if('speechSynthesis' in window){
+  refreshVoiceCache();
+  window.speechSynthesis.onvoiceschanged=refreshVoiceCache; // alcune voci si caricano in ritardo
+}
 function speakText(text){
   if(!('speechSynthesis' in window)){if(liveMode)startListening();return;}
   window.speechSynthesis.cancel();
   const clean=String(text).replace(/[*_`#]/g,'').replace(/```eva-actions[\s\S]*?```/gi,'');
   const utter=new SpeechSynthesisUtterance(clean);
   const speechLang=LANG_META[currentLang].speech;
-  utter.lang=speechLang;utter.rate=1.02;
-  const voices=window.speechSynthesis.getVoices();
-  const langVoice=voices.find(v=>v.lang&&v.lang.toLowerCase().startsWith(currentLang));
-  if(langVoice)utter.voice=langVoice;
+  utter.lang=speechLang;utter.rate=0.98;utter.pitch=1.0;
+  const voices=cachedVoices.length?cachedVoices:window.speechSynthesis.getVoices();
+  const bestVoice=pickBestVoice(voices,currentLang);
+  if(bestVoice)utter.voice=bestVoice;
   updateLiveUI('speaking');
   utter.onend=()=>{updateLiveUI();if(liveMode)startListening();};
   utter.onerror=()=>{updateLiveUI();if(liveMode)startListening();};
