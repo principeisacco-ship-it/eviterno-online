@@ -49,6 +49,13 @@
   .hub-hint{font-family:var(--disp);letter-spacing:.24em;font-size:11px;color:var(--muted-2);
     text-transform:uppercase;margin-top:6px}
 
+  .primary-cta{margin-top:22px;font-family:var(--disp);font-weight:700;letter-spacing:.14em;
+    text-transform:uppercase;font-size:13px;color:#fff;border:none;border-radius:40px;
+    padding:15px 34px;cursor:pointer;background:var(--grad-flat);pointer-events:auto;
+    box-shadow:0 0 0 0 rgba(124,58,237,.5);animation:ctaPulse 2.6s ease-in-out infinite;transition:.2s}
+  .primary-cta:hover{filter:brightness(1.15);transform:translateY(-1px)}
+  @keyframes ctaPulse{0%,100%{box-shadow:0 0 0 0 rgba(124,58,237,.45)}50%{box-shadow:0 0 0 14px rgba(124,58,237,0)}}
+
   #labels{position:fixed;inset:0;z-index:2;pointer-events:none}
   .node-label{position:absolute;transform:translate(-50%,0);pointer-events:auto;cursor:pointer;
     text-align:center;transition:opacity .25s;will-change:left,top}
@@ -60,7 +67,7 @@
     max-width:150px;line-height:1.35;opacity:0;height:0;overflow:hidden;transition:opacity .3s}
   .node-label:hover .nl-s{opacity:1;height:auto}
   .node-label .enter{margin-top:6px;font-family:var(--disp);letter-spacing:.16em;font-size:9.5px;
-    color:currentColor;opacity:0;transition:.3s}.node-label:hover .enter{opacity:.8}
+    color:currentColor;opacity:.55;transition:.3s}.node-label:hover .enter{opacity:.9}
 
   .social-badge{position:absolute;transform:translate(-50%,-50%);pointer-events:auto;cursor:pointer;
     width:44px;height:44px;border-radius:50%;display:grid;place-items:center;
@@ -160,6 +167,76 @@
   .social-ig{text-align:center;margin-top:18px;padding-top:16px;border-top:1px solid var(--line)}
   .social-ig a{color:var(--muted);font-size:12px;text-decoration:none;font-family:var(--disp);letter-spacing:.08em}
   .social-ig a:hover{color:var(--cyan)}
+
+  .privacy-rows{display:flex;flex-direction:column;gap:10px;margin-bottom:8px}
+  .privacy-row{display:flex;justify-content:space-between;gap:14px;font-size:13px;padding:9px 0;border-bottom:1px solid var(--line)}
+  .privacy-row:last-child{border-bottom:none}
+  .privacy-row b{color:var(--muted);font-weight:500;font-family:var(--disp);letter-spacing:.04em;font-size:11.5px;text-transform:uppercase}
+  .privacy-row span{color:var(--ice);text-align:right;max-width:60%;word-break:break-word}
+  .privacy-guest-note{color:var(--muted);font-size:12px;font-style:italic;margin:6px 0 0}
+
+  .privacy-toggle-row{display:flex;justify-content:space-between;align-items:center;gap:16px;
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:18px 0;margin:20px 0}
+  .privacy-toggle-row b{font-size:13.5px;display:block}
+  .privacy-toggle-row span{color:var(--muted);font-size:12px;line-height:1.4;display:block;margin-top:3px;max-width:380px}
+  .switch{position:relative;display:inline-block;width:44px;height:26px;flex:0 0 44px}
+  .switch input{opacity:0;width:0;height:0}
+  .switch .slider{position:absolute;cursor:pointer;inset:0;background:rgba(255,255,255,.12);
+    border:1px solid var(--line);border-radius:20px;transition:.2s}
+  .switch .slider::before{content:"";position:absolute;height:18px;width:18px;left:3px;top:2px;
+    background:#fff;border-radius:50%;transition:.2s}
+  .switch input:checked+.slider{background:var(--grad-flat);border-color:transparent}
+  .switch input:checked+.slider::before{transform:translateX(18px)}
+
+  .privacy-actions{display:flex;flex-direction:column;gap:10px}
+  .btn-full.danger{border-color:rgba(255,90,90,.5);color:#ff8a8a}
+  .btn-full.danger:hover{background:rgba(255,90,90,.5);color:#fff}
+
+  .demo-flag{display:inline-block;font-family:var(--disp);letter-spacing:.14em;font-size:10px;
+    color:#ffcf5c;border:1px solid rgba(255,207,92,.4);background:rgba(255,207,92,.08);
+    border-radius:20px;padding:5px 12px;margin-bottom:14px}
+  .course-tabs{display:flex;gap:8px;margin-bottom:20px;border-bottom:1px solid var(--line)}
+  .course-tab{background:none;border:none;color:var(--muted);font-family:var(--disp);letter-spacing:.1em;
+    font-size:12px;text-transform:uppercase;padding:10px 4px;cursor:pointer;position:relative;transition:.2s}
+  .course-tab.sel{color:var(--ice)}
+  .course-tab.sel::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:2px;background:var(--grad-flat)}
+  .course-filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+  .course-filter{background:rgba(255,255,255,.03);border:1px solid var(--line);color:var(--muted);
+    font-size:11.5px;border-radius:30px;padding:6px 13px;cursor:pointer;transition:.2s}
+  .course-filter.sel{border-color:var(--cyan);color:var(--cyan)}
+  .course-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;max-height:420px;overflow-y:auto;padding-right:2px}
+  @media(max-width:640px){.course-grid{grid-template-columns:1fr}}
+  .course-card{border:1px solid var(--line);border-radius:14px;padding:16px;cursor:pointer;transition:.2s;
+    display:flex;flex-direction:column;gap:8px;background:rgba(255,255,255,.02)}
+  .course-card:hover{border-color:var(--line-2);transform:translateY(-2px)}
+  .course-cover{width:100%;height:76px;border-radius:10px;display:grid;place-items:center;font-size:26px}
+  .course-card b{font-size:13.5px;line-height:1.3}
+  .course-card .c-tutor{color:var(--muted);font-size:11px}
+  .course-meta{display:flex;justify-content:space-between;align-items:center;font-size:11px;color:var(--muted)}
+  .course-meta .c-price{font-family:var(--disp);font-weight:700;color:var(--ice);font-size:13px}
+  .course-rating{color:#ffcf5c;font-size:11px}
+  .course-back{background:none;border:none;color:var(--muted);font-family:var(--disp);letter-spacing:.1em;
+    font-size:11.5px;text-transform:uppercase;cursor:pointer;margin-bottom:16px;padding:0}
+  .course-back:hover{color:var(--ice)}
+  .cd-head{display:flex;gap:16px;margin-bottom:16px}
+  .cd-cover{width:90px;height:90px;border-radius:14px;flex:0 0 90px;display:grid;place-items:center;font-size:34px}
+  .cd-head h3{margin:0 0 6px;font-size:18px}
+  .cd-head .c-tutor{color:var(--muted);font-size:12.5px}
+  .cd-tags{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 16px}
+  .cd-tag{font-size:10.5px;color:var(--muted);border:1px solid var(--line);border-radius:20px;padding:4px 10px}
+  .cd-desc{color:var(--ice);font-weight:300;font-size:13.5px;line-height:1.6;margin-bottom:16px}
+  .cd-list{list-style:none;padding:0;margin:0 0 18px;display:flex;flex-direction:column;gap:8px}
+  .cd-list li{font-size:12.5px;color:var(--muted);padding-left:18px;position:relative}
+  .cd-list li::before{content:'✓';position:absolute;left:0;color:var(--cyan)}
+  .cd-buy-row{display:flex;align-items:center;justify-content:space-between;gap:14px;
+    border-top:1px solid var(--line);padding-top:16px}
+  .cd-buy-row .c-price{font-family:var(--disp);font-weight:700;font-size:22px}
+  .course-list{display:flex;flex-direction:column;gap:12px}
+  .my-course-row{display:flex;gap:14px;align-items:center;border:1px solid var(--line);border-radius:12px;padding:12px}
+  .my-course-row .course-cover{width:56px;height:56px;flex:0 0 56px;font-size:20px;margin:0}
+  .my-course-row .mc-info{flex:1;min-width:0}
+  .my-course-row .mc-info b{font-size:13px;display:block}
+  .my-course-row .bar{margin-top:6px}
 
   /* ===== GATE (login + onboarding) ===== */
   #gate{position:fixed;inset:0;z-index:20;display:none;place-items:center;padding:24px;
@@ -397,7 +474,11 @@
     body.dash-open .cp-win{right:0}
     .node-label .nl-s{display:none}
   }
-  @media(prefers-reduced-motion:reduce){.cp-orb{animation:none}}
+  @media(prefers-reduced-motion:reduce){
+    .cp-orb,.primary-cta,#cpLive.listening,.live-banner.listening .ld{animation:none!important}
+  }
+  body.reduce-motion .cp-orb,body.reduce-motion .primary-cta,
+  body.reduce-motion #cpLive.listening,body.reduce-motion .live-banner.listening .ld{animation:none!important}
 </style>
 
 <div id="scene"></div>
@@ -420,13 +501,15 @@
     <div class="tagline"><span class="c" id="i18n-tagC">Evolvi.</span><span class="w" id="i18n-tagW">Connettiti.</span><span class="m" id="i18n-tagM">Domina.</span></div>
     <p class="lede" id="hubLede">La piattaforma che unisce <b>tecnologia</b>, <b>connessioni reali</b> e <b>crescita personale</b>. Il futuro è qui. E tu ne fai parte.</p>
     <div class="hub-hint" id="i18n-hubHint">▸ Tocca un nodo per entrare nella sua dashboard</div>
+    <button class="primary-cta" id="primaryCta" data-i18n="primaryCtaLabel">✨ Inizia il tuo percorso</button>
   </header>
   <div class="bottombar">
-    <div class="user-pill"><span class="un" id="pillName">Ospite</span><span class="premium-badge" id="pillPremium" style="display:none">⭐</span><div class="av" id="pillAv">?</div></div>
+    <div class="user-pill" id="userPillBtn" title="Centro Privacy" style="cursor:pointer"><span class="un" id="pillName">Ospite</span><span class="premium-badge" id="pillPremium" style="display:none">⭐</span><div class="av" id="pillAv">?</div></div>
     <div class="foot"><b>EVITERNO</b><br><span id="i18n-footTag">Evolvi · Connettiti · Domina</span></div>
     <div class="right-controls">
       <div class="lang-switch" id="langSwitch"></div>
       <button class="btn ghost" id="premiumBtn" data-i18n="premiumBtn">⭐ Premium</button>
+      <button class="btn ghost" id="coursesBtn">🎓 Corsi</button>
       <button class="btn ghost" id="visionBtn">La nostra visione ▸</button>
     </div>
   </div>
@@ -494,6 +577,60 @@
   <div class="social-feed" id="socialFeedList"></div>
 
   <div class="social-ig"><a id="socialIgLink" href="#" target="_blank" rel="noopener" data-i18n="socialFollowIg">Seguici anche su Instagram ▸</a></div>
+</div>
+
+<!-- ============ CENTRO PRIVACY ============ -->
+<div class="panel premium-panel" id="privacyCenter">
+  <button class="x" id="privacyClose">×</button>
+  <h4 data-i18n="privacyTitle">Centro Privacy</h4>
+  <p class="premium-sub" data-i18n="privacySub">Ecco esattamente cosa sappiamo di te su questo browser — puoi vederlo, scaricarlo o cancellarlo quando vuoi.</p>
+
+  <div class="tutor-block" style="border-top:none;padding-top:0">
+    <div class="eb" data-i18n="privacyWhatWeKnow">Cosa sappiamo di te</div>
+    <div class="privacy-rows" id="privacyRows"></div>
+    <p class="privacy-guest-note" id="privacyGuestNote" data-i18n="privacyGuestNote" style="display:none">Sei in modalità ospite: nulla viene salvato oltre questa sessione.</p>
+  </div>
+
+  <div class="privacy-toggle-row">
+    <div><b data-i18n="privacyReduceMotion">Riduci le animazioni</b>
+      <span data-i18n="privacyReduceMotionSub">Ferma ondeggiamenti e pulsazioni, anche se il tuo sistema non lo richiede già.</span></div>
+    <label class="switch"><input type="checkbox" id="reduceMotionToggle"><span class="slider"></span></label>
+  </div>
+
+  <div class="privacy-actions">
+    <button class="btn-full" id="privacyDownloadBtn" data-i18n="privacyDownload">Scarica i miei dati (JSON)</button>
+    <button class="btn-full danger" id="privacyDeleteBtn" data-i18n="privacyDelete">Cancella tutti i miei dati</button>
+  </div>
+</div>
+
+<!-- ============ MARKETPLACE CORSI (demo) ============ -->
+<div class="panel premium-panel" id="coursesPanel">
+  <button class="x" id="coursesClose">×</button>
+  <div class="demo-flag">MODALITÀ DEMO — nessun pagamento reale, nessun corso vero</div>
+  <h4>Marketplace Corsi</h4>
+  <p class="premium-sub">Impara da chi ha già fatto il tuo percorso. Collega un corso a un tuo obiettivo e lascia che EVA tenga traccia dei progressi.</p>
+
+  <div class="course-tabs">
+    <button class="course-tab sel" id="tabExplore" data-tab="explore">Esplora</button>
+    <button class="course-tab" id="tabMine" data-tab="mine">I miei corsi</button>
+  </div>
+
+  <!-- Esplora -->
+  <div id="courseExploreView">
+    <div class="course-filters" id="courseFilters"></div>
+    <div class="course-grid" id="courseGrid"></div>
+  </div>
+
+  <!-- I miei corsi -->
+  <div id="courseMineView" style="display:none">
+    <div class="course-list" id="courseMineList"></div>
+  </div>
+
+  <!-- Dettaglio corso -->
+  <div id="courseDetailView" style="display:none">
+    <button class="course-back" id="courseBackBtn">◂ Torna al catalogo</button>
+    <div id="courseDetailBody"></div>
+  </div>
 </div>
 
 <!-- ============ DASHBOARD VIEWS ============ -->
@@ -669,7 +806,7 @@ let currentLang=(()=>{try{const s=localStorage.getItem('eviterno_lang');if(s&&SU
 const I18N={
   it:{ eyebrow:"Non è solo un'app. È un nuovo sistema.", tag_c:'Evolvi.', tag_w:'Connettiti.', tag_m:'Domina.',
     lede:'La piattaforma che unisce <b>tecnologia</b>, <b>connessioni reali</b> e <b>crescita personale</b>. Il futuro è qui. E tu ne fai parte.',
-    hubHint:'▸ Tocca un nodo per entrare nella sua dashboard', footTag:'Evolvi · Connettiti · Domina',
+    hubHint:'▸ Tocca un nodo per entrare nella sua dashboard', primaryCtaLabel:'✨ Inizia il tuo percorso', footTag:'Evolvi · Connettiti · Domina',
     visionBtn:'La nostra visione ▸', visionTitle:'La nostra visione',
     vision1t:'Unisciamo il mondo', vision1p:'Abbattiamo le distanze e connettiamo menti, idee e opportunità.',
     vision2t:'Tecnologia intelligente', vision2p:'Usiamo la tecnologia per semplificare, potenziare e creare valore.',
@@ -714,11 +851,11 @@ const I18N={
     micDenied:'Permesso microfono negato. Attivalo nelle impostazioni del browser.',
     liveUnsupported:'Il tuo browser non supporta la modalità Live vocale 🎙️',
     chip1:'✨ Genera il mio sistema', chip2:'Voglio lanciare il mio brand', chip3:'Connettimi con Sara nella Community', openDashHint:'▸ Apri dashboard', welcomeBack:(n,f)=>`Bentornato, <b>${n}</b>. Il tuo focus è <b>${f}</b>. Tocca un nodo per entrare, o chiedi a EVA.`,
-    welcomeToast:'Benvenuto in EVITERNO ⚡', guestName:'Ospite', premiumBtn:'⭐ Premium', premiumTitle:'EVITERNO Premium', premiumSub:'Sblocca EVA avanzata e il tutoraggio 1:1 per accelerare il tuo percorso.', freeTitle:'Gratis', premiumTierTitle:'Premium', freeFeat1:'EVA copilota con azioni sulla piattaforma', freeFeat2:'I 4 pilastri completi', freeFeat3:'Modalità Live vocale', freeFeat4:'Account personale con salvataggio', premiumFeat1:'EVA Premium — risposte più approfondite e prioritarie', premiumFeat2:'Sessioni 1:1 di coaching con il tutor', premiumFeat3:'Badge Premium sul profilo', premiumFeat4:'Supporto prioritario', tutorSectionTitle:'Il tuo tutor', tutorBookBtn:'Prenota una sessione 1:1', upgradeBtn:'Passa a Premium', priceSuffix:'/mese', alreadyPremium:'Sei già Premium ⭐', premiumSuccessToast:'Pagamento completato! Benvenuto in Premium ⭐', premiumCancelToast:'Pagamento annullato', stripeNotConfigured:'Il pagamento non è ancora configurato. Il proprietario deve impostare il link Stripe.', chooseCredTitle:'Scegli le tue credenziali', chooseCredSub:'Ti abbiamo suggerito questi valori: personalizzali come preferisci, o tienili così.', createSocialBtn:'Crea il mio account ▸', socialTitle:'EVITERNO Social', socialSub:'Il muro della community: scrivi un pensiero, un traguardo, un\'idea — lo vedono tutti.', socialPh:'Cosa vuoi condividere?', socialPostBtn:'Pubblica', socialEmpty:'Ancora nessun post. Sii il primo a scrivere! ✨', socialLoadError:'Non riesco a caricare il feed in questo momento.', socialPostError:'Non riesco a pubblicare in questo momento.', socialOnlyOnline:'Il feed funziona solo sulla versione pubblicata online.', socialFollowIg:'Seguici anche su Instagram ▸',
+    welcomeToast:'Benvenuto in EVITERNO ⚡', guestName:'Ospite', premiumBtn:'⭐ Premium', premiumTitle:'EVITERNO Premium', premiumSub:'Sblocca EVA avanzata e il tutoraggio 1:1 per accelerare il tuo percorso.', freeTitle:'Gratis', premiumTierTitle:'Premium', freeFeat1:'EVA copilota con azioni sulla piattaforma', freeFeat2:'I 4 pilastri completi', freeFeat3:'Modalità Live vocale', freeFeat4:'Account personale con salvataggio', premiumFeat1:'EVA Premium — risposte più approfondite e prioritarie', premiumFeat2:'Sessioni 1:1 di coaching con il tutor', premiumFeat3:'Badge Premium sul profilo', premiumFeat4:'Supporto prioritario', tutorSectionTitle:'Il tuo tutor', tutorBookBtn:'Prenota una sessione 1:1', upgradeBtn:'Passa a Premium', priceSuffix:'/mese', alreadyPremium:'Sei già Premium ⭐', premiumSuccessToast:'Pagamento completato! Benvenuto in Premium ⭐', premiumCancelToast:'Pagamento annullato', stripeNotConfigured:'Il pagamento non è ancora configurato. Il proprietario deve impostare il link Stripe.', chooseCredTitle:'Scegli le tue credenziali', chooseCredSub:'Ti abbiamo suggerito questi valori: personalizzali come preferisci, o tienili così.', createSocialBtn:'Crea il mio account ▸', socialTitle:'EVITERNO Social', socialSub:'Il muro della community: scrivi un pensiero, un traguardo, un\'idea — lo vedono tutti.', socialPh:'Cosa vuoi condividere?', socialPostBtn:'Pubblica', socialEmpty:'Ancora nessun post. Sii il primo a scrivere! ✨', socialLoadError:'Non riesco a caricare il feed in questo momento.', socialPostError:'Non riesco a pubblicare in questo momento.', socialOnlyOnline:'Il feed funziona solo sulla versione pubblicata online.', socialFollowIg:'Seguici anche su Instagram ▸', privacyTitle:'Centro Privacy', privacySub:'Ecco esattamente cosa sappiamo di te su questo browser — puoi vederlo, scaricarlo o cancellarlo quando vuoi.', privacyWhatWeKnow:'Cosa sappiamo di te', privacyUsername:'Username', privacyName:'Nome', privacyFocusLbl:'Focus', privacyGoalLbl:'Obiettivo attuale', privacyGuestNote:'Sei in modalità ospite: nulla viene salvato oltre questa sessione.', privacyReduceMotion:'Riduci le animazioni', privacyReduceMotionSub:'Ferma ondeggiamenti e pulsazioni, anche se il tuo sistema non lo richiede già.', privacyDownload:'Scarica i miei dati (JSON)', privacyDelete:'Cancella tutti i miei dati', privacyDeleteConfirm:'Sei sicuro? Clicca di nuovo per confermare', privacyDeletedToast:'Dati cancellati. A presto! 👋', privacyDownloadedToast:'Dati scaricati ✓',
   },
   en:{ eyebrow:"It's not just an app. It's a new system.", tag_c:'Evolve.', tag_w:'Connect.', tag_m:'Dominate.',
     lede:'The platform that unites <b>technology</b>, <b>real connections</b> and <b>personal growth</b>. The future is here. And you\'re part of it.',
-    hubHint:'▸ Tap a node to enter its dashboard', footTag:'Evolve · Connect · Dominate',
+    hubHint:'▸ Tap a node to enter its dashboard', primaryCtaLabel:'✨ Start your journey', footTag:'Evolve · Connect · Dominate',
     visionBtn:'Our vision ▸', visionTitle:'Our vision',
     vision1t:'We unite the world', vision1p:'We break down distances and connect minds, ideas and opportunities.',
     vision2t:'Smart technology', vision2p:'We use technology to simplify, empower and create real value.',
@@ -763,11 +900,11 @@ const I18N={
     micDenied:'Microphone permission denied. Enable it in your browser settings.',
     liveUnsupported:"Your browser doesn't support voice Live mode 🎙️",
     chip1:'✨ Generate my system', chip2:'I want to launch my brand', chip3:'Connect me with Sara in Community', openDashHint:'▸ Open dashboard', welcomeBack:(n,f)=>`Welcome back, <b>${n}</b>. Your focus is <b>${f}</b>. Tap a node to enter, or ask EVA.`,
-    welcomeToast:'Welcome to EVITERNO ⚡', guestName:'Guest', premiumBtn:'⭐ Premium', premiumTitle:'EVITERNO Premium', premiumSub:'Unlock advanced EVA and 1:1 tutoring to speed up your journey.', freeTitle:'Free', premiumTierTitle:'Premium', freeFeat1:'EVA copilot with platform actions', freeFeat2:'All 4 pillars', freeFeat3:'Voice Live mode', freeFeat4:'Personal account with saving', premiumFeat1:'Premium EVA — deeper, priority responses', premiumFeat2:'1:1 coaching sessions with the tutor', premiumFeat3:'Premium badge on profile', premiumFeat4:'Priority support', tutorSectionTitle:'Your tutor', tutorBookBtn:'Book a 1:1 session', upgradeBtn:'Upgrade to Premium', priceSuffix:'/month', alreadyPremium:"You're already Premium ⭐", premiumSuccessToast:'Payment complete! Welcome to Premium ⭐', premiumCancelToast:'Payment cancelled', stripeNotConfigured:'Payment is not configured yet. The owner needs to set up the Stripe link.', chooseCredTitle:'Choose your credentials', chooseCredSub:"We suggested these values: customize them as you like, or keep them as they are.", createSocialBtn:'Create my account ▸', socialTitle:'EVITERNO Social', socialSub:'The community wall: share a thought, a milestone, an idea — everyone sees it.', socialPh:'What do you want to share?', socialPostBtn:'Post', socialEmpty:'No posts yet. Be the first to write! ✨', socialLoadError:'Unable to load the feed right now.', socialPostError:'Unable to post right now.', socialOnlyOnline:'The feed only works on the published online version.', socialFollowIg:'Also follow us on Instagram ▸',
+    welcomeToast:'Welcome to EVITERNO ⚡', guestName:'Guest', premiumBtn:'⭐ Premium', premiumTitle:'EVITERNO Premium', premiumSub:'Unlock advanced EVA and 1:1 tutoring to speed up your journey.', freeTitle:'Free', premiumTierTitle:'Premium', freeFeat1:'EVA copilot with platform actions', freeFeat2:'All 4 pillars', freeFeat3:'Voice Live mode', freeFeat4:'Personal account with saving', premiumFeat1:'Premium EVA — deeper, priority responses', premiumFeat2:'1:1 coaching sessions with the tutor', premiumFeat3:'Premium badge on profile', premiumFeat4:'Priority support', tutorSectionTitle:'Your tutor', tutorBookBtn:'Book a 1:1 session', upgradeBtn:'Upgrade to Premium', priceSuffix:'/month', alreadyPremium:"You're already Premium ⭐", premiumSuccessToast:'Payment complete! Welcome to Premium ⭐', premiumCancelToast:'Payment cancelled', stripeNotConfigured:'Payment is not configured yet. The owner needs to set up the Stripe link.', chooseCredTitle:'Choose your credentials', chooseCredSub:"We suggested these values: customize them as you like, or keep them as they are.", createSocialBtn:'Create my account ▸', socialTitle:'EVITERNO Social', socialSub:'The community wall: share a thought, a milestone, an idea — everyone sees it.', socialPh:'What do you want to share?', socialPostBtn:'Post', socialEmpty:'No posts yet. Be the first to write! ✨', socialLoadError:'Unable to load the feed right now.', socialPostError:'Unable to post right now.', socialOnlyOnline:'The feed only works on the published online version.', socialFollowIg:'Also follow us on Instagram ▸', privacyTitle:'Privacy Center', privacySub:'Exactly what we know about you on this browser — view it, download it, or delete it anytime.', privacyWhatWeKnow:'What we know about you', privacyUsername:'Username', privacyName:'Name', privacyFocusLbl:'Focus', privacyGoalLbl:'Current goal', privacyGuestNote:"You're in guest mode: nothing is saved beyond this session.", privacyReduceMotion:'Reduce animations', privacyReduceMotionSub:'Stop swaying and pulsing effects, even if your system does not already request it.', privacyDownload:'Download my data (JSON)', privacyDelete:'Delete all my data', privacyDeleteConfirm:'Are you sure? Click again to confirm', privacyDeletedToast:'Data deleted. See you soon! 👋', privacyDownloadedToast:'Data downloaded ✓',
   },
   es:{ eyebrow:'No es solo una app. Es un nuevo sistema.', tag_c:'Evoluciona.', tag_w:'Conéctate.', tag_m:'Domina.',
     lede:'La plataforma que une <b>tecnología</b>, <b>conexiones reales</b> y <b>crecimiento personal</b>. El futuro está aquí. Y tú formas parte.',
-    hubHint:'▸ Toca un nodo para entrar en su panel', footTag:'Evoluciona · Conéctate · Domina',
+    hubHint:'▸ Toca un nodo para entrar en su panel', primaryCtaLabel:'✨ Empieza tu camino', footTag:'Evoluciona · Conéctate · Domina',
     visionBtn:'Nuestra visión ▸', visionTitle:'Nuestra visión',
     vision1t:'Unimos el mundo', vision1p:'Reducimos las distancias y conectamos mentes, ideas y oportunidades.',
     vision2t:'Tecnología inteligente', vision2p:'Usamos la tecnología para simplificar, potenciar y crear valor real.',
@@ -812,11 +949,11 @@ const I18N={
     micDenied:'Permiso de micrófono denegado. Actívalo en la configuración del navegador.',
     liveUnsupported:'Tu navegador no admite el modo Live por voz 🎙️',
     chip1:'✨ Generar mi sistema', chip2:'Quiero lanzar mi marca', chip3:'Conéctame con Sara en Community', openDashHint:'▸ Abrir panel', welcomeBack:(n,f)=>`Bienvenido, <b>${n}</b>. Tu enfoque es <b>${f}</b>. Toca un nodo para entrar, o pregúntale a EVA.`,
-    welcomeToast:'Bienvenido a EVITERNO ⚡', guestName:'Invitado', premiumBtn:'⭐ Premium', premiumTitle:'EVITERNO Premium', premiumSub:'Desbloquea EVA avanzada y tutoría 1:1 para acelerar tu camino.', freeTitle:'Gratis', premiumTierTitle:'Premium', freeFeat1:'EVA copiloto con acciones en la plataforma', freeFeat2:'Los 4 pilares completos', freeFeat3:'Modo Live por voz', freeFeat4:'Cuenta personal con guardado', premiumFeat1:'EVA Premium — respuestas más profundas y prioritarias', premiumFeat2:'Sesiones 1:1 de coaching con el tutor', premiumFeat3:'Insignia Premium en el perfil', premiumFeat4:'Soporte prioritario', tutorSectionTitle:'Tu tutor', tutorBookBtn:'Reservar una sesión 1:1', upgradeBtn:'Pasar a Premium', priceSuffix:'/mes', alreadyPremium:'Ya eres Premium ⭐', premiumSuccessToast:'¡Pago completado! Bienvenido a Premium ⭐', premiumCancelToast:'Pago cancelado', stripeNotConfigured:'El pago aún no está configurado. El propietario debe configurar el enlace de Stripe.', chooseCredTitle:'Elige tus credenciales', chooseCredSub:'Te sugerimos estos valores: personalízalos como prefieras, o déjalos así.', createSocialBtn:'Crear mi cuenta ▸', socialTitle:'EVITERNO Social', socialSub:'El muro de la comunidad: comparte un pensamiento, un logro, una idea — todos lo ven.', socialPh:'¿Qué quieres compartir?', socialPostBtn:'Publicar', socialEmpty:'Aún no hay publicaciones. ¡Sé el primero! ✨', socialLoadError:'No se puede cargar el feed en este momento.', socialPostError:'No se puede publicar en este momento.', socialOnlyOnline:'El feed solo funciona en la versión publicada en línea.', socialFollowIg:'Síguenos también en Instagram ▸',
+    welcomeToast:'Bienvenido a EVITERNO ⚡', guestName:'Invitado', premiumBtn:'⭐ Premium', premiumTitle:'EVITERNO Premium', premiumSub:'Desbloquea EVA avanzada y tutoría 1:1 para acelerar tu camino.', freeTitle:'Gratis', premiumTierTitle:'Premium', freeFeat1:'EVA copiloto con acciones en la plataforma', freeFeat2:'Los 4 pilares completos', freeFeat3:'Modo Live por voz', freeFeat4:'Cuenta personal con guardado', premiumFeat1:'EVA Premium — respuestas más profundas y prioritarias', premiumFeat2:'Sesiones 1:1 de coaching con el tutor', premiumFeat3:'Insignia Premium en el perfil', premiumFeat4:'Soporte prioritario', tutorSectionTitle:'Tu tutor', tutorBookBtn:'Reservar una sesión 1:1', upgradeBtn:'Pasar a Premium', priceSuffix:'/mes', alreadyPremium:'Ya eres Premium ⭐', premiumSuccessToast:'¡Pago completado! Bienvenido a Premium ⭐', premiumCancelToast:'Pago cancelado', stripeNotConfigured:'El pago aún no está configurado. El propietario debe configurar el enlace de Stripe.', chooseCredTitle:'Elige tus credenciales', chooseCredSub:'Te sugerimos estos valores: personalízalos como prefieras, o déjalos así.', createSocialBtn:'Crear mi cuenta ▸', socialTitle:'EVITERNO Social', socialSub:'El muro de la comunidad: comparte un pensamiento, un logro, una idea — todos lo ven.', socialPh:'¿Qué quieres compartir?', socialPostBtn:'Publicar', socialEmpty:'Aún no hay publicaciones. ¡Sé el primero! ✨', socialLoadError:'No se puede cargar el feed en este momento.', socialPostError:'No se puede publicar en este momento.', socialOnlyOnline:'El feed solo funciona en la versión publicada en línea.', socialFollowIg:'Síguenos también en Instagram ▸', privacyTitle:'Centro de Privacidad', privacySub:'Esto es exactamente lo que sabemos de ti en este navegador — puedes verlo, descargarlo o borrarlo cuando quieras.', privacyWhatWeKnow:'Qué sabemos de ti', privacyUsername:'Usuario', privacyName:'Nombre', privacyFocusLbl:'Enfoque', privacyGoalLbl:'Objetivo actual', privacyGuestNote:'Estás en modo invitado: nada se guarda más allá de esta sesión.', privacyReduceMotion:'Reducir animaciones', privacyReduceMotionSub:'Detén los balanceos y pulsaciones, aunque tu sistema no lo requiera.', privacyDownload:'Descargar mis datos (JSON)', privacyDelete:'Borrar todos mis datos', privacyDeleteConfirm:'¿Seguro? Haz clic de nuevo para confirmar', privacyDeletedToast:'Datos borrados. ¡Hasta pronto! 👋', privacyDownloadedToast:'Datos descargados ✓',
   },
   fr:{ eyebrow:"Ce n'est pas juste une application. C'est un nouveau système.", tag_c:'Évolue.', tag_w:'Connecte-toi.', tag_m:'Domine.',
     lede:'La plateforme qui unit <b>technologie</b>, <b>connexions réelles</b> et <b>développement personnel</b>. Le futur est là. Et vous en faites partie.',
-    hubHint:'▸ Touchez un nœud pour entrer dans son tableau de bord', footTag:'Évolue · Connecte-toi · Domine',
+    hubHint:'▸ Touchez un nœud pour entrer dans son tableau de bord', primaryCtaLabel:'✨ Commencez votre parcours', footTag:'Évolue · Connecte-toi · Domine',
     visionBtn:'Notre vision ▸', visionTitle:'Notre vision',
     vision1t:'Nous unissons le monde', vision1p:'Nous réduisons les distances et connectons esprits, idées et opportunités.',
     vision2t:'Technologie intelligente', vision2p:'Nous utilisons la technologie pour simplifier, renforcer et créer de la valeur réelle.',
@@ -861,7 +998,7 @@ const I18N={
     micDenied:'Permission micro refusée. Activez-la dans les réglages du navigateur.',
     liveUnsupported:'Votre navigateur ne prend pas en charge le mode Live vocal 🎙️',
     chip1:'✨ Générer mon système', chip2:'Je veux lancer ma marque', chip3:'Connecte-moi avec Sara dans Community', openDashHint:'▸ Ouvrir le tableau de bord', welcomeBack:(n,f)=>`Bon retour, <b>${n}</b>. Votre focus est <b>${f}</b>. Touchez un nœud pour entrer, ou demandez à EVA.`,
-    welcomeToast:'Bienvenue sur EVITERNO ⚡', guestName:'Invité', premiumBtn:'⭐ Premium', premiumTitle:'EVITERNO Premium', premiumSub:'Débloquez EVA avancée et le coaching 1:1 pour accélérer votre parcours.', freeTitle:'Gratuit', premiumTierTitle:'Premium', freeFeat1:'Copilote EVA avec actions sur la plateforme', freeFeat2:'Les 4 piliers complets', freeFeat3:'Mode Live vocal', freeFeat4:'Compte personnel avec sauvegarde', premiumFeat1:'EVA Premium — réponses plus approfondies et prioritaires', premiumFeat2:'Séances de coaching 1:1 avec le tuteur', premiumFeat3:'Badge Premium sur le profil', premiumFeat4:'Support prioritaire', tutorSectionTitle:'Votre tuteur', tutorBookBtn:'Réserver une séance 1:1', upgradeBtn:'Passer à Premium', priceSuffix:'/mois', alreadyPremium:'Vous êtes déjà Premium ⭐', premiumSuccessToast:'Paiement terminé ! Bienvenue dans Premium ⭐', premiumCancelToast:'Paiement annulé', stripeNotConfigured:"Le paiement n'est pas encore configuré. Le propriétaire doit configurer le lien Stripe.", chooseCredTitle:'Choisissez vos identifiants', chooseCredSub:'Nous avons suggéré ces valeurs : personnalisez-les si vous voulez, ou gardez-les.', createSocialBtn:'Créer mon compte ▸', socialTitle:'EVITERNO Social', socialSub:'Le mur de la communauté : partagez une pensée, une étape, une idée — tout le monde la voit.', socialPh:'Que voulez-vous partager ?', socialPostBtn:'Publier', socialEmpty:'Aucun post pour le moment. Soyez le premier ! ✨', socialLoadError:'Impossible de charger le fil pour le moment.', socialPostError:'Impossible de publier pour le moment.', socialOnlyOnline:"Le fil ne fonctionne que sur la version publiée en ligne.", socialFollowIg:'Suivez-nous aussi sur Instagram ▸',
+    welcomeToast:'Bienvenue sur EVITERNO ⚡', guestName:'Invité', premiumBtn:'⭐ Premium', premiumTitle:'EVITERNO Premium', premiumSub:'Débloquez EVA avancée et le coaching 1:1 pour accélérer votre parcours.', freeTitle:'Gratuit', premiumTierTitle:'Premium', freeFeat1:'Copilote EVA avec actions sur la plateforme', freeFeat2:'Les 4 piliers complets', freeFeat3:'Mode Live vocal', freeFeat4:'Compte personnel avec sauvegarde', premiumFeat1:'EVA Premium — réponses plus approfondies et prioritaires', premiumFeat2:'Séances de coaching 1:1 avec le tuteur', premiumFeat3:'Badge Premium sur le profil', premiumFeat4:'Support prioritaire', tutorSectionTitle:'Votre tuteur', tutorBookBtn:'Réserver une séance 1:1', upgradeBtn:'Passer à Premium', priceSuffix:'/mois', alreadyPremium:'Vous êtes déjà Premium ⭐', premiumSuccessToast:'Paiement terminé ! Bienvenue dans Premium ⭐', premiumCancelToast:'Paiement annulé', stripeNotConfigured:"Le paiement n'est pas encore configuré. Le propriétaire doit configurer le lien Stripe.", chooseCredTitle:'Choisissez vos identifiants', chooseCredSub:'Nous avons suggéré ces valeurs : personnalisez-les si vous voulez, ou gardez-les.', createSocialBtn:'Créer mon compte ▸', socialTitle:'EVITERNO Social', socialSub:'Le mur de la communauté : partagez une pensée, une étape, une idée — tout le monde la voit.', socialPh:'Que voulez-vous partager ?', socialPostBtn:'Publier', socialEmpty:'Aucun post pour le moment. Soyez le premier ! ✨', socialLoadError:'Impossible de charger le fil pour le moment.', socialPostError:'Impossible de publier pour le moment.', socialOnlyOnline:"Le fil ne fonctionne que sur la version publiée en ligne.", socialFollowIg:'Suivez-nous aussi sur Instagram ▸', privacyTitle:'Centre de confidentialité', privacySub:'Voici exactement ce que nous savons de vous sur ce navigateur — consultez, téléchargez ou supprimez ces données à tout moment.', privacyWhatWeKnow:'Ce que nous savons de vous', privacyUsername:'Identifiant', privacyName:'Prénom', privacyFocusLbl:'Focus', privacyGoalLbl:'Objectif actuel', privacyGuestNote:"Vous êtes en mode invité : rien n'est enregistré au-delà de cette session.", privacyReduceMotion:'Réduire les animations', privacyReduceMotionSub:"Arrête les balancements et pulsations, même si votre système ne le demande pas déjà.", privacyDownload:'Télécharger mes données (JSON)', privacyDelete:'Supprimer toutes mes données', privacyDeleteConfirm:'Êtes-vous sûr ? Cliquez à nouveau pour confirmer', privacyDeletedToast:'Données supprimées. À bientôt ! 👋', privacyDownloadedToast:'Données téléchargées ✓',
   },
 };
 function t(key){const v=(I18N[currentLang]&&I18N[currentLang][key]);return v!=null?v:(I18N.it[key]!=null?I18N.it[key]:key);}
@@ -957,7 +1094,178 @@ const DATA = {
     badges:[{n:'Prima settimana',ic:'🔥',got:true},{n:'Onboarding',ic:'🚀',got:true},
       {n:'10 lezioni',ic:'📚',got:false},{n:'5 obiettivi',ic:'🎯',got:false},
       {n:'Community star',ic:'⭐',got:false},{n:'30 giorni',ic:'🏆',got:false}],
-    timeline:[{t:'Account creato',w:'Oggi'},{t:'Focus impostato',w:'Oggi'}] } };
+    timeline:[{t:'Account creato',w:'Oggi'},{t:'Focus impostato',w:'Oggi'}] },
+  courses:{ owned:[], progress:{} } };
+
+/* ============================================================
+   MARKETPLACE CORSI — MODALITÀ DEMO
+   Catalogo finto, nessun pagamento reale. Gli acquisti e i
+   progressi sono salvati come tutto il resto (DATA + persist()),
+   quindi restano tra una sessione e l'altra sullo stesso browser.
+   ============================================================ */
+const DEMO_COURSES = [
+  {id:'swift101', title:'Swift per principianti', tutor:'Prince Isaac', tutorInit:'P',
+    category:'Sviluppo', level:'Principiante', lang:'Italiano', duration:'6h', price:0,
+    priceDisplay:'Gratis', rating:4.8, students:1240, icon:'🧩', color:'linear-gradient(135deg,#4de1ff,#2e7bff)',
+    subtitle:'Le basi per creare la tua prima app iOS',
+    desc:'Un percorso pratico per imparare Swift da zero, pensato per chi non ha mai scritto una riga di codice. Costruirai passo passo la tua prima app.',
+    objectives:['Capire la sintassi di base di Swift','Creare la tua prima interfaccia con SwiftUI','Pubblicare un prototipo funzionante'],
+    requirements:['Un Mac con Xcode installato','Nessuna esperienza di programmazione richiesta']},
+  {id:'mindset-growth', title:'Mindset da campione', tutor:'Sara L.', tutorInit:'S',
+    category:'Crescita personale', level:'Intermedio', lang:'Italiano', duration:'3h', price:29,
+    priceDisplay:'€29', rating:4.6, students:860, icon:'🧠', color:'linear-gradient(135deg,#7c3aed,#c93be8)',
+    subtitle:'Costruisci abitudini che reggono nel tempo',
+    desc:'Un corso pratico su come costruire disciplina, gestire le ricadute e trasformare piccoli passi quotidiani in risultati duraturi.',
+    objectives:['Progettare un sistema di abitudini realistico','Gestire i momenti di calo motivazionale','Misurare i tuoi progressi reali'],
+    requirements:['Nessuno, adatto a tutti i livelli']},
+  {id:'public-speaking', title:'Parlare in pubblico senza paura', tutor:'Marco R.', tutorInit:'M',
+    category:'Comunicazione', level:'Principiante', lang:'Italiano', duration:'4h', price:39,
+    priceDisplay:'€39', rating:4.7, students:512, icon:'🎤', color:'linear-gradient(135deg,#2e7bff,#9b6bff)',
+    subtitle:'Dalla paura del palco alla sicurezza in scena',
+    desc:'Tecniche concrete per gestire l\'ansia da prestazione, strutturare un discorso efficace e catturare l\'attenzione del pubblico.',
+    objectives:['Gestire l\'ansia prima di parlare in pubblico','Strutturare un discorso in 3 parti','Usare voce e corpo in modo efficace'],
+    requirements:['Nessuno']},
+  {id:'personal-branding', title:'Personal Branding da zero', tutor:'Dev K.', tutorInit:'D',
+    category:'Business', level:'Intermedio', lang:'Italiano', duration:'5h', price:49,
+    priceDisplay:'€49', rating:4.5, students:390, icon:'🚀', color:'linear-gradient(135deg,#c93be8,#4de1ff)',
+    subtitle:'Costruisci un brand personale che genera opportunità',
+    desc:'Come definire il tuo posizionamento, raccontare la tua storia in modo autentico e trasformare la tua presenza online in un asset reale.',
+    objectives:['Definire il tuo posizionamento unico','Creare contenuti coerenti col tuo brand','Attrarre le opportunità giuste'],
+    requirements:['Un profilo social attivo (qualsiasi piattaforma)']},
+  {id:'deep-work', title:'Deep Work: il focus come vantaggio', tutor:'Sara L.', tutorInit:'S',
+    category:'Produttività', level:'Avanzato', lang:'Italiano', duration:'3.5h', price:0,
+    priceDisplay:'Gratis', rating:4.9, students:2010, icon:'⏱️', color:'linear-gradient(135deg,#4de1ff,#7c3aed)',
+    subtitle:'Proteggi la tua concentrazione in un mondo distratto',
+    desc:'Un metodo pratico per progettare blocchi di lavoro profondo, eliminare le distrazioni digitali e moltiplicare la qualità del tuo output.',
+    objectives:['Progettare blocchi di deep work efficaci','Ridurre le distrazioni digitali','Aumentare la qualità del lavoro prodotto'],
+    requirements:['Un obiettivo di lavoro su cui concentrarti']},
+  {id:'financial-basics', title:'Finanza personale: le basi', tutor:'Marco R.', tutorInit:'M',
+    category:'Business', level:'Principiante', lang:'Italiano', duration:'4h', price:25,
+    priceDisplay:'€25', rating:4.4, students:670, icon:'💠', color:'linear-gradient(135deg,#7c3aed,#2e7bff)',
+    subtitle:'Prendi in mano le tue finanze in modo semplice',
+    desc:'Concetti essenziali su budget, risparmio e primi investimenti, spiegati in modo chiaro e senza tecnicismi inutili.',
+    objectives:['Costruire un budget mensile realistico','Capire le basi del risparmio automatico','Muovere i primi passi negli investimenti'],
+    requirements:['Nessuno']},
+];
+let courseTab='explore', courseFilter='Tutte', activeCourseId=null;
+function ownedCourseIds(){return DATA.courses.owned.map(o=>o.id);}
+function findCourse(id){return DEMO_COURSES.find(c=>c.id===id);}
+
+function renderCourseFilters(){
+  const cats=['Tutte',...new Set(DEMO_COURSES.map(c=>c.category))];
+  document.getElementById('courseFilters').innerHTML=cats.map(c=>
+    `<button class="course-filter ${c===courseFilter?'sel':''}" data-cat="${escapeHtml(c)}">${escapeHtml(c)}</button>`).join('');
+  document.querySelectorAll('.course-filter').forEach(b=>b.onclick=()=>{courseFilter=b.dataset.cat;renderCourseFilters();renderCourseGrid();});
+}
+function renderCourseGrid(){
+  const owned=ownedCourseIds();
+  const list=courseFilter==='Tutte'?DEMO_COURSES:DEMO_COURSES.filter(c=>c.category===courseFilter);
+  document.getElementById('courseGrid').innerHTML=list.map(c=>`
+    <div class="course-card" data-course="${c.id}">
+      <div class="course-cover" style="background:${c.color}">${c.icon}</div>
+      <b>${escapeHtml(c.title)}</b>
+      <div class="c-tutor">${escapeHtml(c.tutor)} · ${escapeHtml(c.level)}</div>
+      <div class="course-meta"><span class="course-rating">★ ${c.rating}</span><span class="c-price">${owned.includes(c.id)?'✓ Nella libreria':c.priceDisplay}</span></div>
+    </div>`).join('');
+  document.querySelectorAll('.course-card').forEach(el=>el.onclick=()=>openCourseDetail(el.dataset.course));
+}
+function renderMyCourses(){
+  const list=document.getElementById('courseMineList');
+  const owned=DATA.courses.owned;
+  if(!owned.length){list.innerHTML='<div class="social-empty">Non hai ancora nessun corso. Vai su "Esplora" per iniziare! 🎓</div>';return;}
+  list.innerHTML=owned.map(o=>{
+    const c=findCourse(o.id);if(!c)return'';
+    const prog=DATA.courses.progress[o.id]||{pct:0};
+    return `<div class="my-course-row" data-course="${c.id}">
+      <div class="course-cover" style="background:${c.color}">${c.icon}</div>
+      <div class="mc-info"><b>${escapeHtml(c.title)}</b>
+        <div class="bar"><i style="width:${prog.pct}%"></i></div>
+        <span style="color:var(--muted);font-size:11px">${prog.pct}% completato</span>
+      </div>
+      <button class="li-act" data-continue="${c.id}">Continua</button>
+    </div>`;
+  }).join('');
+  document.querySelectorAll('#courseMineList .my-course-row').forEach(el=>el.onclick=(e)=>{
+    if(e.target.closest('[data-continue]'))return;openCourseDetail(el.dataset.course);});
+  document.querySelectorAll('[data-continue]').forEach(b=>b.onclick=(e)=>{e.stopPropagation();continueCourse(b.dataset.continue);});
+}
+function switchCourseTab(tab){
+  courseTab=tab;
+  document.getElementById('tabExplore').classList.toggle('sel',tab==='explore');
+  document.getElementById('tabMine').classList.toggle('sel',tab==='mine');
+  document.getElementById('courseExploreView').style.display=tab==='explore'?'block':'none';
+  document.getElementById('courseMineView').style.display=tab==='mine'?'block':'none';
+  document.getElementById('courseDetailView').style.display='none';
+  if(tab==='explore'){renderCourseFilters();renderCourseGrid();}else{renderMyCourses();}
+}
+function openCourseDetail(id){
+  const c=findCourse(id);if(!c)return;
+  activeCourseId=id;
+  document.getElementById('courseExploreView').style.display='none';
+  document.getElementById('courseMineView').style.display='none';
+  document.getElementById('courseDetailView').style.display='block';
+  const owned=ownedCourseIds().includes(id);
+  const goalOptions=DATA.obiettivi.goals.map((g,i)=>`<option value="${i}">${escapeHtml(g.t)}</option>`).join('');
+  const linkedGoal=DATA.courses.progress[id]?.goalIndex;
+  document.getElementById('courseDetailBody').innerHTML=`
+    <div class="cd-head">
+      <div class="cd-cover" style="background:${c.color}">${c.icon}</div>
+      <div><h3>${escapeHtml(c.title)}</h3><div class="c-tutor">${escapeHtml(c.tutor)} — ${escapeHtml(c.subtitle)}</div>
+      <div class="course-rating" style="margin-top:6px">★ ${c.rating} · ${c.students.toLocaleString('it')} studenti</div></div>
+    </div>
+    <div class="cd-tags"><span class="cd-tag">${escapeHtml(c.level)}</span><span class="cd-tag">${c.duration}</span>
+      <span class="cd-tag">${escapeHtml(c.lang)}</span><span class="cd-tag">${escapeHtml(c.category)}</span></div>
+    <p class="cd-desc">${escapeHtml(c.desc)}</p>
+    <b style="font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em">Cosa imparerai</b>
+    <ul class="cd-list" style="margin-top:8px">${c.objectives.map(o=>`<li>${escapeHtml(o)}</li>`).join('')}</ul>
+    <b style="font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em">Requisiti</b>
+    <ul class="cd-list" style="margin-top:8px">${c.requirements.map(r=>`<li>${escapeHtml(r)}</li>`).join('')}</ul>
+    ${owned&&DATA.obiettivi.goals.length?`
+      <div style="margin:16px 0"><label style="font-size:11.5px;color:var(--muted);display:block;margin-bottom:6px">Collega a un tuo obiettivo</label>
+      <select id="courseGoalSelect" style="width:100%;background:rgba(255,255,255,.04);border:1px solid var(--line);
+        border-radius:10px;padding:10px;color:var(--ice);font-family:var(--body);font-size:12.5px">
+        <option value="">— Nessun collegamento —</option>${goalOptions}
+      </select></div>`:''}
+    <div class="cd-buy-row">
+      <span class="c-price">${c.priceDisplay}</span>
+      ${owned?'<button class="gate-btn" id="cdActionBtn" style="width:auto;padding:12px 26px">Continua il corso</button>'
+             :'<button class="gate-btn" id="cdActionBtn" style="width:auto;padding:12px 26px">Acquista (demo)</button>'}
+    </div>`;
+  if(owned&&DATA.obiettivi.goals.length){
+    const sel=document.getElementById('courseGoalSelect');
+    sel.value=linkedGoal!=null?linkedGoal:'';
+    sel.onchange=()=>{
+      if(!DATA.courses.progress[id])DATA.courses.progress[id]={pct:0};
+      DATA.courses.progress[id].goalIndex=sel.value===''?null:+sel.value;
+      persist();toast('Corso collegato all\'obiettivo 🎯');
+    };
+  }
+  document.getElementById('cdActionBtn').onclick=()=>owned?continueCourse(id):buyCourse(id);
+}
+function buyCourse(id){
+  if(ownedCourseIds().includes(id))return;
+  DATA.courses.owned.push({id,boughtAt:Date.now()});
+  DATA.courses.progress[id]={pct:0,goalIndex:null};
+  persist();
+  toast('Corso aggiunto alla tua libreria ✓ (demo, nessun pagamento reale)');
+  openCourseDetail(id);
+}
+function continueCourse(id){
+  const prog=DATA.courses.progress[id]||(DATA.courses.progress[id]={pct:0,goalIndex:null});
+  prog.pct=Math.min(100,prog.pct+20);
+  if(prog.goalIndex!=null&&DATA.obiettivi.goals[prog.goalIndex]){
+    const g=DATA.obiettivi.goals[prog.goalIndex];
+    const next=g.milestones.find(m=>!m.done);
+    if(next){next.done=true;toast('Lezione completata — traguardo avanzato nel tuo obiettivo 🎯');}
+    else toast('Lezione completata! (+20% nel corso)');
+    if(document.getElementById('view-obiettivi').classList.contains('show'))renderDashboard('obiettivi');
+  }else{
+    toast(prog.pct>=100?'Corso completato! 🏆':'Lezione completata (+20%)');
+  }
+  persist();
+  if(courseTab==='mine')renderMyCourses();
+  if(document.getElementById('courseDetailView').style.display!=='none')openCourseDetail(id);
+}
 
 function seedGoals(){
   const g = USER.goal || 'Definire il mio primo traguardo';
@@ -973,7 +1281,16 @@ const goalPct = g => Math.round(100*g.milestones.filter(m=>m.done).length/g.mile
 /* ============================================================
    CORE 3D
    ============================================================ */
-const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const osReduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+let manualReduce=false; try{manualReduce=localStorage.getItem('eviterno_reduce_motion')==='1';}catch(e){}
+let reduce = osReduce || manualReduce;
+function applyReducePref(on){
+  manualReduce=on;
+  try{localStorage.setItem('eviterno_reduce_motion',on?'1':'0');}catch(e){}
+  reduce = osReduce || manualReduce;
+  document.body.classList.toggle('reduce-motion',reduce);
+}
+document.body.classList.toggle('reduce-motion',reduce);
 let coreActivity=0, coreTarget=0;
 const mount=document.getElementById('scene');
 const scene=new THREE.Scene(); scene.fog=new THREE.FogExp2(0x04040c,0.018);
@@ -1091,7 +1408,7 @@ function animate(){requestAnimationFrame(animate);const dt=Math.min(clock.getDel
   for(let i=0;i<ORB;i++){const d=oData[i];d.a+=dt*d.s*(0.5+coreActivity*3);const rr=d.r*(1+coreActivity*0.25);
     oPos[i*3]=Math.cos(d.a)*rr*Math.cos(d.e);oPos[i*3+1]=Math.sin(d.e+t*0.3)*rr*0.5;oPos[i*3+2]=Math.sin(d.a)*rr*Math.cos(d.e);}
   oGeo.attributes.position.needsUpdate=true;orbit.material.opacity=0.55+coreActivity*0.4;
-  nodeMeshes.forEach((n,i)=>{const b=n.userData.base;n.position.y=b[1]+Math.sin(t*0.9+i*1.7)*0.22;
+  nodeMeshes.forEach((n,i)=>{const b=n.userData.base;n.position.y=reduce?b[1]:b[1]+Math.sin(t*0.9+i*1.7)*0.22;
     const gt=n.userData.glowT;n.userData.glow+=(gt-n.userData.glow)*0.12;
     n.userData.halo.material.opacity=0.18+n.userData.glow*0.5;
     n.userData.halo.scale.setScalar(1+n.userData.glow*0.6+Math.sin(t*2+i)*0.05);});
@@ -1246,6 +1563,20 @@ function refreshTutorCard(){
   else{upBtn.textContent=t('upgradeBtn');upBtn.disabled=false;}
 }
 document.getElementById('premiumBtn').onclick=()=>{refreshTutorCard();show('premium');};
+
+/* ============================================================
+   MARKETPLACE CORSI — apertura pannello e navigazione tra schede
+   ============================================================ */
+document.getElementById('coursesBtn').onclick=()=>{show('coursesPanel');switchCourseTab('explore');};
+document.getElementById('coursesClose').onclick=()=>hide('coursesPanel');
+document.getElementById('tabExplore').onclick=()=>switchCourseTab('explore');
+document.getElementById('tabMine').onclick=()=>switchCourseTab('mine');
+document.getElementById('courseBackBtn').onclick=()=>{
+  document.getElementById('courseDetailView').style.display='none';
+  if(courseTab==='explore'){document.getElementById('courseExploreView').style.display='block';}
+  else{document.getElementById('courseMineView').style.display='block';renderMyCourses();}
+};
+
 document.getElementById('premiumClose').onclick=()=>hide('premium');
 
 /* ============================================================
@@ -1253,6 +1584,64 @@ document.getElementById('premiumClose').onclick=()=>hide('premium');
    ============================================================ */
 document.getElementById('socialClose').onclick=()=>hide('socialFeed');
 document.getElementById('socialIgLink').href=SOCIAL_LINKS.instagram||'#';
+
+/* ============================================================
+   CENTRO PRIVACY — vedi, scarica, cancella ciò che sappiamo di te
+   ============================================================ */
+document.getElementById('userPillBtn').onclick=()=>{openPrivacyCenter();show('privacyCenter');};
+document.getElementById('privacyClose').onclick=()=>hide('privacyCenter');
+
+function openPrivacyCenter(){
+  const rows=document.getElementById('privacyRows');
+  const isGuest=USER.guest||!currentUsername;
+  document.getElementById('privacyGuestNote').style.display=isGuest?'block':'none';
+  const entries=isGuest?[]:[
+    [t('privacyUsername'),currentUsername],
+    [t('privacyName'),USER.name||'—'],
+    [t('privacyFocusLbl'),P(USER.focus).t],
+    [t('privacyGoalLbl'),USER.goal||'—'],
+  ];
+  rows.innerHTML=entries.map(([k,v])=>`<div class="privacy-row"><b>${escapeHtml(k)}</b><span>${escapeHtml(v)}</span></div>`).join('');
+  document.getElementById('reduceMotionToggle').checked=manualReduce;
+  document.getElementById('privacyDeleteBtn').textContent=t('privacyDelete');
+  document.getElementById('privacyDeleteBtn').classList.remove('confirming');
+}
+
+document.getElementById('reduceMotionToggle').onchange=(e)=>applyReducePref(e.target.checked);
+
+document.getElementById('privacyDownloadBtn').onclick=()=>{
+  const isGuest=USER.guest||!currentUsername;
+  const payload={
+    username:isGuest?null:currentUsername,
+    profile:{name:USER.name,focus:USER.focus,goal:USER.goal,premium:!!USER.premium},
+    data: isGuest?null:DATA,
+    exportedAt:new Date().toISOString(),
+  };
+  const blob=new Blob([JSON.stringify(payload,null,2)],{type:'application/json'});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');a.href=url;a.download='eviterno-dati.json';
+  document.body.appendChild(a);a.click();a.remove();
+  setTimeout(()=>URL.revokeObjectURL(url),2000);
+  toast(t('privacyDownloadedToast'));
+};
+
+let deleteConfirmPending=false,deleteConfirmTimer=null;
+document.getElementById('privacyDeleteBtn').onclick=function(){
+  if(!deleteConfirmPending){
+    deleteConfirmPending=true;this.textContent=t('privacyDeleteConfirm');this.classList.add('confirming');
+    deleteConfirmTimer=setTimeout(()=>{deleteConfirmPending=false;this.textContent=t('privacyDelete');this.classList.remove('confirming');},4000);
+    return;
+  }
+  clearTimeout(deleteConfirmTimer);deleteConfirmPending=false;
+  if(currentUsername){
+    const accts=loadAccounts();delete accts[currentUsername];saveAccounts(accts);
+    try{if(localStorage.getItem(LAST_KEY)===currentUsername)localStorage.removeItem(LAST_KEY);}catch(e){}
+  }
+  toast(t('privacyDeletedToast'));
+  hide('privacyCenter');
+  setTimeout(()=>window.location.reload(),900);
+};
+
 function timeAgo(ts){
   const s=Math.floor(Date.now()/1000-ts);
   if(s<60)return 'ora';
@@ -1679,6 +2068,7 @@ function openCp(){cpWin.classList.add('show');
   setTimeout(()=>cpInput.focus(),300);}
 function closeCp(){cpWin.classList.remove('show');cpSet.classList.remove('show');if(liveMode)setLiveMode(false);}
 cpFab.onclick=openCp; document.getElementById('cpClose').onclick=closeCp;
+document.getElementById('primaryCta').onclick=()=>openCp();
 document.getElementById('cpGear').onclick=()=>cpSet.classList.toggle('show');
 
 function bubble(cls,txt){const d=document.createElement('div');d.className='msg '+cls;
