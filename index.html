@@ -306,6 +306,61 @@
   .archive-item .ai-tag{color:var(--cyan);font-size:10.5px;display:inline-block;margin-top:4px}
   .archive-item p{margin:6px 0 0;color:var(--muted);font-weight:300;font-size:12.5px;line-height:1.5;white-space:pre-wrap;word-break:break-word}
 
+  .path-title{font-size:19px;margin:0 0 4px}
+  .path-why{color:var(--muted);font-size:13px;font-style:italic;margin:0 0 14px}
+  .path-status-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:18px}
+  .path-status-pill{font-family:var(--disp);letter-spacing:.08em;font-size:10.5px;text-transform:uppercase;
+    border:1px solid var(--line-2);border-radius:20px;padding:5px 13px;color:var(--cyan)}
+  .path-status-select{background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:20px;
+    padding:5px 12px;color:var(--muted);font-size:11.5px;cursor:pointer}
+  .path-progress-row{display:flex;align-items:center;gap:12px;margin-bottom:20px}
+  .path-progress-row .bar{flex:1;height:8px}
+  .path-progress-row b{font-family:var(--disp);font-size:14px}
+  .path-next{border:1px solid var(--line-2);border-radius:16px;padding:18px;margin-bottom:20px;
+    background:linear-gradient(135deg,rgba(124,58,237,.12),rgba(77,225,255,.06))}
+  .path-next .nx-label{font-family:var(--disp);letter-spacing:.12em;font-size:10.5px;color:var(--cyan);
+    text-transform:uppercase;margin-bottom:8px;display:block}
+  .path-next p{margin:0 0 14px;font-size:14px;line-height:1.5;color:var(--ice)}
+  .path-next-actions{display:flex;gap:10px;flex-wrap:wrap}
+  .path-next-actions button{width:auto;padding:11px 20px;margin:0}
+  .path-link-row{display:flex;align-items:center;gap:12px;border:1px solid var(--line);border-radius:12px;
+    padding:12px 14px;margin-bottom:10px;cursor:pointer;transition:.2s}
+  .path-link-row:hover{border-color:var(--line-2);transform:translateX(2px)}
+  .path-link-row .pl-icon{font-size:18px;flex:0 0 auto}
+  .path-link-row .pl-body{flex:1;min-width:0}
+  .path-link-row .pl-body b{display:block;font-size:13px}
+  .path-link-row .pl-body span{color:var(--muted);font-size:11.5px}
+  .path-steps{display:flex;flex-direction:column;gap:8px;margin-bottom:20px}
+  .path-step{display:flex;align-items:center;gap:10px;border:1px solid var(--line);border-radius:12px;padding:10px 13px}
+  .path-step b{flex:1;font-size:13px;font-weight:400}
+  .path-step.done b{color:var(--muted);text-decoration:line-through}
+  .path-block-banner{border:1px solid rgba(255,207,92,.4);background:rgba(255,207,92,.07);border-radius:14px;
+    padding:16px;margin-bottom:20px}
+  .path-block-banner p{margin:0 0 12px;font-size:13px;color:var(--ice)}
+  .path-block-opts{display:flex;flex-direction:column;gap:8px}
+  .path-block-opts button{text-align:left;background:rgba(255,255,255,.04);border:1px solid var(--line);
+    border-radius:10px;padding:10px 13px;color:var(--ice);font-size:12.5px;cursor:pointer}
+  .path-block-opts button:hover{border-color:var(--cyan)}
+  .path-empty-cta{text-align:center;padding:30px 10px}
+  .path-empty-cta p{color:var(--muted);font-size:13.5px;line-height:1.6;margin:0 0 20px}
+
+  .beta-badge{display:inline-block;font-family:var(--disp);letter-spacing:.1em;font-size:9.5px;
+    color:#ffcf5c;border:1px solid rgba(255,207,92,.4);background:rgba(255,207,92,.07);
+    border-radius:20px;padding:5px 14px;margin-bottom:14px;text-transform:uppercase}
+
+  .fb-q{margin-bottom:20px}
+  .fb-q label{display:block;font-size:13px;color:var(--ice);margin-bottom:9px;line-height:1.4}
+  .fb-rating{display:flex;gap:8px}
+  .fb-rating button{flex:1;background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:10px;
+    padding:10px 0;color:var(--muted);font-family:var(--disp);font-size:14px;cursor:pointer;transition:.2s}
+  .fb-rating button.sel{border-color:var(--cyan);color:var(--cyan);background:rgba(77,225,255,.08)}
+  .fb-choices{display:flex;gap:8px;flex-wrap:wrap}
+  .fb-choices button{background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:20px;
+    padding:8px 15px;color:var(--muted);font-size:12px;cursor:pointer}
+  .fb-choices button.sel{border-color:var(--cyan);color:var(--cyan)}
+  .fb-q textarea,.fb-q input[type=text]{width:100%;background:rgba(255,255,255,.04);border:1px solid var(--line);
+    border-radius:10px;padding:10px 13px;color:var(--ice);font-family:var(--body);font-size:13px;outline:none;resize:vertical}
+
   /* ===== GATE (login + onboarding) ===== */
   #gate{position:fixed;inset:0;z-index:20;display:none;place-items:center;padding:24px;
     background:radial-gradient(110% 90% at 50% 30%,rgba(10,8,26,.6),rgba(3,3,10,.92));backdrop-filter:blur(6px)}
@@ -536,12 +591,24 @@
     opacity:0;transition:.35s;pointer-events:none}
   .toast.show{opacity:1;transform:translate(-50%,0)}
 
+  .reminder-banner{position:fixed;top:18px;left:50%;transform:translate(-50%,-140%);z-index:31;
+    background:var(--panel);backdrop-filter:blur(16px);border:1px solid var(--line-2);border-radius:16px;
+    padding:14px 16px;max-width:min(92vw,440px);display:flex;align-items:center;gap:14px;
+    box-shadow:0 12px 40px -8px rgba(0,0,0,.5);transition:transform .4s ease}
+  .reminder-banner.show{transform:translate(-50%,0)}
+  .reminder-banner span{font-size:13px;color:var(--ice);line-height:1.4;flex:1}
+  .reminder-actions{display:flex;align-items:center;gap:8px;flex:0 0 auto}
+  #reminderGoBtn{background:var(--grad-flat);border:none;color:#fff;border-radius:20px;padding:8px 16px;
+    font-size:12px;cursor:pointer;white-space:nowrap}
+  .reminder-x{background:none;border:none;color:var(--muted);cursor:pointer;font-size:13px;padding:4px}
+  .reminder-x:hover{color:#fff}
+
   @media(max-width:640px){
     .bottombar{flex-direction:column;align-items:center;gap:12px;padding:0 14px}.foot{display:none}
     .right-controls{justify-content:center;width:100%}
     .right-controls .btn{font-size:10.5px;padding:10px 14px;gap:6px}
     .lang-switch{order:-1}
-    #copilot{bottom:210px}
+    #copilot{bottom:250px}
     .cp-win{left:0;right:0;bottom:0;width:100%;height:82vh;border-radius:22px 22px 0 0}
     body.dash-open .cp-win{right:0}
     .node-label .nl-s{display:none}
@@ -571,6 +638,7 @@
 <!-- ============ HUB OVERLAY ============ -->
 <div class="overlay">
   <header class="top">
+    <div class="beta-badge" data-i18n="betaBadge">EVITERNO BETA — stai usando una versione di prova con dati locali</div>
     <div class="eyebrow" id="i18n-eyebrow" data-i18n="eyebrow">Non è solo un'app. <b>È un</b> <i>nuovo sistema</i>.</div>
     <div class="wordmark">EVITERNO</div>
     <div class="tagline"><span class="c" id="i18n-tagC" data-i18n="tag_c">Evolvi.</span><span class="w" id="i18n-tagW" data-i18n="tag_w">Connettiti.</span><span class="m" id="i18n-tagM" data-i18n="tag_m">Domina.</span></div>
@@ -679,6 +747,8 @@
 
   <div class="privacy-actions">
     <button class="btn-full" id="privacyDownloadBtn" data-i18n="privacyDownload">Scarica i miei dati (JSON)</button>
+    <button class="btn-full" id="privacyResetBtn" data-i18n="privacyReset">Ripristina i dati demo</button>
+    <button class="btn-full" id="privacyFeedbackBtn" data-i18n="privacyFeedbackBtn">💬 Lascia un feedback</button>
     <button class="btn-full danger" id="privacyDeleteBtn" data-i18n="privacyDelete">Cancella tutti i miei dati</button>
   </div>
 </div>
@@ -739,6 +809,57 @@
   </div>
   <input id="archiveSearchInput" data-i18n-ph="archiveSearchPh" placeholder="Cerca..." style="margin-bottom:12px">
   <div class="archive-list" id="archiveList"></div>
+</div>
+
+<!-- ============ PERCORSO — il motore che collega tutto ============ -->
+<div class="panel premium-panel" id="pathPanel">
+  <button class="x" id="pathClose">×</button>
+  <div class="demo-flag" data-i18n="pathDemoFlag">MODALITÀ DEMO — i dati restano solo su questo browser</div>
+  <div id="pathBody"></div>
+</div>
+
+<!-- ============ DEBUG EVENTI (nascosto, Ctrl+Shift+D) ============ -->
+<div class="panel premium-panel" id="debugPanel">
+  <button class="x" id="debugClose">×</button>
+  <h4>🔧 Eventi locali (solo per te)</h4>
+  <p class="premium-sub">Non lasciano mai questo browser. Utile per capire dove un utente si blocca durante un test.</p>
+  <div id="debugStats" style="margin-bottom:16px"></div>
+  <div style="display:flex;gap:10px;margin-bottom:10px">
+    <button class="btn-full" id="debugExportBtn" style="margin:0">Esporta JSON</button>
+    <button class="btn-full danger" id="debugClearBtn" style="margin:0">Svuota eventi</button>
+  </div>
+  <div style="display:flex;gap:10px;margin-bottom:14px">
+    <label class="btn-full" for="debugImportInput" style="margin:0;text-align:center;cursor:pointer">📥 Importa dati di test
+      <input type="file" id="debugImportInput" accept="application/json" style="display:none"></label>
+    <button class="btn-full" id="debugOpenValidationBtn" style="margin:0">📊 Validazione prodotto</button>
+  </div>
+  <div class="archive-list" id="debugList"></div>
+</div>
+
+<!-- ============ VALIDAZIONE PRODOTTO (nascosto, dalla vista Debug) ============ -->
+<div class="panel premium-panel" id="validationPanel">
+  <button class="x" id="validationClose">×</button>
+  <h4>EVITERNO — Validazione prodotto</h4>
+  <p class="premium-sub" id="validationSourceLabel"></p>
+  <div id="validationBody"></div>
+</div>
+
+<!-- ============ INTRO GUIDATA AL PERCORSO (solo al primo accesso) ============ -->
+<div class="panel premium-panel" id="pathIntroPanel">
+  <button class="x" id="pathIntroClose">×</button>
+  <div id="pathIntroBody"></div>
+</div>
+
+<!-- ============ QUESTIONARIO RAPIDO (dopo il primo passo) ============ -->
+<div class="panel premium-panel" id="miniSurveyPanel">
+  <button class="x" id="miniSurveyClose">×</button>
+  <div id="miniSurveyBody"></div>
+</div>
+
+<!-- ============ FEEDBACK COMPLETO ============ -->
+<div class="panel premium-panel" id="feedbackPanel">
+  <button class="x" id="feedbackClose">×</button>
+  <div id="feedbackBody"></div>
 </div>
 
 <!-- ============ DASHBOARD VIEWS ============ -->
@@ -886,6 +1007,13 @@
 </div>
 
 <div class="toast" id="toast"></div>
+<div class="reminder-banner" id="reminderBanner">
+  <span id="reminderText"></span>
+  <div class="reminder-actions">
+    <button id="reminderGoBtn"></button>
+    <button class="reminder-x" id="reminderCloseBtn">✕</button>
+  </div>
+</div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script>
@@ -959,7 +1087,7 @@ const I18N={
     micDenied:'Permesso microfono negato. Attivalo nelle impostazioni del browser.',
     liveUnsupported:'Il tuo browser non supporta la modalità Live vocale 🎙️',
     chip1:'✨ Genera il mio sistema', chip2:'Voglio lanciare il mio brand', chip3:'Connettimi con Sara nella Community', openDashHint:'▸ Apri dashboard', welcomeBack:(n,f)=>`Bentornato, <b>${n}</b>. Il tuo focus è <b>${f}</b>. Tocca un nodo per entrare, o chiedi a EVA.`,
-    welcomeToast:'Benvenuto in EVITERNO ⚡', guestName:'Ospite', premiumBtn:'⭐ Premium', premiumTitle:'EVITERNO Premium', premiumSub:'Sblocca EVA avanzata e il tutoraggio 1:1 per accelerare il tuo percorso.', freeTitle:'Gratis', premiumTierTitle:'Premium', freeFeat1:'EVA copilota con azioni sulla piattaforma', freeFeat2:'I 4 pilastri completi', freeFeat3:'Modalità Live vocale', freeFeat4:'Account personale con salvataggio', premiumFeat1:'EVA Premium — risposte più approfondite e prioritarie', premiumFeat2:'Sessioni 1:1 di coaching con il tutor', premiumFeat3:'Badge Premium sul profilo', premiumFeat4:'Supporto prioritario', tutorSectionTitle:'Il tuo tutor', tutorBookBtn:'Prenota una sessione 1:1', upgradeBtn:'Passa a Premium', priceSuffix:'/mese', alreadyPremium:'Sei già Premium ⭐', premiumSuccessToast:'Pagamento completato! Benvenuto in Premium ⭐', premiumCancelToast:'Pagamento annullato', stripeNotConfigured:'Il pagamento non è ancora configurato. Il proprietario deve impostare il link Stripe.', chooseCredTitle:'Scegli le tue credenziali', chooseCredSub:'Ti abbiamo suggerito questi valori: personalizzali come preferisci, o tienili così.', createSocialBtn:'Crea il mio account ▸', socialTitle:'EVITERNO Social', socialSub:'Il muro della community: scrivi un pensiero, un traguardo, un\'idea — lo vedono tutti.', socialPh:'Cosa vuoi condividere?', socialPostBtn:'Pubblica', socialEmpty:'Ancora nessun post. Sii il primo a scrivere! ✨', socialLoadError:'Non riesco a caricare il feed in questo momento.', socialPostError:'Non riesco a pubblicare in questo momento.', socialOnlyOnline:'Il feed funziona solo sulla versione pubblicata online.', socialFollowIg:'Seguici anche su Instagram ▸', privacyTitle:'Centro Privacy', privacySub:'Ecco esattamente cosa sappiamo di te su questo browser — puoi vederlo, scaricarlo o cancellarlo quando vuoi.', privacyWhatWeKnow:'Cosa sappiamo di te', privacyUsername:'Username', privacyName:'Nome', privacyFocusLbl:'Focus', privacyGoalLbl:'Obiettivo attuale', privacyGuestNote:'Sei in modalità ospite: nulla viene salvato oltre questa sessione.', privacyReduceMotion:'Riduci le animazioni', privacyReduceMotionSub:'Ferma ondeggiamenti e pulsazioni, anche se il tuo sistema non lo richiede già.', privacyDownload:'Scarica i miei dati (JSON)', privacyDelete:'Cancella tutti i miei dati', privacyDeleteConfirm:'Sei sicuro? Clicca di nuovo per confermare', privacyDeletedToast:'Dati cancellati. A presto! 👋', privacyDownloadedToast:'Dati scaricati ✓', coursesBtn:'🎓 Corsi', coursesDemoFlag:'MODALITÀ DEMO — nessun pagamento reale, nessun corso vero', coursesTitle:'Marketplace Corsi', coursesSub:'Impara da chi ha già fatto il tuo percorso. Collega un corso a un tuo obiettivo e lascia che EVA tenga traccia dei progressi.', coursesTabExplore:'Esplora', coursesTabMine:'I miei corsi', coursesFilterAll:'Tutte', coursesEmptyMine:'Non hai ancora nessun corso. Vai su "Esplora" per iniziare! 🎓', coursesBackBtn:'◂ Torna al catalogo', coursesWhatYouLearn:'Cosa imparerai', coursesRequirements:'Requisiti', coursesLinkGoal:'Collega a un tuo obiettivo', coursesNoLink:'— Nessun collegamento —', coursesBuyBtn:'Acquista (demo)', coursesContinueBtn:'Continua il corso', coursesContinueShort:'Continua', coursesInLibrary:'✓ Nella libreria', coursesStudents:'studenti', coursesAddedToast:'Corso aggiunto alla tua libreria ✓ (demo, nessun pagamento reale)', coursesLinkedToast:'Corso collegato all\'obiettivo 🎯', coursesLessonDoneGoal:'Lezione completata — traguardo avanzato nel tuo obiettivo 🎯', coursesLessonDone:'Lezione completata (+20%)', coursesCompleted:'Corso completato! 🏆', coursesCompletedPct:'completato', limitGoalsToast:'Il piano Gratis permette 1 obiettivo attivo. Passa a Premium per obiettivi illimitati ⭐', limitEvaToast:'Hai raggiunto il limite mensile di messaggi del piano Gratis. Passa a Premium per messaggi illimitati con EVA ⭐', journalTitle:'Diario', journalPh:'Come è andata oggi? Cosa hai imparato o notato?', journalSave:'Salva', journalEmpty:'Ancora nessuna nota. Scrivi la prima! 📝', journalSavedToast:'Nota salvata ✓', freeFeat5:'1 obiettivo attivo e diario di crescita', freeFeat6:'30 messaggi con EVA al mese', premiumFeat5:'Obiettivi illimitati', premiumFeat6:'Messaggi illimitati con EVA', nexusBtn:'🧭 NEXUS', nexusGreet:n=>`Ciao, <b>${n}</b> 👋`, nexusFocusLabel:'Focus di oggi', nexusNextLabel:'Prossima azione consigliata', nexusActionMilestone:(m,g)=>`Completa <b>"${m}"</b> nel tuo obiettivo "${g}"`, nexusActionCourse:c=>`Continua il corso <b>"${c}"</b>`, nexusActionJournal:'Scrivi una riga nel tuo diario di oggi ✍️', nexusActionAsk:'Chiedi a EVA cosa fare oggi', nexusCtaGoals:'Vai ai tuoi Obiettivi ▸', nexusCtaCourse:'Continua il corso ▸', nexusCtaJournal:'Apri il Diario ▸', nexusCtaAsk:'Parla con EVA ▸', nexusActiveGoals:'I tuoi obiettivi attivi', nexusNoGoals:'Nessun obiettivo ancora — chiedi a EVA di crearne uno', nexusCoursesContinue:'Corsi da continuare', nexusNoCourses:'Nessun corso in corso', nexusWeekSummary:'Riepilogo della settimana', nexusWeekActiveDays:n=>`${n} giorni attivi su 7`, habitsTitle:'Abitudini', habitsEmpty:'Ancora nessuna abitudine. Aggiungine una! 💪', habitPh:'Nuova abitudine...', focusTitle:'Modalità Focus', focusCardDesc:m=>`Oggi hai fatto <b>${m} min</b> di focus. Pronto per un'altra sessione?`, focusStartBtn:'Avvia una sessione', focusPickDuration:'Scegli la durata', focusMin:'min', focusTodayTotal:m=>`Totale di oggi: ${m} minuti`, focusPause:'Pausa', focusResume:'Riprendi', focusStop:'Termina', focusDoneToast:'Sessione completata! 🎯', focusStoppedToast:m=>`Sessione salvata: ${m} minuti`, archiveTitle:'Archivio Evolutivo', archiveSub:'Note, idee, link e appunti che vuoi ritrovare facilmente.', archiveTitlePh:'Titolo', archiveTextPh:'Contenuto, link o appunto...', archiveTagPh:'Tag (opzionale)', archiveSave:'Salva', archiveSearchPh:'Cerca...', archiveEmpty:'Ancora nessuna nota salvata.', archiveUntitled:'Senza titolo', archiveSavedToast:'Salvato nell\'Archivio ✓',
+    welcomeToast:'Benvenuto in EVITERNO ⚡', guestName:'Ospite', premiumBtn:'⭐ Premium', premiumTitle:'EVITERNO Premium', premiumSub:'Sblocca EVA avanzata e il tutoraggio 1:1 per accelerare il tuo percorso.', freeTitle:'Gratis', premiumTierTitle:'Premium', freeFeat1:'EVA copilota con azioni sulla piattaforma', freeFeat2:'I 4 pilastri completi', freeFeat3:'Modalità Live vocale', freeFeat4:'Account personale con salvataggio', premiumFeat1:'EVA Premium — risposte più approfondite e prioritarie', premiumFeat2:'Sessioni 1:1 di coaching con il tutor', premiumFeat3:'Badge Premium sul profilo', premiumFeat4:'Supporto prioritario', tutorSectionTitle:'Il tuo tutor', tutorBookBtn:'Prenota una sessione 1:1', upgradeBtn:'Passa a Premium', priceSuffix:'/mese', alreadyPremium:'Sei già Premium ⭐', premiumSuccessToast:'Pagamento completato! Benvenuto in Premium ⭐', premiumCancelToast:'Pagamento annullato', stripeNotConfigured:'Il pagamento non è ancora configurato. Il proprietario deve impostare il link Stripe.', chooseCredTitle:'Scegli le tue credenziali', chooseCredSub:'Ti abbiamo suggerito questi valori: personalizzali come preferisci, o tienili così.', createSocialBtn:'Crea il mio account ▸', socialTitle:'EVITERNO Social', socialSub:'Il muro della community: scrivi un pensiero, un traguardo, un\'idea — lo vedono tutti.', socialPh:'Cosa vuoi condividere?', socialPostBtn:'Pubblica', socialEmpty:'Ancora nessun post. Sii il primo a scrivere! ✨', socialLoadError:'Non riesco a caricare il feed in questo momento.', socialPostError:'Non riesco a pubblicare in questo momento.', socialOnlyOnline:'Il feed funziona solo sulla versione pubblicata online.', socialFollowIg:'Seguici anche su Instagram ▸', privacyTitle:'Centro Privacy', privacySub:'Ecco esattamente cosa sappiamo di te su questo browser — puoi vederlo, scaricarlo o cancellarlo quando vuoi.', privacyWhatWeKnow:'Cosa sappiamo di te', privacyUsername:'Username', privacyName:'Nome', privacyFocusLbl:'Focus', privacyGoalLbl:'Obiettivo attuale', privacyGuestNote:'Sei in modalità ospite: nulla viene salvato oltre questa sessione.', privacyReduceMotion:'Riduci le animazioni', privacyReduceMotionSub:'Ferma ondeggiamenti e pulsazioni, anche se il tuo sistema non lo richiede già.', privacyDownload:'Scarica i miei dati (JSON)', privacyDelete:'Cancella tutti i miei dati', privacyDeleteConfirm:'Sei sicuro? Clicca di nuovo per confermare', privacyDeletedToast:'Dati cancellati. A presto! 👋', privacyDownloadedToast:'Dati scaricati ✓', privacyReset:'Ripristina i dati demo', privacyResetConfirm:'Sei sicuro? Clicca di nuovo per confermare', privacyResetToast:'Dati demo ripristinati ✓', privacyFeedbackBtn:'💬 Lascia un feedback', miniSurveyTitle:'Due minuti per capire come è andata', miniQ1:'Hai capito cosa fare?', miniQ2:'Quanto è stato facile? (1 = difficile, 5 = facilissimo)', miniQ3:'Cosa vorresti migliorare?', yes:'Sì', no:'No', maybe:'Forse', fbSubmit:'Invia feedback', fbLater:'Più tardi', fbThanks:'Grazie per il tuo feedback! 🙏', fbTitle:'Come possiamo migliorare EVITERNO?', fbSub:'Le tue risposte restano solo su questo browser — nessun invio a un server.', fbQ1:'Cosa pensi che faccia EVITERNO?', fbQ2:'Quale funzione ti è sembrata più utile?', fbQ3:'Quale funzione ti ha confuso?', fbQ4:'Hai capito cosa fa EVA? (1-5)', fbQ5:'Hai trovato facilmente il tuo prossimo passo? (1-5)', fbQ6:'Il profilo evolutivo ti è sembrato utile? (1-5)', fbQ7:'Il marketplace corsi è chiaro? (1-5)', fbQ8:'Cosa aggiungeresti?', fbQ9:'Cosa elimineresti?', fbQ10:'Useresti EVITERNO nella vita quotidiana?', fbQ11:'Per quale funzione saresti disposto a pagare?', betaBadge:'EVITERNO BETA — stai usando una versione di prova con dati locali', introTimeTitle:'Quanto tempo puoi dedicare?', introTimeSub:'Aiuta EVA a costruire un ritmo realistico per il tuo percorso.', introTime5:'5 minuti al giorno', introTime15:'15 minuti al giorno', introTime30:'30 minuti al giorno', introTime60:'1 ora al giorno', introTimeVar:'Tempo variabile', introSkip:'Salta per ora', introPreviewTitle:'Ecco il tuo primo percorso', introPreviewFirstStep:'Prima tappa: definisci cosa vuoi imparare', introPreviewNote:tm=>`Con <b>${tm}</b>, EVA collegherà un\'abitudine quotidiana al tuo percorso.`, introBack:'◂ Indietro', coursesBtn:'🎓 Corsi', coursesDemoFlag:'MODALITÀ DEMO — nessun pagamento reale, nessun corso vero', coursesTitle:'Marketplace Corsi', coursesSub:'Impara da chi ha già fatto il tuo percorso. Collega un corso a un tuo obiettivo e lascia che EVA tenga traccia dei progressi.', coursesTabExplore:'Esplora', coursesTabMine:'I miei corsi', coursesFilterAll:'Tutte', coursesEmptyMine:'Non hai ancora nessun corso. Vai su "Esplora" per iniziare! 🎓', coursesBackBtn:'◂ Torna al catalogo', coursesWhatYouLearn:'Cosa imparerai', coursesRequirements:'Requisiti', coursesLinkGoal:'Collega a un tuo obiettivo', coursesNoLink:'— Nessun collegamento —', coursesBuyBtn:'Acquista (demo)', coursesContinueBtn:'Continua il corso', coursesContinueShort:'Continua', coursesInLibrary:'✓ Nella libreria', coursesStudents:'studenti', coursesAddedToast:'Corso aggiunto alla tua libreria ✓ (demo, nessun pagamento reale)', coursesLinkedToast:'Corso collegato all\'obiettivo 🎯', coursesLessonDoneGoal:'Lezione completata — traguardo avanzato nel tuo obiettivo 🎯', coursesLessonDone:'Lezione completata (+20%)', coursesCompleted:'Corso completato! 🏆', coursesCompletedPct:'completato', limitGoalsToast:'Il piano Gratis permette 1 obiettivo attivo. Passa a Premium per obiettivi illimitati ⭐', limitEvaToast:'Hai raggiunto il limite mensile di messaggi del piano Gratis. Passa a Premium per messaggi illimitati con EVA ⭐', journalTitle:'Diario', journalPh:'Come è andata oggi? Cosa hai imparato o notato?', journalSave:'Salva', journalEmpty:'Ancora nessuna nota. Scrivi la prima! 📝', journalSavedToast:'Nota salvata ✓', freeFeat5:'1 obiettivo attivo e diario di crescita', freeFeat6:'30 messaggi con EVA al mese', premiumFeat5:'Obiettivi illimitati', premiumFeat6:'Messaggi illimitati con EVA', nexusBtn:'🧭 NEXUS', nexusGreet:n=>`Ciao, <b>${n}</b> 👋`, nexusFocusLabel:'Focus di oggi', nexusNextLabel:'Prossima azione consigliata', nexusActionMilestone:(m,g)=>`Completa <b>"${m}"</b> nel tuo obiettivo "${g}"`, nexusActionCourse:c=>`Continua il corso <b>"${c}"</b>`, nexusActionJournal:'Scrivi una riga nel tuo diario di oggi ✍️', nexusActionAsk:'Chiedi a EVA cosa fare oggi', nexusCtaGoals:'Vai ai tuoi Obiettivi ▸', nexusCtaCourse:'Continua il corso ▸', nexusCtaJournal:'Apri il Diario ▸', nexusCtaAsk:'Parla con EVA ▸', nexusActiveGoals:'I tuoi obiettivi attivi', nexusNoGoals:'Nessun obiettivo ancora — chiedi a EVA di crearne uno', nexusCoursesContinue:'Corsi da continuare', nexusNoCourses:'Nessun corso in corso', nexusWeekSummary:'Riepilogo della settimana', nexusWeekActiveDays:n=>`${n} giorni attivi su 7`, habitsTitle:'Abitudini', habitsEmpty:'Ancora nessuna abitudine. Aggiungine una! 💪', habitPh:'Nuova abitudine...', focusTitle:'Modalità Focus', focusCardDesc:m=>`Oggi hai fatto <b>${m} min</b> di focus. Pronto per un'altra sessione?`, focusStartBtn:'Avvia una sessione', focusPickDuration:'Scegli la durata', focusMin:'min', focusTodayTotal:m=>`Totale di oggi: ${m} minuti`, focusPause:'Pausa', focusResume:'Riprendi', focusStop:'Termina', focusDoneToast:'Sessione completata! 🎯', focusStoppedToast:m=>`Sessione salvata: ${m} minuti`, archiveTitle:'Archivio Evolutivo', archiveSub:'Note, idee, link e appunti che vuoi ritrovare facilmente.', archiveTitlePh:'Titolo', archiveTextPh:'Contenuto, link o appunto...', archiveTagPh:'Tag (opzionale)', archiveSave:'Salva', archiveSearchPh:'Cerca...', archiveEmpty:'Ancora nessuna nota salvata.', archiveUntitled:'Senza titolo', archiveSavedToast:'Salvato nell\'Archivio ✓', reminderGoalStalled:g=>`Il tuo obiettivo "${g}" è fermo da qualche giorno.`, reminderJournal:'Non hai ancora scritto nel diario oggi.', pathDemoFlag:'MODALITÀ DEMO — i dati restano solo su questo browser', pathEmptyDesc:'Ogni obiettivo, ogni lezione e ogni azione possono diventare parte di un unico percorso collegato. Provalo con un percorso guida.', pathCreateBtn:'Crea il tuo primo percorso', pathTitleGeneric:'Il tuo percorso', pathOpenBtn:'Apri il percorso ▸', pathStatus_not_started:'Non iniziato', pathStatus_in_progress:'In corso', pathStatus_paused:'In pausa', pathStatus_completed:'Completato', pathDeadline:'Scadenza', pathBlockQuestion:'EVA nota che questo percorso è fermo da qualche giorno. Cosa ti sta bloccando?', pathBlockOpt_noTime:'Non ho tempo', pathBlockOpt_tooBig:'L\'obiettivo è troppo grande', pathBlockOpt_dontKnow:'Non so da dove iniziare', pathBlockOpt_noMotivation:'Ho perso motivazione', pathBlockOpt_wrongCourse:'Il corso non è adatto a me', pathBlockOpt_changeGoal:'Voglio cambiare obiettivo', pathBlockOpt_other:'Altro', pathBlockRespNoTime:'Va benissimo. Ho messo il percorso in pausa: riprendilo quando hai tempo, senza sensi di colpa.', pathBlockRespTooBig:'Concentrati solo sul prossimo passo mostrato qui sopra — il resto puoi ignorarlo per ora.', pathBlockRespDontKnow:'Il prossimo passo è già indicato qui sopra: parti solo da quello.', pathBlockRespNoMotivation:'Capita a tutti. Prova a chiedere a EVA un piccolo passo più semplice da fare oggi.', pathBlockRespWrongCourse:'Puoi esplorare altri corsi dal Marketplace quando vuoi — nessun obbligo.', pathBlockRespChangeGoal:'La possibilità di cambiare percorso arriverà in una prossima versione — per ora puoi metterlo in pausa.', pathBlockRespOther:'Puoi annotarlo nell\'Archivio Evolutivo per non perderlo di vista.', pathCtaNextStep:'Fai il prossimo passo', pathCtaComplete:'Segna come completato', pathActionStart:'Percorso pronto per iniziare — fai il primo passo quando vuoi.', pathActionStep:s=>`Completa: "${s}"`, pathActionHabit:h=>`Oggi tocca all\'abitudine collegata: "${h}"`, pathActionComplete:m=>`Hai completato tutto! Traguardo: ${m}`, pathActionDone:'Percorso completato. Complimenti! 🏆', pathAskEva:'Chiedi a EVA perché', pathAskEvaPrompt:s=>`Perché mi consigli di fare questo ora: "${s}"?`, pathLinkedCourse:'Corso collegato', pathLinkedHabit:'Abitudine collegata', primaryCtaLabelContinue:'🧭 Continua il tuo percorso',
   },
   en:{ eyebrow:"It's not just an app. It's a new system.", tag_c:'Evolve.', tag_w:'Connect.', tag_m:'Dominate.',
     lede:'The platform that unites <b>technology</b>, <b>real connections</b> and <b>personal growth</b>. The future is here. And you\'re part of it.',
@@ -1008,7 +1136,7 @@ const I18N={
     micDenied:'Microphone permission denied. Enable it in your browser settings.',
     liveUnsupported:"Your browser doesn't support voice Live mode 🎙️",
     chip1:'✨ Generate my system', chip2:'I want to launch my brand', chip3:'Connect me with Sara in Community', openDashHint:'▸ Open dashboard', welcomeBack:(n,f)=>`Welcome back, <b>${n}</b>. Your focus is <b>${f}</b>. Tap a node to enter, or ask EVA.`,
-    welcomeToast:'Welcome to EVITERNO ⚡', guestName:'Guest', premiumBtn:'⭐ Premium', premiumTitle:'EVITERNO Premium', premiumSub:'Unlock advanced EVA and 1:1 tutoring to speed up your journey.', freeTitle:'Free', premiumTierTitle:'Premium', freeFeat1:'EVA copilot with platform actions', freeFeat2:'All 4 pillars', freeFeat3:'Voice Live mode', freeFeat4:'Personal account with saving', premiumFeat1:'Premium EVA — deeper, priority responses', premiumFeat2:'1:1 coaching sessions with the tutor', premiumFeat3:'Premium badge on profile', premiumFeat4:'Priority support', tutorSectionTitle:'Your tutor', tutorBookBtn:'Book a 1:1 session', upgradeBtn:'Upgrade to Premium', priceSuffix:'/month', alreadyPremium:"You're already Premium ⭐", premiumSuccessToast:'Payment complete! Welcome to Premium ⭐', premiumCancelToast:'Payment cancelled', stripeNotConfigured:'Payment is not configured yet. The owner needs to set up the Stripe link.', chooseCredTitle:'Choose your credentials', chooseCredSub:"We suggested these values: customize them as you like, or keep them as they are.", createSocialBtn:'Create my account ▸', socialTitle:'EVITERNO Social', socialSub:'The community wall: share a thought, a milestone, an idea — everyone sees it.', socialPh:'What do you want to share?', socialPostBtn:'Post', socialEmpty:'No posts yet. Be the first to write! ✨', socialLoadError:'Unable to load the feed right now.', socialPostError:'Unable to post right now.', socialOnlyOnline:'The feed only works on the published online version.', socialFollowIg:'Also follow us on Instagram ▸', privacyTitle:'Privacy Center', privacySub:'Exactly what we know about you on this browser — view it, download it, or delete it anytime.', privacyWhatWeKnow:'What we know about you', privacyUsername:'Username', privacyName:'Name', privacyFocusLbl:'Focus', privacyGoalLbl:'Current goal', privacyGuestNote:"You're in guest mode: nothing is saved beyond this session.", privacyReduceMotion:'Reduce animations', privacyReduceMotionSub:'Stop swaying and pulsing effects, even if your system does not already request it.', privacyDownload:'Download my data (JSON)', privacyDelete:'Delete all my data', privacyDeleteConfirm:'Are you sure? Click again to confirm', privacyDeletedToast:'Data deleted. See you soon! 👋', privacyDownloadedToast:'Data downloaded ✓', coursesBtn:'🎓 Courses', coursesDemoFlag:'DEMO MODE — no real payment, no real course', coursesTitle:'Course Marketplace', coursesSub:'Learn from those who already walked your path. Link a course to one of your goals and let EVA track your progress.', coursesTabExplore:'Explore', coursesTabMine:'My courses', coursesFilterAll:'All', coursesEmptyMine:'You have no courses yet. Go to "Explore" to get started! 🎓', coursesBackBtn:'◂ Back to catalog', coursesWhatYouLearn:"What you'll learn", coursesRequirements:'Requirements', coursesLinkGoal:'Link to one of your goals', coursesNoLink:'— No link —', coursesBuyBtn:'Buy (demo)', coursesContinueBtn:'Continue course', coursesContinueShort:'Continue', coursesInLibrary:'✓ In library', coursesStudents:'students', coursesAddedToast:'Course added to your library ✓ (demo, no real payment)', coursesLinkedToast:'Course linked to your goal 🎯', coursesLessonDoneGoal:'Lesson complete — milestone advanced in your goal 🎯', coursesLessonDone:'Lesson complete (+20%)', coursesCompleted:'Course completed! 🏆', coursesCompletedPct:'complete', limitGoalsToast:'The Free plan allows 1 active goal. Upgrade to Premium for unlimited goals ⭐', limitEvaToast:"You've reached the Free plan's monthly message limit. Upgrade to Premium for unlimited messages with EVA ⭐", journalTitle:'Journal', journalPh:'How did today go? What did you learn or notice?', journalSave:'Save', journalEmpty:'No entries yet. Write your first one! 📝', journalSavedToast:'Entry saved ✓', freeFeat5:'1 active goal and growth journal', freeFeat6:'30 messages with EVA per month', premiumFeat5:'Unlimited goals', premiumFeat6:'Unlimited messages with EVA', nexusBtn:'🧭 NEXUS', nexusGreet:n=>`Hi, <b>${n}</b> 👋`, nexusFocusLabel:"Today's focus", nexusNextLabel:'Suggested next action', nexusActionMilestone:(m,g)=>`Complete <b>"${m}"</b> in your goal "${g}"`, nexusActionCourse:c=>`Continue the course <b>"${c}"</b>`, nexusActionJournal:"Write a line in today's journal ✍️", nexusActionAsk:'Ask EVA what to do today', nexusCtaGoals:'Go to your Goals ▸', nexusCtaCourse:'Continue course ▸', nexusCtaJournal:'Open Journal ▸', nexusCtaAsk:'Talk to EVA ▸', nexusActiveGoals:'Your active goals', nexusNoGoals:'No goals yet — ask EVA to create one', nexusCoursesContinue:'Courses to continue', nexusNoCourses:'No course in progress', nexusWeekSummary:'Week summary', nexusWeekActiveDays:n=>`${n} active days out of 7`, habitsTitle:'Habits', habitsEmpty:'No habits yet. Add one! 💪', habitPh:'New habit...', focusTitle:'Focus Mode', focusCardDesc:m=>`Today you did <b>${m} min</b> of focus. Ready for another session?`, focusStartBtn:'Start a session', focusPickDuration:'Choose duration', focusMin:'min', focusTodayTotal:m=>`Today's total: ${m} minutes`, focusPause:'Pause', focusResume:'Resume', focusStop:'Stop', focusDoneToast:'Session complete! 🎯', focusStoppedToast:m=>`Session saved: ${m} minutes`, archiveTitle:'Evolving Archive', archiveSub:'Notes, ideas, links and thoughts you want to find easily.', archiveTitlePh:'Title', archiveTextPh:'Content, link, or note...', archiveTagPh:'Tag (optional)', archiveSave:'Save', archiveSearchPh:'Search...', archiveEmpty:'No saved notes yet.', archiveUntitled:'Untitled', archiveSavedToast:'Saved to Archive ✓',
+    welcomeToast:'Welcome to EVITERNO ⚡', guestName:'Guest', premiumBtn:'⭐ Premium', premiumTitle:'EVITERNO Premium', premiumSub:'Unlock advanced EVA and 1:1 tutoring to speed up your journey.', freeTitle:'Free', premiumTierTitle:'Premium', freeFeat1:'EVA copilot with platform actions', freeFeat2:'All 4 pillars', freeFeat3:'Voice Live mode', freeFeat4:'Personal account with saving', premiumFeat1:'Premium EVA — deeper, priority responses', premiumFeat2:'1:1 coaching sessions with the tutor', premiumFeat3:'Premium badge on profile', premiumFeat4:'Priority support', tutorSectionTitle:'Your tutor', tutorBookBtn:'Book a 1:1 session', upgradeBtn:'Upgrade to Premium', priceSuffix:'/month', alreadyPremium:"You're already Premium ⭐", premiumSuccessToast:'Payment complete! Welcome to Premium ⭐', premiumCancelToast:'Payment cancelled', stripeNotConfigured:'Payment is not configured yet. The owner needs to set up the Stripe link.', chooseCredTitle:'Choose your credentials', chooseCredSub:"We suggested these values: customize them as you like, or keep them as they are.", createSocialBtn:'Create my account ▸', socialTitle:'EVITERNO Social', socialSub:'The community wall: share a thought, a milestone, an idea — everyone sees it.', socialPh:'What do you want to share?', socialPostBtn:'Post', socialEmpty:'No posts yet. Be the first to write! ✨', socialLoadError:'Unable to load the feed right now.', socialPostError:'Unable to post right now.', socialOnlyOnline:'The feed only works on the published online version.', socialFollowIg:'Also follow us on Instagram ▸', privacyTitle:'Privacy Center', privacySub:'Exactly what we know about you on this browser — view it, download it, or delete it anytime.', privacyWhatWeKnow:'What we know about you', privacyUsername:'Username', privacyName:'Name', privacyFocusLbl:'Focus', privacyGoalLbl:'Current goal', privacyGuestNote:"You're in guest mode: nothing is saved beyond this session.", privacyReduceMotion:'Reduce animations', privacyReduceMotionSub:'Stop swaying and pulsing effects, even if your system does not already request it.', privacyDownload:'Download my data (JSON)', privacyDelete:'Delete all my data', privacyDeleteConfirm:'Are you sure? Click again to confirm', privacyDeletedToast:'Data deleted. See you soon! 👋', privacyDownloadedToast:'Data downloaded ✓', privacyReset:'Reset demo data', privacyResetConfirm:'Are you sure? Click again to confirm', privacyResetToast:'Demo data reset ✓', privacyFeedbackBtn:'💬 Leave feedback', miniSurveyTitle:'Two minutes to see how it went', miniQ1:'Did you understand what to do?', miniQ2:'How easy was it? (1 = hard, 5 = very easy)', miniQ3:'What would you improve?', yes:'Yes', no:'No', maybe:'Maybe', fbSubmit:'Send feedback', fbLater:'Later', fbThanks:'Thanks for your feedback! 🙏', fbTitle:'How can we improve EVITERNO?', fbSub:'Your answers stay only on this browser — nothing is sent to a server.', fbQ1:'What do you think EVITERNO does?', fbQ2:'Which feature felt most useful?', fbQ3:'Which feature confused you?', fbQ4:'Did you understand what EVA does? (1-5)', fbQ5:'Did you easily find your next step? (1-5)', fbQ6:'Did the evolving profile feel useful? (1-5)', fbQ7:'Is the course marketplace clear? (1-5)', fbQ8:'What would you add?', fbQ9:'What would you remove?', fbQ10:'Would you use EVITERNO daily?', fbQ11:'Which feature would you pay for?', betaBadge:'EVITERNO BETA — you are using a trial version with local data', introTimeTitle:'How much time can you commit?', introTimeSub:'Helps EVA build a realistic pace for your path.', introTime5:'5 minutes a day', introTime15:'15 minutes a day', introTime30:'30 minutes a day', introTime60:'1 hour a day', introTimeVar:'Variable time', introSkip:'Skip for now', introPreviewTitle:'Here is your first path', introPreviewFirstStep:'First step: define what you want to learn', introPreviewNote:tm=>`With <b>${tm}</b>, EVA will link a daily habit to your path.`, introBack:'◂ Back', coursesBtn:'🎓 Courses', coursesDemoFlag:'DEMO MODE — no real payment, no real course', coursesTitle:'Course Marketplace', coursesSub:'Learn from those who already walked your path. Link a course to one of your goals and let EVA track your progress.', coursesTabExplore:'Explore', coursesTabMine:'My courses', coursesFilterAll:'All', coursesEmptyMine:'You have no courses yet. Go to "Explore" to get started! 🎓', coursesBackBtn:'◂ Back to catalog', coursesWhatYouLearn:"What you'll learn", coursesRequirements:'Requirements', coursesLinkGoal:'Link to one of your goals', coursesNoLink:'— No link —', coursesBuyBtn:'Buy (demo)', coursesContinueBtn:'Continue course', coursesContinueShort:'Continue', coursesInLibrary:'✓ In library', coursesStudents:'students', coursesAddedToast:'Course added to your library ✓ (demo, no real payment)', coursesLinkedToast:'Course linked to your goal 🎯', coursesLessonDoneGoal:'Lesson complete — milestone advanced in your goal 🎯', coursesLessonDone:'Lesson complete (+20%)', coursesCompleted:'Course completed! 🏆', coursesCompletedPct:'complete', limitGoalsToast:'The Free plan allows 1 active goal. Upgrade to Premium for unlimited goals ⭐', limitEvaToast:"You've reached the Free plan's monthly message limit. Upgrade to Premium for unlimited messages with EVA ⭐", journalTitle:'Journal', journalPh:'How did today go? What did you learn or notice?', journalSave:'Save', journalEmpty:'No entries yet. Write your first one! 📝', journalSavedToast:'Entry saved ✓', freeFeat5:'1 active goal and growth journal', freeFeat6:'30 messages with EVA per month', premiumFeat5:'Unlimited goals', premiumFeat6:'Unlimited messages with EVA', nexusBtn:'🧭 NEXUS', nexusGreet:n=>`Hi, <b>${n}</b> 👋`, nexusFocusLabel:"Today's focus", nexusNextLabel:'Suggested next action', nexusActionMilestone:(m,g)=>`Complete <b>"${m}"</b> in your goal "${g}"`, nexusActionCourse:c=>`Continue the course <b>"${c}"</b>`, nexusActionJournal:"Write a line in today's journal ✍️", nexusActionAsk:'Ask EVA what to do today', nexusCtaGoals:'Go to your Goals ▸', nexusCtaCourse:'Continue course ▸', nexusCtaJournal:'Open Journal ▸', nexusCtaAsk:'Talk to EVA ▸', nexusActiveGoals:'Your active goals', nexusNoGoals:'No goals yet — ask EVA to create one', nexusCoursesContinue:'Courses to continue', nexusNoCourses:'No course in progress', nexusWeekSummary:'Week summary', nexusWeekActiveDays:n=>`${n} active days out of 7`, habitsTitle:'Habits', habitsEmpty:'No habits yet. Add one! 💪', habitPh:'New habit...', focusTitle:'Focus Mode', focusCardDesc:m=>`Today you did <b>${m} min</b> of focus. Ready for another session?`, focusStartBtn:'Start a session', focusPickDuration:'Choose duration', focusMin:'min', focusTodayTotal:m=>`Today's total: ${m} minutes`, focusPause:'Pause', focusResume:'Resume', focusStop:'Stop', focusDoneToast:'Session complete! 🎯', focusStoppedToast:m=>`Session saved: ${m} minutes`, archiveTitle:'Evolving Archive', archiveSub:'Notes, ideas, links and thoughts you want to find easily.', archiveTitlePh:'Title', archiveTextPh:'Content, link, or note...', archiveTagPh:'Tag (optional)', archiveSave:'Save', archiveSearchPh:'Search...', archiveEmpty:'No saved notes yet.', archiveUntitled:'Untitled', archiveSavedToast:'Saved to Archive ✓', reminderGoalStalled:g=>`Your goal "${g}" has been stalled for a few days.`, reminderJournal:"You haven't written in your journal today.", pathDemoFlag:'DEMO MODE — data stays only on this browser', pathEmptyDesc:'Every goal, lesson, and action can become part of one connected path. Try it with a guided demo path.', pathCreateBtn:'Create your first path', pathTitleGeneric:'Your path', pathOpenBtn:'Open path ▸', pathStatus_not_started:'Not started', pathStatus_in_progress:'In progress', pathStatus_paused:'Paused', pathStatus_completed:'Completed', pathDeadline:'Deadline', pathBlockQuestion:'EVA notices this path has been stalled for a few days. What\'s blocking you?', pathBlockOpt_noTime:"I don't have time", pathBlockOpt_tooBig:'The goal is too big', pathBlockOpt_dontKnow:"I don't know where to start", pathBlockOpt_noMotivation:'I lost motivation', pathBlockOpt_wrongCourse:"The course isn't right for me", pathBlockOpt_changeGoal:'I want to change goal', pathBlockOpt_other:'Other', pathBlockRespNoTime:"That's completely fine. I've paused the path — resume it whenever you have time, no guilt.", pathBlockRespTooBig:'Focus only on the next step shown above — you can ignore the rest for now.', pathBlockRespDontKnow:'The next step is already shown above: just start from that.', pathBlockRespNoMotivation:'It happens to everyone. Try asking EVA for a smaller step to take today.', pathBlockRespWrongCourse:'You can explore other courses in the Marketplace anytime — no obligation.', pathBlockRespChangeGoal:'The ability to change path is coming in a future version — for now you can pause it.', pathBlockRespOther:'You can jot it down in the Evolving Archive so you don\'t lose track of it.', pathCtaNextStep:'Take the next step', pathCtaComplete:'Mark as completed', pathActionStart:'Path ready to start — take the first step whenever you like.', pathActionStep:s=>`Complete: "${s}"`, pathActionHabit:h=>`Today it's the linked habit's turn: "${h}"`, pathActionComplete:m=>`You completed everything! Milestone: ${m}`, pathActionDone:'Path completed. Congratulations! 🏆', pathAskEva:'Ask EVA why', pathAskEvaPrompt:s=>`Why do you suggest I do this now: "${s}"?`, pathLinkedCourse:'Linked course', pathLinkedHabit:'Linked habit', primaryCtaLabelContinue:'🧭 Continue your path',
   },
   es:{ eyebrow:'No es solo una app. Es un nuevo sistema.', tag_c:'Evoluciona.', tag_w:'Conéctate.', tag_m:'Domina.',
     lede:'La plataforma que une <b>tecnología</b>, <b>conexiones reales</b> y <b>crecimiento personal</b>. El futuro está aquí. Y tú formas parte.',
@@ -1057,7 +1185,7 @@ const I18N={
     micDenied:'Permiso de micrófono denegado. Actívalo en la configuración del navegador.',
     liveUnsupported:'Tu navegador no admite el modo Live por voz 🎙️',
     chip1:'✨ Generar mi sistema', chip2:'Quiero lanzar mi marca', chip3:'Conéctame con Sara en Community', openDashHint:'▸ Abrir panel', welcomeBack:(n,f)=>`Bienvenido, <b>${n}</b>. Tu enfoque es <b>${f}</b>. Toca un nodo para entrar, o pregúntale a EVA.`,
-    welcomeToast:'Bienvenido a EVITERNO ⚡', guestName:'Invitado', premiumBtn:'⭐ Premium', premiumTitle:'EVITERNO Premium', premiumSub:'Desbloquea EVA avanzada y tutoría 1:1 para acelerar tu camino.', freeTitle:'Gratis', premiumTierTitle:'Premium', freeFeat1:'EVA copiloto con acciones en la plataforma', freeFeat2:'Los 4 pilares completos', freeFeat3:'Modo Live por voz', freeFeat4:'Cuenta personal con guardado', premiumFeat1:'EVA Premium — respuestas más profundas y prioritarias', premiumFeat2:'Sesiones 1:1 de coaching con el tutor', premiumFeat3:'Insignia Premium en el perfil', premiumFeat4:'Soporte prioritario', tutorSectionTitle:'Tu tutor', tutorBookBtn:'Reservar una sesión 1:1', upgradeBtn:'Pasar a Premium', priceSuffix:'/mes', alreadyPremium:'Ya eres Premium ⭐', premiumSuccessToast:'¡Pago completado! Bienvenido a Premium ⭐', premiumCancelToast:'Pago cancelado', stripeNotConfigured:'El pago aún no está configurado. El propietario debe configurar el enlace de Stripe.', chooseCredTitle:'Elige tus credenciales', chooseCredSub:'Te sugerimos estos valores: personalízalos como prefieras, o déjalos así.', createSocialBtn:'Crear mi cuenta ▸', socialTitle:'EVITERNO Social', socialSub:'El muro de la comunidad: comparte un pensamiento, un logro, una idea — todos lo ven.', socialPh:'¿Qué quieres compartir?', socialPostBtn:'Publicar', socialEmpty:'Aún no hay publicaciones. ¡Sé el primero! ✨', socialLoadError:'No se puede cargar el feed en este momento.', socialPostError:'No se puede publicar en este momento.', socialOnlyOnline:'El feed solo funciona en la versión publicada en línea.', socialFollowIg:'Síguenos también en Instagram ▸', privacyTitle:'Centro de Privacidad', privacySub:'Esto es exactamente lo que sabemos de ti en este navegador — puedes verlo, descargarlo o borrarlo cuando quieras.', privacyWhatWeKnow:'Qué sabemos de ti', privacyUsername:'Usuario', privacyName:'Nombre', privacyFocusLbl:'Enfoque', privacyGoalLbl:'Objetivo actual', privacyGuestNote:'Estás en modo invitado: nada se guarda más allá de esta sesión.', privacyReduceMotion:'Reducir animaciones', privacyReduceMotionSub:'Detén los balanceos y pulsaciones, aunque tu sistema no lo requiera.', privacyDownload:'Descargar mis datos (JSON)', privacyDelete:'Borrar todos mis datos', privacyDeleteConfirm:'¿Seguro? Haz clic de nuevo para confirmar', privacyDeletedToast:'Datos borrados. ¡Hasta pronto! 👋', privacyDownloadedToast:'Datos descargados ✓', coursesBtn:'🎓 Cursos', coursesDemoFlag:'MODO DEMO — sin pago real, sin curso real', coursesTitle:'Marketplace de Cursos', coursesSub:'Aprende de quienes ya recorrieron tu camino. Vincula un curso a uno de tus objetivos y deja que EVA siga tu progreso.', coursesTabExplore:'Explorar', coursesTabMine:'Mis cursos', coursesFilterAll:'Todas', coursesEmptyMine:'Aún no tienes cursos. ¡Ve a "Explorar" para empezar! 🎓', coursesBackBtn:'◂ Volver al catálogo', coursesWhatYouLearn:'Qué aprenderás', coursesRequirements:'Requisitos', coursesLinkGoal:'Vincular a uno de tus objetivos', coursesNoLink:'— Sin vínculo —', coursesBuyBtn:'Comprar (demo)', coursesContinueBtn:'Continuar curso', coursesContinueShort:'Continuar', coursesInLibrary:'✓ En tu biblioteca', coursesStudents:'estudiantes', coursesAddedToast:'Curso añadido a tu biblioteca ✓ (demo, sin pago real)', coursesLinkedToast:'Curso vinculado a tu objetivo 🎯', coursesLessonDoneGoal:'Lección completada — meta avanzada en tu objetivo 🎯', coursesLessonDone:'Lección completada (+20%)', coursesCompleted:'¡Curso completado! 🏆', coursesCompletedPct:'completado', limitGoalsToast:'El plan Gratis permite 1 objetivo activo. Pasa a Premium para objetivos ilimitados ⭐', limitEvaToast:'Has alcanzado el límite mensual de mensajes del plan Gratis. Pasa a Premium para mensajes ilimitados con EVA ⭐', journalTitle:'Diario', journalPh:'¿Cómo fue el día? ¿Qué aprendiste o notaste?', journalSave:'Guardar', journalEmpty:'Aún no hay notas. ¡Escribe la primera! 📝', journalSavedToast:'Nota guardada ✓', freeFeat5:'1 objetivo activo y diario de crecimiento', freeFeat6:'30 mensajes con EVA al mes', premiumFeat5:'Objetivos ilimitados', premiumFeat6:'Mensajes ilimitados con EVA', nexusBtn:'🧭 NEXUS', nexusGreet:n=>`Hola, <b>${n}</b> 👋`, nexusFocusLabel:'Enfoque de hoy', nexusNextLabel:'Próxima acción sugerida', nexusActionMilestone:(m,g)=>`Completa <b>"${m}"</b> en tu objetivo "${g}"`, nexusActionCourse:c=>`Continúa el curso <b>"${c}"</b>`, nexusActionJournal:'Escribe una línea en tu diario de hoy ✍️', nexusActionAsk:'Pregunta a EVA qué hacer hoy', nexusCtaGoals:'Ir a tus Objetivos ▸', nexusCtaCourse:'Continuar curso ▸', nexusCtaJournal:'Abrir Diario ▸', nexusCtaAsk:'Hablar con EVA ▸', nexusActiveGoals:'Tus objetivos activos', nexusNoGoals:'Aún no hay objetivos — pide a EVA que cree uno', nexusCoursesContinue:'Cursos para continuar', nexusNoCourses:'Ningún curso en progreso', nexusWeekSummary:'Resumen de la semana', nexusWeekActiveDays:n=>`${n} días activos de 7`, habitsTitle:'Hábitos', habitsEmpty:'Aún no hay hábitos. ¡Añade uno! 💪', habitPh:'Nuevo hábito...', focusTitle:'Modo Focus', focusCardDesc:m=>`Hoy hiciste <b>${m} min</b> de focus. ¿Listo para otra sesión?`, focusStartBtn:'Iniciar una sesión', focusPickDuration:'Elige la duración', focusMin:'min', focusTodayTotal:m=>`Total de hoy: ${m} minutos`, focusPause:'Pausa', focusResume:'Reanudar', focusStop:'Terminar', focusDoneToast:'¡Sesión completada! 🎯', focusStoppedToast:m=>`Sesión guardada: ${m} minutos`, archiveTitle:'Archivo Evolutivo', archiveSub:'Notas, ideas, enlaces y apuntes que quieres encontrar fácilmente.', archiveTitlePh:'Título', archiveTextPh:'Contenido, enlace o nota...', archiveTagPh:'Etiqueta (opcional)', archiveSave:'Guardar', archiveSearchPh:'Buscar...', archiveEmpty:'Aún no hay notas guardadas.', archiveUntitled:'Sin título', archiveSavedToast:'Guardado en el Archivo ✓',
+    welcomeToast:'Bienvenido a EVITERNO ⚡', guestName:'Invitado', premiumBtn:'⭐ Premium', premiumTitle:'EVITERNO Premium', premiumSub:'Desbloquea EVA avanzada y tutoría 1:1 para acelerar tu camino.', freeTitle:'Gratis', premiumTierTitle:'Premium', freeFeat1:'EVA copiloto con acciones en la plataforma', freeFeat2:'Los 4 pilares completos', freeFeat3:'Modo Live por voz', freeFeat4:'Cuenta personal con guardado', premiumFeat1:'EVA Premium — respuestas más profundas y prioritarias', premiumFeat2:'Sesiones 1:1 de coaching con el tutor', premiumFeat3:'Insignia Premium en el perfil', premiumFeat4:'Soporte prioritario', tutorSectionTitle:'Tu tutor', tutorBookBtn:'Reservar una sesión 1:1', upgradeBtn:'Pasar a Premium', priceSuffix:'/mes', alreadyPremium:'Ya eres Premium ⭐', premiumSuccessToast:'¡Pago completado! Bienvenido a Premium ⭐', premiumCancelToast:'Pago cancelado', stripeNotConfigured:'El pago aún no está configurado. El propietario debe configurar el enlace de Stripe.', chooseCredTitle:'Elige tus credenciales', chooseCredSub:'Te sugerimos estos valores: personalízalos como prefieras, o déjalos así.', createSocialBtn:'Crear mi cuenta ▸', socialTitle:'EVITERNO Social', socialSub:'El muro de la comunidad: comparte un pensamiento, un logro, una idea — todos lo ven.', socialPh:'¿Qué quieres compartir?', socialPostBtn:'Publicar', socialEmpty:'Aún no hay publicaciones. ¡Sé el primero! ✨', socialLoadError:'No se puede cargar el feed en este momento.', socialPostError:'No se puede publicar en este momento.', socialOnlyOnline:'El feed solo funciona en la versión publicada en línea.', socialFollowIg:'Síguenos también en Instagram ▸', privacyTitle:'Centro de Privacidad', privacySub:'Esto es exactamente lo que sabemos de ti en este navegador — puedes verlo, descargarlo o borrarlo cuando quieras.', privacyWhatWeKnow:'Qué sabemos de ti', privacyUsername:'Usuario', privacyName:'Nombre', privacyFocusLbl:'Enfoque', privacyGoalLbl:'Objetivo actual', privacyGuestNote:'Estás en modo invitado: nada se guarda más allá de esta sesión.', privacyReduceMotion:'Reducir animaciones', privacyReduceMotionSub:'Detén los balanceos y pulsaciones, aunque tu sistema no lo requiera.', privacyDownload:'Descargar mis datos (JSON)', privacyDelete:'Borrar todos mis datos', privacyDeleteConfirm:'¿Seguro? Haz clic de nuevo para confirmar', privacyDeletedToast:'Datos borrados. ¡Hasta pronto! 👋', privacyDownloadedToast:'Datos descargados ✓', privacyReset:'Restablecer datos demo', privacyResetConfirm:'¿Seguro? Haz clic de nuevo para confirmar', privacyResetToast:'Datos demo restablecidos ✓', privacyFeedbackBtn:'💬 Dejar un comentario', miniSurveyTitle:'Dos minutos para saber cómo fue', miniQ1:'¿Entendiste qué hacer?', miniQ2:'¿Qué tan fácil fue? (1 = difícil, 5 = muy fácil)', miniQ3:'¿Qué mejorarías?', yes:'Sí', no:'No', maybe:'Quizás', fbSubmit:'Enviar comentario', fbLater:'Más tarde', fbThanks:'¡Gracias por tu comentario! 🙏', fbTitle:'¿Cómo podemos mejorar EVITERNO?', fbSub:'Tus respuestas permanecen solo en este navegador — nada se envía a un servidor.', fbQ1:'¿Qué crees que hace EVITERNO?', fbQ2:'¿Qué función te pareció más útil?', fbQ3:'¿Qué función te confundió?', fbQ4:'¿Entendiste qué hace EVA? (1-5)', fbQ5:'¿Encontraste fácilmente tu próximo paso? (1-5)', fbQ6:'¿El perfil evolutivo te pareció útil? (1-5)', fbQ7:'¿El marketplace de cursos es claro? (1-5)', fbQ8:'¿Qué añadirías?', fbQ9:'¿Qué eliminarías?', fbQ10:'¿Usarías EVITERNO a diario?', fbQ11:'¿Por qué función pagarías?', betaBadge:'EVITERNO BETA — estás usando una versión de prueba con datos locales', introTimeTitle:'¿Cuánto tiempo puedes dedicar?', introTimeSub:'Ayuda a EVA a crear un ritmo realista para tu camino.', introTime5:'5 minutos al día', introTime15:'15 minutos al día', introTime30:'30 minutos al día', introTime60:'1 hora al día', introTimeVar:'Tiempo variable', introSkip:'Saltar por ahora', introPreviewTitle:'Aquí está tu primer camino', introPreviewFirstStep:'Primer paso: define qué quieres aprender', introPreviewNote:tm=>`Con <b>${tm}</b>, EVA vinculará un hábito diario a tu camino.`, introBack:'◂ Atrás', coursesBtn:'🎓 Cursos', coursesDemoFlag:'MODO DEMO — sin pago real, sin curso real', coursesTitle:'Marketplace de Cursos', coursesSub:'Aprende de quienes ya recorrieron tu camino. Vincula un curso a uno de tus objetivos y deja que EVA siga tu progreso.', coursesTabExplore:'Explorar', coursesTabMine:'Mis cursos', coursesFilterAll:'Todas', coursesEmptyMine:'Aún no tienes cursos. ¡Ve a "Explorar" para empezar! 🎓', coursesBackBtn:'◂ Volver al catálogo', coursesWhatYouLearn:'Qué aprenderás', coursesRequirements:'Requisitos', coursesLinkGoal:'Vincular a uno de tus objetivos', coursesNoLink:'— Sin vínculo —', coursesBuyBtn:'Comprar (demo)', coursesContinueBtn:'Continuar curso', coursesContinueShort:'Continuar', coursesInLibrary:'✓ En tu biblioteca', coursesStudents:'estudiantes', coursesAddedToast:'Curso añadido a tu biblioteca ✓ (demo, sin pago real)', coursesLinkedToast:'Curso vinculado a tu objetivo 🎯', coursesLessonDoneGoal:'Lección completada — meta avanzada en tu objetivo 🎯', coursesLessonDone:'Lección completada (+20%)', coursesCompleted:'¡Curso completado! 🏆', coursesCompletedPct:'completado', limitGoalsToast:'El plan Gratis permite 1 objetivo activo. Pasa a Premium para objetivos ilimitados ⭐', limitEvaToast:'Has alcanzado el límite mensual de mensajes del plan Gratis. Pasa a Premium para mensajes ilimitados con EVA ⭐', journalTitle:'Diario', journalPh:'¿Cómo fue el día? ¿Qué aprendiste o notaste?', journalSave:'Guardar', journalEmpty:'Aún no hay notas. ¡Escribe la primera! 📝', journalSavedToast:'Nota guardada ✓', freeFeat5:'1 objetivo activo y diario de crecimiento', freeFeat6:'30 mensajes con EVA al mes', premiumFeat5:'Objetivos ilimitados', premiumFeat6:'Mensajes ilimitados con EVA', nexusBtn:'🧭 NEXUS', nexusGreet:n=>`Hola, <b>${n}</b> 👋`, nexusFocusLabel:'Enfoque de hoy', nexusNextLabel:'Próxima acción sugerida', nexusActionMilestone:(m,g)=>`Completa <b>"${m}"</b> en tu objetivo "${g}"`, nexusActionCourse:c=>`Continúa el curso <b>"${c}"</b>`, nexusActionJournal:'Escribe una línea en tu diario de hoy ✍️', nexusActionAsk:'Pregunta a EVA qué hacer hoy', nexusCtaGoals:'Ir a tus Objetivos ▸', nexusCtaCourse:'Continuar curso ▸', nexusCtaJournal:'Abrir Diario ▸', nexusCtaAsk:'Hablar con EVA ▸', nexusActiveGoals:'Tus objetivos activos', nexusNoGoals:'Aún no hay objetivos — pide a EVA que cree uno', nexusCoursesContinue:'Cursos para continuar', nexusNoCourses:'Ningún curso en progreso', nexusWeekSummary:'Resumen de la semana', nexusWeekActiveDays:n=>`${n} días activos de 7`, habitsTitle:'Hábitos', habitsEmpty:'Aún no hay hábitos. ¡Añade uno! 💪', habitPh:'Nuevo hábito...', focusTitle:'Modo Focus', focusCardDesc:m=>`Hoy hiciste <b>${m} min</b> de focus. ¿Listo para otra sesión?`, focusStartBtn:'Iniciar una sesión', focusPickDuration:'Elige la duración', focusMin:'min', focusTodayTotal:m=>`Total de hoy: ${m} minutos`, focusPause:'Pausa', focusResume:'Reanudar', focusStop:'Terminar', focusDoneToast:'¡Sesión completada! 🎯', focusStoppedToast:m=>`Sesión guardada: ${m} minutos`, archiveTitle:'Archivo Evolutivo', archiveSub:'Notas, ideas, enlaces y apuntes que quieres encontrar fácilmente.', archiveTitlePh:'Título', archiveTextPh:'Contenido, enlace o nota...', archiveTagPh:'Etiqueta (opcional)', archiveSave:'Guardar', archiveSearchPh:'Buscar...', archiveEmpty:'Aún no hay notas guardadas.', archiveUntitled:'Sin título', archiveSavedToast:'Guardado en el Archivo ✓', reminderGoalStalled:g=>`Tu objetivo "${g}" lleva unos días parado.`, reminderJournal:'Aún no has escrito en tu diario hoy.', pathDemoFlag:'MODO DEMO — los datos permanecen solo en este navegador', pathEmptyDesc:'Cada objetivo, lección y acción puede formar parte de un único camino conectado. Pruébalo con un camino guiado demo.', pathCreateBtn:'Crea tu primer camino', pathTitleGeneric:'Tu camino', pathOpenBtn:'Abrir camino ▸', pathStatus_not_started:'Sin empezar', pathStatus_in_progress:'En curso', pathStatus_paused:'En pausa', pathStatus_completed:'Completado', pathDeadline:'Fecha límite', pathBlockQuestion:'EVA nota que este camino lleva unos días parado. ¿Qué te está bloqueando?', pathBlockOpt_noTime:'No tengo tiempo', pathBlockOpt_tooBig:'El objetivo es demasiado grande', pathBlockOpt_dontKnow:'No sé por dónde empezar', pathBlockOpt_noMotivation:'Perdí la motivación', pathBlockOpt_wrongCourse:'El curso no es adecuado para mí', pathBlockOpt_changeGoal:'Quiero cambiar de objetivo', pathBlockOpt_other:'Otro', pathBlockRespNoTime:'Está bien. He puesto el camino en pausa: retómalo cuando tengas tiempo, sin culpa.', pathBlockRespTooBig:'Concéntrate solo en el próximo paso de arriba — el resto puedes ignorarlo por ahora.', pathBlockRespDontKnow:'El próximo paso ya está indicado arriba: empieza solo por ahí.', pathBlockRespNoMotivation:'Le pasa a todos. Pide a EVA un paso más pequeño para hoy.', pathBlockRespWrongCourse:'Puedes explorar otros cursos en el Marketplace cuando quieras — sin obligación.', pathBlockRespChangeGoal:'La opción de cambiar de camino llegará en una próxima versión — por ahora puedes pausarlo.', pathBlockRespOther:'Puedes anotarlo en el Archivo Evolutivo para no perderlo de vista.', pathCtaNextStep:'Da el próximo paso', pathCtaComplete:'Marcar como completado', pathActionStart:'Camino listo para empezar — da el primer paso cuando quieras.', pathActionStep:s=>`Completa: "${s}"`, pathActionHabit:h=>`Hoy le toca al hábito vinculado: "${h}"`, pathActionComplete:m=>`¡Completaste todo! Logro: ${m}`, pathActionDone:'Camino completado. ¡Felicidades! 🏆', pathAskEva:'Pregunta a EVA por qué', pathAskEvaPrompt:s=>`¿Por qué me sugieres hacer esto ahora: "${s}"?`, pathLinkedCourse:'Curso vinculado', pathLinkedHabit:'Hábito vinculado', primaryCtaLabelContinue:'🧭 Continúa tu camino',
   },
   fr:{ eyebrow:"Ce n'est pas juste une application. C'est un nouveau système.", tag_c:'Évolue.', tag_w:'Connecte-toi.', tag_m:'Domine.',
     lede:'La plateforme qui unit <b>technologie</b>, <b>connexions réelles</b> et <b>développement personnel</b>. Le futur est là. Et vous en faites partie.',
@@ -1106,7 +1234,7 @@ const I18N={
     micDenied:'Permission micro refusée. Activez-la dans les réglages du navigateur.',
     liveUnsupported:'Votre navigateur ne prend pas en charge le mode Live vocal 🎙️',
     chip1:'✨ Générer mon système', chip2:'Je veux lancer ma marque', chip3:'Connecte-moi avec Sara dans Community', openDashHint:'▸ Ouvrir le tableau de bord', welcomeBack:(n,f)=>`Bon retour, <b>${n}</b>. Votre focus est <b>${f}</b>. Touchez un nœud pour entrer, ou demandez à EVA.`,
-    welcomeToast:'Bienvenue sur EVITERNO ⚡', guestName:'Invité', premiumBtn:'⭐ Premium', premiumTitle:'EVITERNO Premium', premiumSub:'Débloquez EVA avancée et le coaching 1:1 pour accélérer votre parcours.', freeTitle:'Gratuit', premiumTierTitle:'Premium', freeFeat1:'Copilote EVA avec actions sur la plateforme', freeFeat2:'Les 4 piliers complets', freeFeat3:'Mode Live vocal', freeFeat4:'Compte personnel avec sauvegarde', premiumFeat1:'EVA Premium — réponses plus approfondies et prioritaires', premiumFeat2:'Séances de coaching 1:1 avec le tuteur', premiumFeat3:'Badge Premium sur le profil', premiumFeat4:'Support prioritaire', tutorSectionTitle:'Votre tuteur', tutorBookBtn:'Réserver une séance 1:1', upgradeBtn:'Passer à Premium', priceSuffix:'/mois', alreadyPremium:'Vous êtes déjà Premium ⭐', premiumSuccessToast:'Paiement terminé ! Bienvenue dans Premium ⭐', premiumCancelToast:'Paiement annulé', stripeNotConfigured:"Le paiement n'est pas encore configuré. Le propriétaire doit configurer le lien Stripe.", chooseCredTitle:'Choisissez vos identifiants', chooseCredSub:'Nous avons suggéré ces valeurs : personnalisez-les si vous voulez, ou gardez-les.', createSocialBtn:'Créer mon compte ▸', socialTitle:'EVITERNO Social', socialSub:'Le mur de la communauté : partagez une pensée, une étape, une idée — tout le monde la voit.', socialPh:'Que voulez-vous partager ?', socialPostBtn:'Publier', socialEmpty:'Aucun post pour le moment. Soyez le premier ! ✨', socialLoadError:'Impossible de charger le fil pour le moment.', socialPostError:'Impossible de publier pour le moment.', socialOnlyOnline:"Le fil ne fonctionne que sur la version publiée en ligne.", socialFollowIg:'Suivez-nous aussi sur Instagram ▸', privacyTitle:'Centre de confidentialité', privacySub:'Voici exactement ce que nous savons de vous sur ce navigateur — consultez, téléchargez ou supprimez ces données à tout moment.', privacyWhatWeKnow:'Ce que nous savons de vous', privacyUsername:'Identifiant', privacyName:'Prénom', privacyFocusLbl:'Focus', privacyGoalLbl:'Objectif actuel', privacyGuestNote:"Vous êtes en mode invité : rien n'est enregistré au-delà de cette session.", privacyReduceMotion:'Réduire les animations', privacyReduceMotionSub:"Arrête les balancements et pulsations, même si votre système ne le demande pas déjà.", privacyDownload:'Télécharger mes données (JSON)', privacyDelete:'Supprimer toutes mes données', privacyDeleteConfirm:'Êtes-vous sûr ? Cliquez à nouveau pour confirmer', privacyDeletedToast:'Données supprimées. À bientôt ! 👋', privacyDownloadedToast:'Données téléchargées ✓', coursesBtn:'🎓 Cours', coursesDemoFlag:'MODE DÉMO — aucun paiement réel, aucun vrai cours', coursesTitle:'Marketplace de cours', coursesSub:'Apprenez de ceux qui ont déjà parcouru votre chemin. Reliez un cours à l\'un de vos objectifs et laissez EVA suivre votre progression.', coursesTabExplore:'Explorer', coursesTabMine:'Mes cours', coursesFilterAll:'Toutes', coursesEmptyMine:'Vous n\'avez pas encore de cours. Allez dans "Explorer" pour commencer ! 🎓', coursesBackBtn:'◂ Retour au catalogue', coursesWhatYouLearn:'Ce que vous apprendrez', coursesRequirements:'Prérequis', coursesLinkGoal:'Relier à l\'un de vos objectifs', coursesNoLink:'— Aucun lien —', coursesBuyBtn:'Acheter (démo)', coursesContinueBtn:'Continuer le cours', coursesContinueShort:'Continuer', coursesInLibrary:'✓ Dans la bibliothèque', coursesStudents:'étudiants', coursesAddedToast:'Cours ajouté à votre bibliothèque ✓ (démo, aucun paiement réel)', coursesLinkedToast:'Cours relié à votre objectif 🎯', coursesLessonDoneGoal:'Leçon terminée — étape avancée dans votre objectif 🎯', coursesLessonDone:'Leçon terminée (+20%)', coursesCompleted:'Cours terminé ! 🏆', coursesCompletedPct:'terminé', limitGoalsToast:'Le plan Gratuit permet 1 objectif actif. Passez à Premium pour des objectifs illimités ⭐', limitEvaToast:'Vous avez atteint la limite mensuelle de messages du plan Gratuit. Passez à Premium pour des messages illimités avec EVA ⭐', journalTitle:'Journal', journalPh:"Comment s'est passée votre journée ? Qu'avez-vous appris ou remarqué ?", journalSave:'Enregistrer', journalEmpty:'Aucune note pour le moment. Écrivez la première ! 📝', journalSavedToast:'Note enregistrée ✓', freeFeat5:'1 objectif actif et journal de croissance', freeFeat6:'30 messages avec EVA par mois', premiumFeat5:'Objectifs illimités', premiumFeat6:'Messages illimités avec EVA', nexusBtn:'🧭 NEXUS', nexusGreet:n=>`Salut, <b>${n}</b> 👋`, nexusFocusLabel:'Focus du jour', nexusNextLabel:'Prochaine action suggérée', nexusActionMilestone:(m,g)=>`Termine <b>"${m}"</b> dans ton objectif "${g}"`, nexusActionCourse:c=>`Continue le cours <b>"${c}"</b>`, nexusActionJournal:"Écris une ligne dans ton journal d'aujourd'hui ✍️", nexusActionAsk:'Demande à EVA quoi faire aujourd\'hui', nexusCtaGoals:'Aller à tes Objectifs ▸', nexusCtaCourse:'Continuer le cours ▸', nexusCtaJournal:'Ouvrir le Journal ▸', nexusCtaAsk:'Parler à EVA ▸', nexusActiveGoals:'Tes objectifs actifs', nexusNoGoals:'Aucun objectif pour le moment — demande à EVA d\'en créer un', nexusCoursesContinue:'Cours à continuer', nexusNoCourses:'Aucun cours en cours', nexusWeekSummary:'Résumé de la semaine', nexusWeekActiveDays:n=>`${n} jours actifs sur 7`, habitsTitle:'Habitudes', habitsEmpty:'Aucune habitude pour le moment. Ajoutes-en une ! 💪', habitPh:'Nouvelle habitude...', focusTitle:'Mode Focus', focusCardDesc:m=>`Aujourd'hui tu as fait <b>${m} min</b> de focus. Prêt pour une autre session ?`, focusStartBtn:'Démarrer une session', focusPickDuration:'Choisis la durée', focusMin:'min', focusTodayTotal:m=>`Total du jour : ${m} minutes`, focusPause:'Pause', focusResume:'Reprendre', focusStop:'Terminer', focusDoneToast:'Session terminée ! 🎯', focusStoppedToast:m=>`Session enregistrée : ${m} minutes`, archiveTitle:'Archive Évolutive', archiveSub:'Notes, idées, liens et pensées que tu veux retrouver facilement.', archiveTitlePh:'Titre', archiveTextPh:'Contenu, lien ou note...', archiveTagPh:'Tag (optionnel)', archiveSave:'Enregistrer', archiveSearchPh:'Rechercher...', archiveEmpty:'Aucune note enregistrée pour le moment.', archiveUntitled:'Sans titre', archiveSavedToast:'Enregistré dans l\'Archive ✓',
+    welcomeToast:'Bienvenue sur EVITERNO ⚡', guestName:'Invité', premiumBtn:'⭐ Premium', premiumTitle:'EVITERNO Premium', premiumSub:'Débloquez EVA avancée et le coaching 1:1 pour accélérer votre parcours.', freeTitle:'Gratuit', premiumTierTitle:'Premium', freeFeat1:'Copilote EVA avec actions sur la plateforme', freeFeat2:'Les 4 piliers complets', freeFeat3:'Mode Live vocal', freeFeat4:'Compte personnel avec sauvegarde', premiumFeat1:'EVA Premium — réponses plus approfondies et prioritaires', premiumFeat2:'Séances de coaching 1:1 avec le tuteur', premiumFeat3:'Badge Premium sur le profil', premiumFeat4:'Support prioritaire', tutorSectionTitle:'Votre tuteur', tutorBookBtn:'Réserver une séance 1:1', upgradeBtn:'Passer à Premium', priceSuffix:'/mois', alreadyPremium:'Vous êtes déjà Premium ⭐', premiumSuccessToast:'Paiement terminé ! Bienvenue dans Premium ⭐', premiumCancelToast:'Paiement annulé', stripeNotConfigured:"Le paiement n'est pas encore configuré. Le propriétaire doit configurer le lien Stripe.", chooseCredTitle:'Choisissez vos identifiants', chooseCredSub:'Nous avons suggéré ces valeurs : personnalisez-les si vous voulez, ou gardez-les.', createSocialBtn:'Créer mon compte ▸', socialTitle:'EVITERNO Social', socialSub:'Le mur de la communauté : partagez une pensée, une étape, une idée — tout le monde la voit.', socialPh:'Que voulez-vous partager ?', socialPostBtn:'Publier', socialEmpty:'Aucun post pour le moment. Soyez le premier ! ✨', socialLoadError:'Impossible de charger le fil pour le moment.', socialPostError:'Impossible de publier pour le moment.', socialOnlyOnline:"Le fil ne fonctionne que sur la version publiée en ligne.", socialFollowIg:'Suivez-nous aussi sur Instagram ▸', privacyTitle:'Centre de confidentialité', privacySub:'Voici exactement ce que nous savons de vous sur ce navigateur — consultez, téléchargez ou supprimez ces données à tout moment.', privacyWhatWeKnow:'Ce que nous savons de vous', privacyUsername:'Identifiant', privacyName:'Prénom', privacyFocusLbl:'Focus', privacyGoalLbl:'Objectif actuel', privacyGuestNote:"Vous êtes en mode invité : rien n'est enregistré au-delà de cette session.", privacyReduceMotion:'Réduire les animations', privacyReduceMotionSub:"Arrête les balancements et pulsations, même si votre système ne le demande pas déjà.", privacyDownload:'Télécharger mes données (JSON)', privacyDelete:'Supprimer toutes mes données', privacyDeleteConfirm:'Êtes-vous sûr ? Cliquez à nouveau pour confirmer', privacyDeletedToast:'Données supprimées. À bientôt ! 👋', privacyDownloadedToast:'Données téléchargées ✓', privacyReset:'Réinitialiser les données démo', privacyResetConfirm:'Êtes-vous sûr ? Cliquez à nouveau pour confirmer', privacyResetToast:'Données démo réinitialisées ✓', privacyFeedbackBtn:'💬 Laisser un avis', miniSurveyTitle:'Deux minutes pour savoir comment ça s\'est passé', miniQ1:'As-tu compris quoi faire ?', miniQ2:'C\'était facile à quel point ? (1 = difficile, 5 = très facile)', miniQ3:'Que voudrais-tu améliorer ?', yes:'Oui', no:'Non', maybe:'Peut-être', fbSubmit:'Envoyer', fbLater:'Plus tard', fbThanks:'Merci pour ton avis ! 🙏', fbTitle:'Comment pouvons-nous améliorer EVITERNO ?', fbSub:'Tes réponses restent uniquement sur ce navigateur — rien n\'est envoyé à un serveur.', fbQ1:'Que penses-tu qu\'EVITERNO fasse ?', fbQ2:'Quelle fonction t\'a semblé la plus utile ?', fbQ3:'Quelle fonction t\'a confondu ?', fbQ4:'As-tu compris ce que fait EVA ? (1-5)', fbQ5:'As-tu facilement trouvé ta prochaine étape ? (1-5)', fbQ6:'Le profil évolutif t\'a-t-il semblé utile ? (1-5)', fbQ7:'Le marketplace de cours est-il clair ? (1-5)', fbQ8:'Qu\'ajouterais-tu ?', fbQ9:'Que supprimerais-tu ?', fbQ10:'Utiliserais-tu EVITERNO au quotidien ?', fbQ11:'Pour quelle fonction serais-tu prêt à payer ?', betaBadge:'EVITERNO BETA — vous utilisez une version d\'essai avec des données locales', introTimeTitle:'Combien de temps peux-tu y consacrer ?', introTimeSub:'Aide EVA à créer un rythme réaliste pour ton parcours.', introTime5:'5 minutes par jour', introTime15:'15 minutes par jour', introTime30:'30 minutes par jour', introTime60:'1 heure par jour', introTimeVar:'Temps variable', introSkip:'Passer pour l\'instant', introPreviewTitle:'Voici ton premier parcours', introPreviewFirstStep:'Première étape : définis ce que tu veux apprendre', introPreviewNote:tm=>`Avec <b>${tm}</b>, EVA reliera une habitude quotidienne à ton parcours.`, introBack:'◂ Retour', coursesBtn:'🎓 Cours', coursesDemoFlag:'MODE DÉMO — aucun paiement réel, aucun vrai cours', coursesTitle:'Marketplace de cours', coursesSub:'Apprenez de ceux qui ont déjà parcouru votre chemin. Reliez un cours à l\'un de vos objectifs et laissez EVA suivre votre progression.', coursesTabExplore:'Explorer', coursesTabMine:'Mes cours', coursesFilterAll:'Toutes', coursesEmptyMine:'Vous n\'avez pas encore de cours. Allez dans "Explorer" pour commencer ! 🎓', coursesBackBtn:'◂ Retour au catalogue', coursesWhatYouLearn:'Ce que vous apprendrez', coursesRequirements:'Prérequis', coursesLinkGoal:'Relier à l\'un de vos objectifs', coursesNoLink:'— Aucun lien —', coursesBuyBtn:'Acheter (démo)', coursesContinueBtn:'Continuer le cours', coursesContinueShort:'Continuer', coursesInLibrary:'✓ Dans la bibliothèque', coursesStudents:'étudiants', coursesAddedToast:'Cours ajouté à votre bibliothèque ✓ (démo, aucun paiement réel)', coursesLinkedToast:'Cours relié à votre objectif 🎯', coursesLessonDoneGoal:'Leçon terminée — étape avancée dans votre objectif 🎯', coursesLessonDone:'Leçon terminée (+20%)', coursesCompleted:'Cours terminé ! 🏆', coursesCompletedPct:'terminé', limitGoalsToast:'Le plan Gratuit permet 1 objectif actif. Passez à Premium pour des objectifs illimités ⭐', limitEvaToast:'Vous avez atteint la limite mensuelle de messages du plan Gratuit. Passez à Premium pour des messages illimités avec EVA ⭐', journalTitle:'Journal', journalPh:"Comment s'est passée votre journée ? Qu'avez-vous appris ou remarqué ?", journalSave:'Enregistrer', journalEmpty:'Aucune note pour le moment. Écrivez la première ! 📝', journalSavedToast:'Note enregistrée ✓', freeFeat5:'1 objectif actif et journal de croissance', freeFeat6:'30 messages avec EVA par mois', premiumFeat5:'Objectifs illimités', premiumFeat6:'Messages illimités avec EVA', nexusBtn:'🧭 NEXUS', nexusGreet:n=>`Salut, <b>${n}</b> 👋`, nexusFocusLabel:'Focus du jour', nexusNextLabel:'Prochaine action suggérée', nexusActionMilestone:(m,g)=>`Termine <b>"${m}"</b> dans ton objectif "${g}"`, nexusActionCourse:c=>`Continue le cours <b>"${c}"</b>`, nexusActionJournal:"Écris une ligne dans ton journal d'aujourd'hui ✍️", nexusActionAsk:'Demande à EVA quoi faire aujourd\'hui', nexusCtaGoals:'Aller à tes Objectifs ▸', nexusCtaCourse:'Continuer le cours ▸', nexusCtaJournal:'Ouvrir le Journal ▸', nexusCtaAsk:'Parler à EVA ▸', nexusActiveGoals:'Tes objectifs actifs', nexusNoGoals:'Aucun objectif pour le moment — demande à EVA d\'en créer un', nexusCoursesContinue:'Cours à continuer', nexusNoCourses:'Aucun cours en cours', nexusWeekSummary:'Résumé de la semaine', nexusWeekActiveDays:n=>`${n} jours actifs sur 7`, habitsTitle:'Habitudes', habitsEmpty:'Aucune habitude pour le moment. Ajoutes-en une ! 💪', habitPh:'Nouvelle habitude...', focusTitle:'Mode Focus', focusCardDesc:m=>`Aujourd'hui tu as fait <b>${m} min</b> de focus. Prêt pour une autre session ?`, focusStartBtn:'Démarrer une session', focusPickDuration:'Choisis la durée', focusMin:'min', focusTodayTotal:m=>`Total du jour : ${m} minutes`, focusPause:'Pause', focusResume:'Reprendre', focusStop:'Terminer', focusDoneToast:'Session terminée ! 🎯', focusStoppedToast:m=>`Session enregistrée : ${m} minutes`, archiveTitle:'Archive Évolutive', archiveSub:'Notes, idées, liens et pensées que tu veux retrouver facilement.', archiveTitlePh:'Titre', archiveTextPh:'Contenu, lien ou note...', archiveTagPh:'Tag (optionnel)', archiveSave:'Enregistrer', archiveSearchPh:'Rechercher...', archiveEmpty:'Aucune note enregistrée pour le moment.', archiveUntitled:'Sans titre', archiveSavedToast:'Enregistré dans l\'Archive ✓', reminderGoalStalled:g=>`Ton objectif "${g}" est à l'arrêt depuis quelques jours.`, reminderJournal:"Tu n'as pas encore écrit dans ton journal aujourd'hui.", pathDemoFlag:'MODE DÉMO — les données restent uniquement sur ce navigateur', pathEmptyDesc:'Chaque objectif, leçon et action peuvent faire partie d\'un seul parcours relié. Essaie avec un parcours guidé démo.', pathCreateBtn:'Crée ton premier parcours', pathTitleGeneric:'Ton parcours', pathOpenBtn:'Ouvrir le parcours ▸', pathStatus_not_started:'Pas commencé', pathStatus_in_progress:'En cours', pathStatus_paused:'En pause', pathStatus_completed:'Terminé', pathDeadline:'Échéance', pathBlockQuestion:"EVA remarque que ce parcours est à l'arrêt depuis quelques jours. Qu'est-ce qui te bloque ?", pathBlockOpt_noTime:"Je n'ai pas le temps", pathBlockOpt_tooBig:"L'objectif est trop grand", pathBlockOpt_dontKnow:'Je ne sais pas par où commencer', pathBlockOpt_noMotivation:'J\'ai perdu la motivation', pathBlockOpt_wrongCourse:"Le cours ne me convient pas", pathBlockOpt_changeGoal:"Je veux changer d'objectif", pathBlockOpt_other:'Autre', pathBlockRespNoTime:"Pas de souci. J'ai mis le parcours en pause : reprends-le quand tu as le temps, sans culpabilité.", pathBlockRespTooBig:'Concentre-toi juste sur la prochaine étape ci-dessus — tu peux ignorer le reste pour l\'instant.', pathBlockRespDontKnow:'La prochaine étape est déjà indiquée ci-dessus : pars juste de là.', pathBlockRespNoMotivation:"Ça arrive à tout le monde. Demande à EVA une étape plus petite à faire aujourd'hui.", pathBlockRespWrongCourse:'Tu peux explorer d\'autres cours dans le Marketplace quand tu veux — sans obligation.', pathBlockRespChangeGoal:'La possibilité de changer de parcours arrivera dans une prochaine version — pour l\'instant tu peux le mettre en pause.', pathBlockRespOther:"Tu peux le noter dans l'Archive Évolutive pour ne pas le perdre de vue.", pathCtaNextStep:'Fais le prochain pas', pathCtaComplete:'Marquer comme terminé', pathActionStart:'Parcours prêt à démarrer — fais le premier pas quand tu veux.', pathActionStep:s=>`Termine : "${s}"`, pathActionHabit:h=>`Aujourd'hui c'est au tour de l'habitude liée : "${h}"`, pathActionComplete:m=>`Tu as tout terminé ! Étape : ${m}`, pathActionDone:'Parcours terminé. Félicitations ! 🏆', pathAskEva:'Demande à EVA pourquoi', pathAskEvaPrompt:s=>`Pourquoi me suggères-tu de faire ça maintenant : "${s}" ?`, pathLinkedCourse:'Cours lié', pathLinkedHabit:'Habitude liée', primaryCtaLabelContinue:'🧭 Continue ton parcours',
   },
 };
 function t(key){const v=(I18N[currentLang]&&I18N[currentLang][key]);return v!=null?v:(I18N.it[key]!=null?I18N.it[key]:key);}
@@ -1205,7 +1333,7 @@ const DATA = {
     timeline:[{t:'Account creato',w:'Oggi'},{t:'Focus impostato',w:'Oggi'}] },
   courses:{ owned:[], progress:{} },
   usage:{ month:'', evaMessages:0 },
-  archive:[] };
+  archive:[], percorso:null };
 
 /* ============================================================
    LIMITI FREE / PREMIUM — configurabili qui, applicati subito.
@@ -1271,6 +1399,13 @@ const DEMO_COURSES = [
     desc:'Concetti essenziali su budget, risparmio e primi investimenti, spiegati in modo chiaro e senza tecnicismi inutili.',
     objectives:['Costruire un budget mensile realistico','Capire le basi del risparmio automatico','Muovere i primi passi negli investimenti'],
     requirements:['Nessuno']},
+  {id:'digital-basics', title:'Fondamenti Digitali', tutor:'Dev K.', tutorInit:'D',
+    category:'Sviluppo', level:'Principiante', lang:'Italiano', duration:'2h', price:0,
+    priceDisplay:'Gratis', rating:4.7, students:980, icon:'💻', color:'linear-gradient(135deg,#4de1ff,#2e7bff)',
+    subtitle:'Le basi per muovere i primi passi in una competenza digitale',
+    desc:'Un corso introduttivo pensato per chi vuole costruire la sua prima vera competenza digitale, un passo alla volta.',
+    objectives:['Capire da dove iniziare','Completare la prima lezione pratica','Creare una piccola applicazione'],
+    requirements:['Nessuna esperienza richiesta']},
 ];
 let courseTab='explore', courseFilter='__ALL__', activeCourseId=null;
 function ownedCourseIds(){return DATA.courses.owned.map(o=>o.id);}
@@ -1325,6 +1460,7 @@ function switchCourseTab(tab){
 }
 function openCourseDetail(id){
   const c=findCourse(id);if(!c)return;
+  logEvent('course_opened');
   activeCourseId=id;
   document.getElementById('courseExploreView').style.display='none';
   document.getElementById('courseMineView').style.display='none';
@@ -1371,7 +1507,7 @@ function buyCourse(id){
   if(ownedCourseIds().includes(id))return;
   DATA.courses.owned.push({id,boughtAt:Date.now()});
   DATA.courses.progress[id]={pct:0,goalIndex:null};
-  persist();
+  persist();logEvent('course_added');
   toast(t('coursesAddedToast'));
   openCourseDetail(id);
 }
@@ -1381,6 +1517,7 @@ function continueCourse(id){
   if(prog.goalIndex!=null&&DATA.obiettivi.goals[prog.goalIndex]){
     const g=DATA.obiettivi.goals[prog.goalIndex];
     const next=g.milestones.find(m=>!m.done);
+    g.lastActivity=Date.now();
     if(next){next.done=true;toast(t('coursesLessonDoneGoal'));}
     else toast(t('coursesLessonDone'));
     if(document.getElementById('view-obiettivi').classList.contains('show'))renderDashboard('obiettivi');
@@ -1395,9 +1532,9 @@ function continueCourse(id){
 function seedGoals(){
   const g = USER.goal || 'Definire il mio primo traguardo';
   DATA.obiettivi.goals=[
-    {t:g, milestones:[{t:'Definisci il perché',done:true},{t:'Scomponi in 3 passi',done:false},
+    {t:g, lastActivity:Date.now(), milestones:[{t:'Definisci il perché',done:true},{t:'Scomponi in 3 passi',done:false},
       {t:'Prima azione concreta',done:false},{t:'Verifica progressi',done:false}]},
-    {t:'Costruire l’abitudine quotidiana', milestones:[{t:'Scegli l’ora fissa',done:true},
+    {t:'Costruire l’abitudine quotidiana', lastActivity:Date.now(), milestones:[{t:'Scegli l’ora fissa',done:true},
       {t:'7 giorni di fila',done:false},{t:'30 giorni di fila',done:false}]},
   ];
 }
@@ -1696,11 +1833,11 @@ function wireDashboard(v,id){
 
   if(id==='obiettivi'){
     v.querySelectorAll('[data-mile]').forEach(m=>m.onclick=()=>{const[gi,mi]=m.dataset.mile.split(':').map(Number);
-      const g=DATA.obiettivi.goals[gi];g.milestones[mi].done=!g.milestones[mi].done;
+      const g=DATA.obiettivi.goals[gi];g.milestones[mi].done=!g.milestones[mi].done;g.lastActivity=Date.now();
       if(DATA.obiettivi.goals.every(x=>goalPct(x)===100))unlock('5 obiettivi');renderDashboard('obiettivi');persist();});
     const add=()=>{const inp=v.querySelector('#newGoal');const txt=inp.value.trim();if(!txt)return;
       if(!canAddGoal()){toast(t('limitGoalsToast'));return;}
-      DATA.obiettivi.goals.push({t:txt,milestones:[{t:'Definisci il primo passo',done:false},{t:'Agisci',done:false}]});
+      DATA.obiettivi.goals.push({t:txt,lastActivity:Date.now(),milestones:[{t:'Definisci il primo passo',done:false},{t:'Agisci',done:false}]});
       renderDashboard('obiettivi');toast('Obiettivo aggiunto 🎯');persist();};
     v.querySelector('[data-addgoal]').onclick=add;
     v.querySelector('#newGoal').addEventListener('keydown',e=>{if(e.key==='Enter')add();});}
@@ -1728,7 +1865,7 @@ function refreshTutorCard(){
   if(USER.premium){upBtn.textContent=t('alreadyPremium');upBtn.disabled=true;}
   else{upBtn.textContent=t('upgradeBtn');upBtn.disabled=false;}
 }
-document.getElementById('premiumBtn').onclick=()=>{refreshTutorCard();show('premium');};
+document.getElementById('premiumBtn').onclick=()=>{refreshTutorCard();show('premium');logEvent('premium_opened');};
 
 /* ============================================================
    MARKETPLACE CORSI — apertura pannello e navigazione tra schede
@@ -1759,7 +1896,18 @@ function nexusNextAction(){
 function renderNexus(){
   const wmax=Math.max(...DATA.crescita.week,1);
   const activeDays=DATA.crescita.week.filter(x=>x>0).length;
-  const next=nexusNextAction();
+  const p=DATA.percorso;
+  const pathBlock=p
+    ? (()=>{const pn=pathNextAction(p);return`
+      <div class="nexus-next" id="nexusPathCard" style="cursor:pointer">
+        <span class="nx-label">🧭 ${escapeHtml(p.title)} — ${pathProgress(p)}%</span>
+        <p>${pn.text}</p>
+        <button class="gate-btn" style="width:auto;padding:11px 22px" id="nexusPathBtn">${t('pathOpenBtn')}</button>
+      </div>`;})()
+    : `<div class="nexus-next"><span class="nx-label">🧭 ${t('pathTitleGeneric')}</span>
+        <p>${t('pathEmptyDesc')}</p>
+        <button class="gate-btn" style="width:auto;padding:11px 22px" id="nexusPathBtn">${t('pathCreateBtn')}</button>
+      </div>`;
   const goalsHtml=DATA.obiettivi.goals.length
     ? DATA.obiettivi.goals.slice(0,3).map((g,i)=>`
       <div class="nexus-row" data-goto-goal="${i}"><b>${escapeHtml(g.t)}</b>
@@ -1773,9 +1921,7 @@ function renderNexus(){
   document.getElementById('nexusBody').innerHTML=`
     <p class="nexus-greet">${t('nexusGreet')(USER.name||t('guestName'))}</p>
     <p class="nexus-date">${new Date().toLocaleDateString(currentLang,{weekday:'long',day:'numeric',month:'long'})} · ${t('nexusFocusLabel')}: <b>${P(USER.focus).t}</b></p>
-    <div class="nexus-next"><span class="nx-label">${t('nexusNextLabel')}</span>
-      <p>${next.text}</p><button class="gate-btn" id="nexusActionBtn" style="width:auto;padding:11px 22px">${next.cta}</button>
-    </div>
+    ${pathBlock}
     <div class="nexus-section"><h5>${t('nexusActiveGoals')}</h5>${goalsHtml}</div>
     <div class="nexus-section"><h5>${t('nexusCoursesContinue')}</h5>${coursesHtml}</div>
     <div class="nexus-section"><h5>${t('nexusWeekSummary')}</h5>
@@ -1783,13 +1929,16 @@ function renderNexus(){
       <span class="nexus-week-lbl">${t('nexusWeekActiveDays')(activeDays)}</span>
     </div>
     <div class="nexus-row" id="openArchiveBtn"><b>📚 ${t('archiveTitle')}</b><span style="color:var(--muted);font-size:11.5px">${DATA.archive.length}</span></div>`;
-  document.getElementById('nexusActionBtn').onclick=next.go;
+  const pathBtn=document.getElementById('nexusPathBtn');
+  pathBtn.onclick=()=>{if(!DATA.percorso)createDemoPercorso();hide('nexusPanel');show('pathPanel');renderPath();};
+  const pathCard=document.getElementById('nexusPathCard');
+  if(pathCard)pathCard.querySelector('.nx-label').onclick=pathBtn.onclick;
   document.querySelectorAll('[data-goto-goal]').forEach(el=>el.onclick=()=>{hide('nexusPanel');openDashboard('obiettivi');});
   document.querySelectorAll('[data-goto-course]').forEach(el=>el.onclick=()=>{
     hide('nexusPanel');show('coursesPanel');switchCourseTab('mine');openCourseDetail(el.dataset.gotoCourse);});
   document.getElementById('openArchiveBtn').onclick=()=>{hide('nexusPanel');show('archivePanel');renderArchive();};
 }
-document.getElementById('nexusBtn').onclick=()=>{show('nexusPanel');renderNexus();};
+document.getElementById('nexusBtn').onclick=()=>{show('nexusPanel');renderNexus();logEvent('nexus_opened');};
 document.getElementById('nexusClose').onclick=()=>hide('nexusPanel');
 
 /* ============================================================
@@ -1849,15 +1998,21 @@ function startFocus(min){
 }
 function finishFocus(completed){
   clearInterval(focusState.timer);
-  const minutesDone=Math.max(1,Math.round((focusState.total-(completed?0:focusState.remaining))/60));
-  DATA.crescita.focusSessions.push({date:new Date().toISOString(),minutes:minutesDone});
-  persist();
-  toast(completed?t('focusDoneToast'):t('focusStoppedToast')(minutesDone));
+  const elapsedSec=focusState.total-(completed?0:focusState.remaining);
+  const minutesDone=Math.round(elapsedSec/60);
+  if(elapsedSec>=60){
+    DATA.crescita.focusSessions.push({date:new Date().toISOString(),minutes:Math.max(1,minutesDone)});
+    persist();
+    toast(completed?t('focusDoneToast'):t('focusStoppedToast')(minutesDone));
+  }
   focusState={running:false,paused:false,remaining:0,total:0,timer:null};
   renderFocus();
   if(document.getElementById('view-crescita').classList.contains('show'))renderDashboard('crescita');
 }
-document.getElementById('focusClose').onclick=()=>hide('focusPanel');
+document.getElementById('focusClose').onclick=()=>{
+  if(focusState.running)finishFocus(false);
+  hide('focusPanel');
+};
 
 /* ============================================================
    ARCHIVIO EVOLUTIVO — note/idee/link con tag e ricerca
@@ -1885,6 +2040,446 @@ document.getElementById('archiveSaveBtn').onclick=()=>{
 };
 document.getElementById('archiveSearchInput').addEventListener('input',e=>renderArchive(e.target.value));
 
+/* ============================================================
+   PERCORSO — il motore che collega obiettivo, corso, abitudine
+   e progresso in un'unica pagina. Versione demo: un solo percorso
+   attivo (il piano gratuito), pre-costruito, esplorabile anche
+   come ospite. Salvato come tutto il resto, solo su questo browser.
+   ============================================================ */
+const PATH_STATUSES=['not_started','in_progress','paused','completed'];
+function createDemoPercorso(overrides){
+  const o=overrides||{};
+  DATA.percorso={
+    title:o.title||'Costruisci la tua prima competenza digitale',
+    why:o.why||'Voglio dimostrare a me stesso di poter imparare qualcosa di nuovo, un passo alla volta.',
+    createdAt:Date.now(),lastActivity:Date.now(),
+    deadline:new Date(Date.now()+60*86400000).toISOString().slice(0,10),
+    status:'in_progress',
+    linkedCourseId:'digital-basics',
+    linkedHabitName:o.habitName||'20 minuti di studio al giorno',
+    milestoneText:'Prima competenza completata 🏆',
+    steps:[{t:'Definisci cosa vuoi imparare',done:true},{t:'Completa la prima lezione',done:false},
+      {t:'Crea una piccola applicazione',done:false}],
+  };
+  // collegamento vero: crea anche l'abitudine collegata, se non esiste già
+  if(!DATA.crescita.habits.some(h=>h.name===DATA.percorso.linkedHabitName))
+    DATA.crescita.habits.push({name:DATA.percorso.linkedHabitName,doneDates:[]});
+  persist();logEvent('path_created');
+}
+function pathProgress(p){return Math.round(100*p.steps.filter(s=>s.done).length/p.steps.length);}
+function pathHabit(p){return DATA.crescita.habits.find(h=>h.name===p.linkedHabitName);}
+function pathNextAction(p){
+  if(p.status==='not_started')return{text:t('pathActionStart'),cta:t('pathCtaNextStep'),
+    go:()=>{p.status='in_progress';p.lastActivity=Date.now();persist();renderPath();}};
+  const step=p.steps.find(s=>!s.done);
+  if(step)return{text:t('pathActionStep')(step.t),cta:t('pathCtaNextStep'),
+    go:()=>{step.done=true;p.lastActivity=Date.now();persist();renderPath();
+      if(document.getElementById('view-crescita').classList.contains('show'))renderDashboard('crescita');}};
+  const h=pathHabit(p);
+  if(h&&!habitDoneToday(h))return{text:t('pathActionHabit')(p.linkedHabitName),cta:t('pathCtaNextStep'),
+    go:()=>{h.doneDates.push(dayKey(new Date()));p.lastActivity=Date.now();persist();renderPath();
+      if(document.getElementById('view-crescita').classList.contains('show'))renderDashboard('crescita');}};
+  if(p.status!=='completed')return{text:t('pathActionComplete')(p.milestoneText),cta:t('pathCtaComplete'),
+    go:()=>{p.status='completed';p.lastActivity=Date.now();persist();renderPath();}};
+  return{text:t('pathActionDone'),cta:null,go:null};
+}
+const PATH_BLOCK_REASONS=['noTime','tooBig','dontKnow','noMotivation','wrongCourse','changeGoal','other'];
+function pathBlockResponse(key,p){
+  const r={
+    noTime:()=>{p.status='paused';return t('pathBlockRespNoTime');},
+    tooBig:()=>t('pathBlockRespTooBig'),
+    dontKnow:()=>t('pathBlockRespDontKnow'),
+    noMotivation:()=>t('pathBlockRespNoMotivation'),
+    wrongCourse:()=>t('pathBlockRespWrongCourse'),
+    changeGoal:()=>t('pathBlockRespChangeGoal'),
+    other:()=>t('pathBlockRespOther'),
+  };
+  return r[key]();
+}
+function renderPath(){
+  updatePrimaryCtaLabel();
+  logEvent('path_opened');
+  const p=DATA.percorso;const body=document.getElementById('pathBody');
+  if(!p){
+    body.innerHTML=`<div class="path-empty-cta"><p>${t('pathEmptyDesc')}</p>
+      <button class="gate-btn" id="pathCreateBtn">${t('pathCreateBtn')}</button></div>`;
+    body.querySelector('#pathCreateBtn').onclick=()=>{createDemoPercorso();renderPath();};
+    return;
+  }
+  const course=findCourse(p.linkedCourseId);const habit=pathHabit(p);
+  const pct=pathProgress(p);const next=pathNextAction(p);
+  const stalled=p.status==='in_progress'&&(Date.now()-p.lastActivity)/86400000>=STALE_DAYS;
+  body.innerHTML=`
+    <h4 class="path-title">${escapeHtml(p.title)}</h4>
+    <p class="path-why">"${escapeHtml(p.why)}"</p>
+    <div class="path-status-row">
+      <span class="path-status-pill">${t('pathStatus_'+p.status)}</span>
+      <select id="pathStatusSelect">${PATH_STATUSES.map(s=>`<option value="${s}" ${s===p.status?'selected':''}>${t('pathStatus_'+s)}</option>`).join('')}</select>
+      <span style="color:var(--muted);font-size:11.5px">${t('pathDeadline')}: ${new Date(p.deadline).toLocaleDateString(currentLang,{day:'numeric',month:'short'})}</span>
+    </div>
+    <div class="path-progress-row"><div class="bar"><i style="width:${pct}%"></i></div><b>${pct}%</b></div>
+    ${stalled?`<div class="path-block-banner"><p>${t('pathBlockQuestion')}</p>
+      <div class="path-block-opts">${PATH_BLOCK_REASONS.map(k=>`<button data-block="${k}">${t('pathBlockOpt_'+k)}</button>`).join('')}</div>
+    </div>`:''}
+    <div class="path-next"><span class="nx-label">${t('nexusNextLabel')}</span>
+      <p>${next.text}</p>
+      <div class="path-next-actions">
+        ${next.cta?`<button class="gate-btn" id="pathNextBtn">${next.cta}</button>`:''}
+        <button class="btn ghost" id="pathAskEvaBtn">${t('pathAskEva')}</button>
+      </div>
+    </div>
+    <div class="path-link-row" id="pathCourseLink"><span class="pl-icon">${course?course.icon:'🎓'}</span>
+      <div class="pl-body"><b>${course?escapeHtml(course.title):'—'}</b><span>${t('pathLinkedCourse')}</span></div></div>
+    <div class="path-link-row" id="pathHabitLink"><span class="pl-icon">${habit&&habitDoneToday(habit)?'✅':'🔁'}</span>
+      <div class="pl-body"><b>${escapeHtml(p.linkedHabitName)}</b><span>${t('pathLinkedHabit')}${habit?' · '+habitStreak(habit)+'🔥':''}</span></div></div>
+    <div class="path-steps">${p.steps.map(s=>`<div class="path-step ${s.done?'done':''}"><span>${s.done?'✓':'○'}</span><b>${escapeHtml(s.t)}</b></div>`).join('')}</div>`;
+  if(next.go)document.getElementById('pathNextBtn').onclick=()=>{
+    logEvent('next_action_clicked');
+    const wasFirstCompletion=p.steps.filter(s=>s.done).length===0;
+    next.go();
+    if(wasFirstCompletion&&p.steps.some(s=>s.done)){logEvent('first_action_completed');
+      if(!localStorage.getItem('eviterno_miniSurveyShown'))setTimeout(openMiniSurvey,1200);}
+  };
+  document.getElementById('pathAskEvaBtn').onclick=()=>{
+    hide('pathPanel');openCp();cpInput.value=t('pathAskEvaPrompt')(next.text);cpInput.focus();};
+  document.getElementById('pathCourseLink').onclick=()=>{hide('pathPanel');show('coursesPanel');switchCourseTab('explore');if(course)openCourseDetail(course.id);};
+  document.getElementById('pathHabitLink').onclick=()=>{hide('pathPanel');openDashboard('crescita');};
+  document.getElementById('pathStatusSelect').onchange=e=>{p.status=e.target.value;p.lastActivity=Date.now();persist();renderPath();};
+  body.querySelectorAll('[data-block]').forEach(b=>b.onclick=()=>{
+    const msg=pathBlockResponse(b.dataset.block,p);p.lastActivity=Date.now();persist();toast(msg);renderPath();});
+}
+document.getElementById('pathClose').onclick=()=>hide('pathPanel');
+
+/* ============================================================
+   PANNELLO DEBUG EVENTI — nascosto, solo per chi sviluppa.
+   Non è raggiungibile da nessun pulsante visibile agli utenti.
+   ============================================================ */
+document.addEventListener('keydown',e=>{
+  if(e.ctrlKey&&e.shiftKey&&(e.key==='D'||e.key==='d')){e.preventDefault();renderDebug();show('debugPanel');}
+});
+function renderDebug(){
+  const events=loadEvents();const feedback=loadFeedback();
+  const stats=document.getElementById('debugStats');
+  const count=type=>events.filter(e=>e.type===type).length;
+  const sessions=count('beta_started');
+  const obStarted=count('onboarding_started'),obDone=count('onboarding_completed');
+  const obPct=obStarted?Math.round(100*obDone/obStarted):0;
+  const byType={};events.forEach(e=>byType[e.type]=(byType[e.type]||0)+1);
+  const mostOpened=Object.entries(byType).sort((a,b)=>b[1]-a[1])[0];
+  stats.innerHTML=`
+    <p style="color:var(--muted);font-size:11px;margin:0 0 10px">📍 Solo locale e demo — nessuna autenticazione admin reale, nessun dato lascia questo browser.</p>
+    <div class="privacy-row"><b>Sessioni (beta_started)</b><span>${sessions}</span></div>
+    <div class="privacy-row"><b>Onboarding completati</b><span>${obDone}/${obStarted} (${obPct}%)</span></div>
+    <div class="privacy-row"><b>Percorsi creati</b><span>${count('path_created')}</span></div>
+    <div class="privacy-row"><b>Primi passi completati</b><span>${count('first_action_completed')}</span></div>
+    <div class="privacy-row"><b>Aperture EVA</b><span>${count('eva_opened')}</span></div>
+    <div class="privacy-row"><b>Aperture Premium</b><span>${count('premium_opened')}</span></div>
+    <div class="privacy-row"><b>Errori mostrati</b><span>${count('error_shown')}</span></div>
+    <div class="privacy-row"><b>Evento più frequente</b><span>${mostOpened?mostOpened[0]+' ('+mostOpened[1]+')':'—'}</span></div>
+    <div class="privacy-row"><b>Feedback ricevuti</b><span>${feedback.length}</span></div>`;
+  const list=document.getElementById('debugList');
+  if(!events.length){list.innerHTML='<div class="social-empty">Nessun evento registrato ancora.</div>';return;}
+  list.innerHTML=events.slice().reverse().slice(0,60).map(e=>`
+    <div class="archive-item"><div class="ai-head"><b>${escapeHtml(e.type)}</b>
+      <span style="color:var(--muted);font-size:11px">${new Date(e.ts).toLocaleTimeString()}</span></div></div>`).join('');
+}
+function loadFeedback(){try{return JSON.parse(localStorage.getItem('eviterno_feedback')||'[]');}catch(e){return[];}}
+document.getElementById('debugClose').onclick=()=>hide('debugPanel');
+document.getElementById('debugClearBtn').onclick=()=>{
+  try{localStorage.removeItem('eviterno_events');}catch(e){}
+  renderDebug();toast('Eventi svuotati');
+};
+document.getElementById('debugExportBtn').onclick=()=>{
+  const payload={exportedAt:new Date().toISOString(),events:loadEvents(),feedback:loadFeedback()};
+  const blob=new Blob([JSON.stringify(payload,null,2)],{type:'application/json'});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');a.href=url;a.download='eviterno-test-locale.json';
+  document.body.appendChild(a);a.click();a.remove();
+  setTimeout(()=>URL.revokeObjectURL(url),2000);
+  toast('Esportato ✓');
+};
+
+/* ============================================================
+   IMPORTAZIONE DATI DI TEST — carica un JSON esportato dal pannello
+   debug (anche da un altro browser/persona). Validato prima di
+   essere usato. Non tocca mai i dati locali di questo browser:
+   resta un dataset separato, solo per la Validazione prodotto.
+   ============================================================ */
+let importedDataset=null;
+document.getElementById('debugImportInput').addEventListener('change',e=>{
+  const file=e.target.files[0];if(!file)return;
+  const reader=new FileReader();
+  reader.onload=()=>{
+    let parsed;
+    try{parsed=JSON.parse(reader.result);}
+    catch(err){toast('File non valido: non è un JSON leggibile.');return;}
+    if(!parsed||!Array.isArray(parsed.events)){
+      toast('Formato non riconosciuto: manca un elenco "events" valido.');return;
+    }
+    const okEvents=parsed.events.every(ev=>ev&&typeof ev.type==='string'&&typeof ev.ts==='number');
+    if(!okEvents){toast('Formato non riconosciuto: alcuni eventi non hanno type/ts validi.');return;}
+    importedDataset={events:parsed.events,feedback:Array.isArray(parsed.feedback)?parsed.feedback:[]};
+    toast(`Importati ${importedDataset.events.length} eventi, ${importedDataset.feedback.length} feedback ✓`);
+  };
+  reader.onerror=()=>toast('Non riesco a leggere questo file.');
+  reader.readAsText(file);
+  e.target.value='';
+});
+
+function currentValidationDataset(){
+  return importedDataset || {events:loadEvents(),feedback:loadFeedback()};
+}
+
+/* Classificazione dei feedback per parole chiave — nessuna riscrittura
+   del testo originale, solo etichettatura per categoria. */
+const FEEDBACK_CATEGORIES={
+  'Comprensione':['capito','capire','confus','chiaro','senso'],
+  'Navigazione':['trovare','trovato','menu','navigare','perso','dove'],
+  'EVA':['eva'],
+  'NEXUS':['nexus','percorso'],
+  'Profilo':['profilo'],
+  'Corsi':['corso','corsi','marketplace'],
+  'Privacy':['privacy','dati','password'],
+  'Premium':['premium','pagare','pagamento','prezzo'],
+  'Prestazioni':['lento','lag','bug','errore','crash'],
+};
+function classifyFeedback(feedback){
+  const texts=[];
+  feedback.forEach(f=>Object.values(f.answers||{}).forEach(v=>{if(typeof v==='string'&&v.trim())texts.push(v.trim());}));
+  const buckets={};
+  Object.keys(FEEDBACK_CATEGORIES).forEach(cat=>buckets[cat]=[]);
+  texts.forEach(txt=>{
+    const low=txt.toLowerCase();
+    Object.entries(FEEDBACK_CATEGORIES).forEach(([cat,words])=>{
+      if(words.some(w=>low.includes(w)))buckets[cat].push(txt);
+    });
+  });
+  return buckets;
+}
+
+function openValidationPanel(){
+  const ds=currentValidationDataset();
+  document.getElementById('validationSourceLabel').textContent=importedDataset
+    ? `File importato — ${ds.events.length} eventi, ${ds.feedback.length} feedback`
+    : `Dati di questo browser — ${ds.events.length} eventi, ${ds.feedback.length} feedback`;
+  const count=type=>ds.events.filter(e=>e.type===type).length;
+  const sessions=count('beta_started');
+  const body=document.getElementById('validationBody');
+
+  if(sessions<3){
+    body.innerHTML=`<div class="path-block-banner"><p><b>Dati insufficienti per una conclusione affidabile.</b><br>
+      Servono almeno 3 sessioni per un funnel minimamente indicativo — al momento ce ne sono ${sessions}.
+      Nessuna decisione di prodotto (KEEP/IMPROVE/REMOVE) può essere presa in modo onesto da questo campione.</p></div>`;
+    return;
+  }
+
+  const funnel=[
+    ['Sessione iniziata','beta_started'],
+    ['Onboarding iniziato','onboarding_started'],
+    ['Onboarding completato','onboarding_completed'],
+    ['Dashboard aperta','dashboard_opened'],
+    ['NEXUS aperto','nexus_opened'],
+    ['Percorso creato','path_created'],
+    ['Primo passo iniziato','next_action_clicked'],
+    ['Primo passo completato','first_action_completed'],
+    ['Feedback inviato','feedback_completed'],
+  ];
+  let prev=null;
+  const funnelHtml=funnel.map(([label,type])=>{
+    const n=count(type);
+    const pct=prev!=null?(prev>0?Math.round(100*n/prev):0):null;
+    prev=n;
+    return `<div class="nexus-row" style="cursor:default"><b>${label}</b>
+      <span style="color:var(--muted);font-size:12px">${n}${pct!=null?' · '+pct+'% della fase precedente':''}</span></div>`;
+  }).join('');
+
+  const byType={};ds.events.forEach(e=>byType[e.type]=(byType[e.type]||0)+1);
+  const sorted=Object.entries(byType).sort((a,b)=>b[1]-a[1]);
+  const mostUsed=sorted[0],leastUsed=sorted[sorted.length-1];
+
+  const buckets=classifyFeedback(ds.feedback);
+  const catHtml=Object.entries(buckets).filter(([,arr])=>arr.length).map(([cat,arr])=>`
+    <div class="path-link-row" style="cursor:default"><span class="pl-icon">🏷️</span>
+      <div class="pl-body"><b>${cat} (${arr.length})</b><span>${escapeHtml(arr[0].slice(0,90))}${arr[0].length>90?'…':''}</span></div></div>`).join('')
+    || `<div class="social-empty">Nessun testo libero classificabile in questo dataset.</div>`;
+
+  body.innerHTML=`
+    <div class="nexus-section"><h5>Funnel di utilizzo</h5>${funnelHtml}</div>
+    <div class="nexus-section"><h5>Funzione più / meno utilizzata</h5>
+      <div class="privacy-row"><b>Più aperta</b><span>${mostUsed?mostUsed[0]+' ('+mostUsed[1]+')':'—'}</span></div>
+      <div class="privacy-row"><b>Meno aperta</b><span>${leastUsed?leastUsed[0]+' ('+leastUsed[1]+')':'—'}</span></div>
+    </div>
+    <div class="nexus-section"><h5>Feedback per categoria (parole chiave, testo originale non modificato)</h5>${catHtml}</div>
+    <p style="color:var(--muted);font-size:11px;margin-top:16px">Nessuna direzione di prodotto o decisione KEEP/IMPROVE/REMOVE viene generata automaticamente qui — richiede una lettura umana dei dati sopra, non un'invenzione.</p>`;
+}
+document.getElementById('debugOpenValidationBtn').onclick=()=>{hide('debugPanel');show('validationPanel');openValidationPanel();};
+document.getElementById('validationClose').onclick=()=>hide('validationPanel');
+
+
+/* ============================================================
+   INTRO GUIDATA AL PERCORSO — mostrata una sola volta, subito
+   dopo il primo accesso. Collega l'onboarding (nome/focus/obiettivo,
+   già raccolti) al Percorso, aggiungendo solo la domanda sul tempo
+   disponibile e un'anteprima prima di creare davvero qualcosa.
+   ============================================================ */
+let pathIntroTime='';
+function openPathIntro(){renderPathIntroTime();show('pathIntroPanel');}
+function renderPathIntroTime(){
+  const body=document.getElementById('pathIntroBody');
+  const times=[t('introTime5'),t('introTime15'),t('introTime30'),t('introTime60'),t('introTimeVar')];
+  body.innerHTML=`
+    <h4>${t('introTimeTitle')}</h4>
+    <p class="premium-sub">${t('introTimeSub')}</p>
+    <div class="path-block-opts">${times.map(tm=>`<button data-time="${escapeHtml(tm)}">${escapeHtml(tm)}</button>`).join('')}</div>
+    <button class="btn ghost" id="pathIntroSkip" style="margin-top:16px;width:100%">${t('introSkip')}</button>`;
+  body.querySelectorAll('[data-time]').forEach(b=>b.onclick=()=>{pathIntroTime=b.dataset.time;renderPathIntroPreview();});
+  document.getElementById('pathIntroSkip').onclick=()=>hide('pathIntroPanel');
+}
+function renderPathIntroPreview(){
+  const body=document.getElementById('pathIntroBody');
+  const title=USER.goal||t('pathTitleGeneric');
+  body.innerHTML=`
+    <h4>${t('introPreviewTitle')}</h4>
+    <div class="path-link-row" style="cursor:default"><span class="pl-icon">🧭</span>
+      <div class="pl-body"><b>${escapeHtml(title)}</b><span>${t('introPreviewFirstStep')}</span></div></div>
+    <p class="premium-sub" style="margin-top:14px">${t('introPreviewNote')(pathIntroTime)}</p>
+    <div class="path-next-actions" style="margin-top:16px">
+      <button class="gate-btn" id="introCreateBtn">${t('pathCreateBtn')}</button>
+      <button class="btn ghost" id="introBackBtn">${t('introBack')}</button>
+    </div>`;
+  document.getElementById('introCreateBtn').onclick=()=>{
+    createDemoPercorso({title,habitName:`${pathIntroTime} — ${title}`});
+    hide('pathIntroPanel');show('pathPanel');renderPath();
+  };
+  document.getElementById('introBackBtn').onclick=renderPathIntroTime;
+}
+document.getElementById('pathIntroClose').onclick=()=>hide('pathIntroPanel');
+
+/* ============================================================
+   QUESTIONARIO RAPIDO — 3 domande, una sola volta, dopo il primo
+   passo completato. Salvato solo in locale (localStorage).
+   ============================================================ */
+function saveFeedback(type,answers){
+  try{
+    const key='eviterno_feedback';
+    const arr=JSON.parse(localStorage.getItem(key)||'[]');
+    arr.push({type,ts:Date.now(),answers});
+    localStorage.setItem(key,JSON.stringify(arr));
+  }catch(e){}
+}
+function openMiniSurvey(){
+  try{localStorage.setItem('eviterno_miniSurveyShown','1');}catch(e){}
+  const body=document.getElementById('miniSurveyBody');
+  let r2=null;
+  body.innerHTML=`
+    <h4>${t('miniSurveyTitle')}</h4>
+    <div class="fb-q"><label>${t('miniQ1')}</label>
+      <div class="fb-choices" id="msQ1"><button data-v="si">${t('yes')}</button><button data-v="no">${t('no')}</button></div></div>
+    <div class="fb-q"><label>${t('miniQ2')}</label>
+      <div class="fb-rating" id="msQ2">${[1,2,3,4,5].map(n=>`<button data-v="${n}">${n}</button>`).join('')}</div></div>
+    <div class="fb-q"><label>${t('miniQ3')}</label><textarea id="msQ3" rows="2" maxlength="300"></textarea></div>
+    <button class="gate-btn" id="miniSurveySubmit">${t('fbSubmit')}</button>`;
+  const ans={q1:null,q2:null};
+  body.querySelectorAll('#msQ1 button').forEach(b=>b.onclick=()=>{body.querySelectorAll('#msQ1 button').forEach(x=>x.classList.remove('sel'));b.classList.add('sel');ans.q1=b.dataset.v;});
+  body.querySelectorAll('#msQ2 button').forEach(b=>b.onclick=()=>{body.querySelectorAll('#msQ2 button').forEach(x=>x.classList.remove('sel'));b.classList.add('sel');ans.q2=b.dataset.v;});
+  document.getElementById('miniSurveySubmit').onclick=()=>{
+    ans.q3=document.getElementById('msQ3').value.trim();
+    saveFeedback('mini',ans);logEvent('feedback_completed');
+    toast(t('fbThanks'));hide('miniSurveyPanel');
+  };
+  show('miniSurveyPanel');
+}
+document.getElementById('miniSurveyClose').onclick=()=>hide('miniSurveyPanel');
+
+/* ============================================================
+   FEEDBACK COMPLETO — 11 domande, raggiungibile dal Centro Privacy.
+   Nessun dato lascia questo browser.
+   ============================================================ */
+function ratingRow(id,label){
+  return `<div class="fb-q"><label>${label}</label><div class="fb-rating" id="${id}">${[1,2,3,4,5].map(n=>`<button data-v="${n}">${n}</button>`).join('')}</div></div>`;
+}
+function textRow(id,label){return `<div class="fb-q"><label>${label}</label><textarea id="${id}" rows="2" maxlength="400"></textarea></div>`;}
+function openFeedbackPanel(){
+  logEvent('feedback_opened');
+  const body=document.getElementById('feedbackBody');
+  body.innerHTML=`
+    <h4>${t('fbTitle')}</h4>
+    <p class="premium-sub">${t('fbSub')}</p>
+    ${textRow('fbQ1',t('fbQ1'))}
+    ${textRow('fbQ2',t('fbQ2'))}
+    ${textRow('fbQ3',t('fbQ3'))}
+    ${ratingRow('fbQ4',t('fbQ4'))}
+    ${ratingRow('fbQ5',t('fbQ5'))}
+    ${ratingRow('fbQ6',t('fbQ6'))}
+    ${ratingRow('fbQ7',t('fbQ7'))}
+    ${textRow('fbQ8',t('fbQ8'))}
+    ${textRow('fbQ9',t('fbQ9'))}
+    <div class="fb-q"><label>${t('fbQ10')}</label><div class="fb-choices" id="fbQ10">
+      <button data-v="si">${t('yes')}</button><button data-v="no">${t('no')}</button><button data-v="forse">${t('maybe')}</button></div></div>
+    ${textRow('fbQ11',t('fbQ11'))}
+    <div class="path-next-actions" style="margin-top:8px">
+      <button class="gate-btn" id="fbSubmitBtn">${t('fbSubmit')}</button>
+      <button class="btn ghost" id="fbLaterBtn">${t('fbLater')}</button>
+    </div>`;
+  const ratingAns={};
+  ['fbQ4','fbQ5','fbQ6','fbQ7'].forEach(id=>{
+    body.querySelectorAll(`#${id} button`).forEach(b=>b.onclick=()=>{
+      body.querySelectorAll(`#${id} button`).forEach(x=>x.classList.remove('sel'));b.classList.add('sel');ratingAns[id]=b.dataset.v;});
+  });
+  let q10=null;
+  body.querySelectorAll('#fbQ10 button').forEach(b=>b.onclick=()=>{
+    body.querySelectorAll('#fbQ10 button').forEach(x=>x.classList.remove('sel'));b.classList.add('sel');q10=b.dataset.v;});
+  document.getElementById('fbSubmitBtn').onclick=()=>{
+    const answers={
+      q1:document.getElementById('fbQ1').value.trim(), q2:document.getElementById('fbQ2').value.trim(),
+      q3:document.getElementById('fbQ3').value.trim(), q4:ratingAns.fbQ4||null, q5:ratingAns.fbQ5||null,
+      q6:ratingAns.fbQ6||null, q7:ratingAns.fbQ7||null, q8:document.getElementById('fbQ8').value.trim(),
+      q9:document.getElementById('fbQ9').value.trim(), q10, q11:document.getElementById('fbQ11').value.trim(),
+    };
+    saveFeedback('full',answers);logEvent('feedback_completed');
+    toast(t('fbThanks'));hide('feedbackPanel');
+  };
+  document.getElementById('fbLaterBtn').onclick=()=>hide('feedbackPanel');
+  show('feedbackPanel');
+}
+document.getElementById('feedbackClose').onclick=()=>hide('feedbackPanel');
+document.getElementById('privacyFeedbackBtn').onclick=()=>{hide('privacyCenter');openFeedbackPanel();};
+
+
+
+
+
+
+/* ============================================================
+   PROMEMORIA LOCALI — non sono notifiche push vere: funzionano
+   solo mentre il sito è aperto in questa scheda. Controllano
+   condizioni semplici sui dati reali e mostrano un banner
+   discreto, al massimo uno per sessione, con un pulsante per
+   agire subito o chiuderlo.
+   ============================================================ */
+const STALE_DAYS=3;
+function checkReminders(){
+  const list=[];
+  const today=dayKey(new Date());
+  const stalled=DATA.obiettivi.goals.find(g=>goalPct(g)<100&&(Date.now()-(g.lastActivity||Date.now()))/86400000>=STALE_DAYS);
+  if(stalled)list.push({text:t('reminderGoalStalled')(stalled.t),cta:t('nexusCtaGoals'),
+    go:()=>{closeReminder();openDashboard('obiettivi');}});
+  if(!DATA.crescita.journal.some(j=>j.date.slice(0,10)===today))
+    list.push({text:t('reminderJournal'),cta:t('journalTitle'),go:()=>{closeReminder();openDashboard('crescita');}});
+  return list;
+}
+function closeReminder(){document.getElementById('reminderBanner').classList.remove('show');}
+function maybeShowReminder(){
+  const list=checkReminders();
+  if(!list.length)return;
+  const r=list[0];
+  document.getElementById('reminderText').textContent=r.text;
+  const goBtn=document.getElementById('reminderGoBtn');goBtn.textContent=r.cta;goBtn.onclick=r.go;
+  document.getElementById('reminderCloseBtn').onclick=closeReminder;
+  document.getElementById('reminderBanner').classList.add('show');
+}
+
+
 
 document.getElementById('coursesClose').onclick=()=>hide('coursesPanel');
 document.getElementById('tabExplore').onclick=()=>switchCourseTab('explore');
@@ -1906,7 +2501,7 @@ document.getElementById('socialIgLink').href=SOCIAL_LINKS.instagram||'#';
 /* ============================================================
    CENTRO PRIVACY — vedi, scarica, cancella ciò che sappiamo di te
    ============================================================ */
-document.getElementById('userPillBtn').onclick=()=>{openPrivacyCenter();show('privacyCenter');};
+document.getElementById('userPillBtn').onclick=()=>{openPrivacyCenter();show('privacyCenter');logEvent('profile_opened');};
 document.getElementById('privacyClose').onclick=()=>hide('privacyCenter');
 
 function openPrivacyCenter(){
@@ -1958,6 +2553,39 @@ document.getElementById('privacyDeleteBtn').onclick=function(){
   toast(t('privacyDeletedToast'));
   hide('privacyCenter');
   setTimeout(()=>window.location.reload(),900);
+};
+
+/* Ripristina i dati demo ai valori iniziali, mantenendo l'account e il login.
+   Diverso dalla cancellazione: qui l'utente resta dentro, riparte solo lo stato. */
+function resetDemoData(){
+  const c=DATA.crescita;
+  c.level=4;c.xp=320;c.xpMax=500;c.streak=7;
+  c.tracks=[{n:'Mindset',p:72},{n:'Produttività',p:45},{n:'Leadership',p:30}];
+  c.week=[3,5,2,6,4,7,5];c.journal=[];c.habits=[];c.focusSessions=[];
+  DATA.community.online=342;DATA.community.suggestions.forEach(s=>{delete s.connected;});
+  DATA.obiettivi.goals=[];seedGoals();
+  DATA.successo.score=1840;DATA.successo.rank='Ascendant';
+  DATA.successo.badges.forEach(b=>{b.got=(b.n==='Prima settimana'||b.n==='Onboarding');});
+  DATA.successo.timeline=[{t:'Account creato',w:'Oggi'},{t:'Focus impostato',w:'Oggi'}];
+  DATA.courses.owned=[];DATA.courses.progress={};
+  DATA.usage.month='';DATA.usage.evaMessages=0;
+  DATA.archive=[];DATA.percorso=null;
+  persist();
+  renderDashboard('crescita');renderDashboard('community');renderDashboard('obiettivi');renderDashboard('successo');
+  updatePrimaryCtaLabel();
+  toast(t('privacyResetToast'));
+  logEvent('demo_reset');
+  openPrivacyCenter();
+}
+let resetConfirmPending=false,resetConfirmTimer=null;
+document.getElementById('privacyResetBtn').onclick=function(){
+  if(!resetConfirmPending){
+    resetConfirmPending=true;this.textContent=t('privacyResetConfirm');
+    resetConfirmTimer=setTimeout(()=>{resetConfirmPending=false;this.textContent=t('privacyReset');},4000);
+    return;
+  }
+  clearTimeout(resetConfirmTimer);resetConfirmPending=false;this.textContent=t('privacyReset');
+  resetDemoData();
 };
 
 function timeAgo(ts){
@@ -2081,6 +2709,21 @@ async function createAccount(username,password){
   saveAccounts(accts);currentUsername=username;
   return recoveryCode; // in chiaro solo qui, per mostrarlo UNA VOLTA all'utente
 }
+/* Eventi anonimi locali per capire dove un utente reale si blocca durante
+   il test. Restano SOLO su questo browser (localStorage), nessun invio a
+   un server. Consultabili con Ctrl+Shift+D (pannello nascosto, solo per te). */
+function logEvent(type){
+  try{
+    const key='eviterno_events';
+    const arr=JSON.parse(localStorage.getItem(key)||'[]');
+    arr.push({type,ts:Date.now()});
+    if(arr.length>300)arr.splice(0,arr.length-300);
+    localStorage.setItem(key,JSON.stringify(arr));
+  }catch(e){}
+}
+function loadEvents(){try{return JSON.parse(localStorage.getItem('eviterno_events')||'[]');}catch(e){return[];}}
+logEvent('beta_started');
+
 function persist(){ // salva profilo + progressi correnti sotto l'account attivo
   if(!currentUsername)return;
   const accts=loadAccounts();if(!accts[currentUsername])return;
@@ -2121,9 +2764,9 @@ document.getElementById('createAccountBtn').onclick=async()=>{
   if(p.length<4){toast('La password deve avere almeno 4 caratteri');return;}
   const code=await createAccount(u,p);if(code){USER.guest=false;showCredentials(u,p,code);}};
 
-document.getElementById('credContinueBtn').onclick=()=>{gotoStep(1);setTimeout(()=>document.getElementById('inName').focus(),200);};
+document.getElementById('credContinueBtn').onclick=()=>{logEvent('onboarding_started');gotoStep(1);setTimeout(()=>document.getElementById('inName').focus(),200);};
 
-document.getElementById('guestBtn').onclick=()=>{USER.guest=true;currentUsername=null;gotoStep(1);setTimeout(()=>document.getElementById('inName').focus(),200);};
+document.getElementById('guestBtn').onclick=()=>{USER.guest=true;currentUsername=null;logEvent('onboarding_started');gotoStep(1);setTimeout(()=>document.getElementById('inName').focus(),200);};
 
 /* Accesso con numero di telefono (invio + verifica codice, simulati) */
 document.getElementById('phoneBtn').onclick=()=>gotoStep('0b');
@@ -2188,9 +2831,10 @@ document.querySelectorAll('[data-next]').forEach(b=>b.onclick=()=>{
   if(gstep===3)setTimeout(()=>document.getElementById('inGoal').focus(),200);});
 document.getElementById('finishBtn').onclick=()=>{USER.goal=document.getElementById('inGoal').value.trim();
   seedGoals();DATA.successo.timeline.push({t:'Focus: '+P(USER.focus).t,w:'Ora'});
-  persist();
+  persist();justOnboarded=true;
   try{if(currentUsername)localStorage.setItem(LAST_KEY,currentUsername);}catch(e){}
   enterApp();};
+let justOnboarded=false;
 
 
 function enterApp(){body.classList.remove('gate-open');body.classList.add('authed');hubVisible=true;
@@ -2201,7 +2845,11 @@ function enterApp(){body.classList.remove('gate-open');body.classList.add('authe
   document.getElementById('pillPremium').style.display=USER.premium?'inline':'none';
   document.getElementById('hubLede').innerHTML=t('welcomeBack')(escapeHtml(USER.name)||'esploratore',P(USER.focus).t);
   toast(t('welcomeToast'));
-  renderDashboard('crescita');renderDashboard('community');renderDashboard('obiettivi');renderDashboard('successo');}
+  renderDashboard('crescita');renderDashboard('community');renderDashboard('obiettivi');renderDashboard('successo');
+  updatePrimaryCtaLabel();
+  logEvent('dashboard_opened');
+  if(justOnboarded){justOnboarded=false;logEvent('onboarding_completed');logEvent('demo_started');setTimeout(openPathIntro,900);}
+  else setTimeout(maybeShowReminder,4000);}
 
 /* ============================================================
    APPLICAZIONE LINGUA — traduce tutta l'interfaccia statica e
@@ -2237,6 +2885,8 @@ function setLanguage(lang){
   if(document.getElementById('nexusPanel').classList.contains('show'))renderNexus();
   if(document.getElementById('focusPanel').classList.contains('show'))renderFocus();
   if(document.getElementById('archivePanel').classList.contains('show'))renderArchive(document.getElementById('archiveSearchInput').value);
+  if(document.getElementById('pathPanel').classList.contains('show'))renderPath();
+  updatePrimaryCtaLabel();
   if(document.getElementById('premium').classList.contains('show'))refreshTutorCard();
   if(body.classList.contains('authed')){
     document.getElementById('pillName').textContent=USER.name||t('guestName');
@@ -2329,7 +2979,11 @@ function stateBlock(){const c=DATA.crescita,cm=DATA.community;
   const planLine=USER.premium
     ? 'Piano: Premium (nessun limite su obiettivi o messaggi).'
     : `Piano: Gratuito — massimo ${FREE_LIMITS.maxGoals} obiettivo attivo (ne ha già ${DATA.obiettivi.goals.length}${DATA.obiettivi.goals.length>=FREE_LIMITS.maxGoals?', LIMITE RAGGIUNTO: se prova a crearne un altro non riuscirai, non promettergli che lo farai — suggerisci invece Premium':''}).`;
-  return `STATO ATTUALE (usa questi indici per le azioni)\n${planLine}\n`+
+  const pth=DATA.percorso;
+  const pathLine=pth
+    ? `Percorso attivo: "${pth.title}" (stato: ${pth.status}, ${pathProgress(pth)}% completato). Prossimo passo suggerito: ${pathNextAction(pth).text.replace(/<[^>]+>/g,'')}`
+    : 'Percorso attivo: nessuno ancora creato.';
+  return `STATO ATTUALE (usa questi indici per le azioni)\n${planLine}\n${pathLine}\n`+
     `Focus utente: ${P(USER.focus).t}.\n`+
     `Crescita: livello ${c.level}, ${c.xp}/${c.xpMax} XP, streak ${c.streak}. Percorsi: ${tr}.\n`+
     `Community persone: ${pp}.\n`+
@@ -2369,7 +3023,7 @@ function runActions(actions){let changed=new Set(),opened=null;
         const ms=Array.isArray(a.milestones)&&a.milestones.length
           ? a.milestones.slice(0,6).map(m=>({t:(typeof m==='string'?m:(m&&m.t)||'Passo'),done:false}))
           : [{t:'Definisci il primo passo',done:false},{t:'Agisci',done:false}];
-        DATA.obiettivi.goals.push({t:a.title,milestones:ms});
+        DATA.obiettivi.goals.push({t:a.title,lastActivity:Date.now(),milestones:ms});
         changed.add('obiettivi');toast('Obiettivo aggiunto 🎯');
       }}
     else if(a.type==='add_milestone'&&a.title){const gi=resolveGoal(a.goal);
@@ -2400,12 +3054,15 @@ function runActions(actions){let changed=new Set(),opened=null;
   else changed.forEach(id=>{const v=document.getElementById('view-'+id);if(v&&v.classList.contains('show'))renderDashboard(id);});
   persist();}
 
-function openCp(){cpWin.classList.add('show');
+function openCp(){cpWin.classList.add('show');logEvent('eva_opened');
   if(!greeted){greeted=true;evaSay(`Ciao ${USER.name||''} 👋 sono **EVA**, il tuo copilota.\nDimmi il tuo grande obiettivo e in un attimo **ti costruisco l'intero sistema su misura** — obiettivi, tappe e percorsi, tutti insieme. ✨\n\nProva: dimmi cosa vuoi realizzare, oppure tocca "Genera il mio sistema".`);}
   setTimeout(()=>cpInput.focus(),300);}
 function closeCp(){cpWin.classList.remove('show');cpSet.classList.remove('show');if(liveMode)setLiveMode(false);}
 cpFab.onclick=openCp; document.getElementById('cpClose').onclick=closeCp;
-document.getElementById('primaryCta').onclick=()=>openCp();
+document.getElementById('primaryCta').onclick=()=>{show('pathPanel');renderPath();};
+function updatePrimaryCtaLabel(){
+  document.getElementById('primaryCta').textContent=DATA.percorso?t('primaryCtaLabelContinue'):t('primaryCtaLabel');
+}
 document.getElementById('cpGear').onclick=()=>cpSet.classList.toggle('show');
 
 function bubble(cls,txt){const d=document.createElement('div');d.className='msg '+cls;
@@ -2440,7 +3097,7 @@ async function send(text){if(busy||!text.trim())return;
     registerEvaMessage();
     if(liveMode)speakText(clean||'Fatto.');
     if(actions.length)runActions(actions);}
-  catch(err){typing(false);const errMsg="⚠️ Non riesco a raggiungere il motore AI.\nSu **Claude** funziona in automatico. Per il **tuo agente**, imposta l'endpoint dal ⚙ e assicurati che accetti richieste da qui.";
+  catch(err){typing(false);logEvent('error_shown');const errMsg="⚠️ Non riesco a raggiungere il motore AI.\nSu **Claude** funziona in automatico. Per il **tuo agente**, imposta l'endpoint dal ⚙ e assicurati che accetti richieste da qui.";
     evaSay(errMsg);if(liveMode)speakText("Non riesco a raggiungere il motore AI in questo momento.");}
   finally{busy=false;coreTarget=0;cpStatus.textContent=t('online');}}
 cpSend.onclick=()=>send(cpInput.value);
