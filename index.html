@@ -49,11 +49,11 @@
   .hub-hint{font-family:var(--disp);letter-spacing:.24em;font-size:11px;color:var(--muted-2);
     text-transform:uppercase;margin-top:6px}
 
-  .primary-cta{margin-top:22px;font-family:var(--disp);font-weight:700;letter-spacing:.14em;
-    text-transform:uppercase;font-size:13px;color:#fff;border:none;border-radius:40px;
-    padding:15px 34px;cursor:pointer;background:var(--grad-flat);pointer-events:auto;
-    box-shadow:0 0 0 0 rgba(124,58,237,.5);animation:ctaPulse 2.6s ease-in-out infinite;transition:.2s}
-  .primary-cta:hover{filter:brightness(1.15);transform:translateY(-1px)}
+  .primary-cta{position:absolute;transform:translate(-50%,-50%);font-family:var(--disp);font-weight:700;letter-spacing:.14em;
+    text-transform:uppercase;font-size:12px;color:#fff;border:none;border-radius:40px;
+    padding:14px 28px;cursor:pointer;background:var(--grad-flat);pointer-events:auto;white-space:nowrap;
+    box-shadow:0 0 0 0 rgba(124,58,237,.5);animation:ctaPulse 2.6s ease-in-out infinite;transition:.2s;z-index:3;will-change:left,top}
+  .primary-cta:hover{filter:brightness(1.15)}
   @keyframes ctaPulse{0%,100%{box-shadow:0 0 0 0 rgba(124,58,237,.45)}50%{box-shadow:0 0 0 14px rgba(124,58,237,0)}}
 
   #labels{position:fixed;inset:0;z-index:2;pointer-events:none}
@@ -69,12 +69,6 @@
   .node-label .enter{margin-top:6px;font-family:var(--disp);letter-spacing:.16em;font-size:9.5px;
     color:currentColor;opacity:.55;transition:.3s}.node-label:hover .enter{opacity:.9}
 
-  .social-badge{position:absolute;transform:translate(-50%,-50%);pointer-events:auto;cursor:pointer;
-    width:44px;height:44px;border-radius:50%;display:grid;place-items:center;
-    background:rgba(14,12,32,.55);border:1px solid var(--line);backdrop-filter:blur(8px);
-    color:#fff;transition:.25s;will-change:left,top;z-index:3}
-  .social-badge:hover{border-color:transparent;box-shadow:0 0 22px -2px #c93be8;
-    background:radial-gradient(circle at 35% 30%,#fff,#4de1ff 34%,#7c3aed 68%,#c93be8 100%);color:#04040c}
 
   .bottombar{position:absolute;left:0;right:0;bottom:clamp(16px,3.4vh,34px);
     display:flex;justify-content:space-between;align-items:flex-end;padding:0 clamp(18px,4vw,52px);gap:16px}
@@ -626,13 +620,7 @@
 <div id="scene"></div>
 <div id="vignette"></div>
 <div id="labels">
-  <div class="social-badge" id="socialBadge" title="EVITERNO Social">
-    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8">
-      <rect x="2.5" y="2.5" width="19" height="19" rx="5.5"/>
-      <circle cx="12" cy="12" r="4.3"/>
-      <circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none"/>
-    </svg>
-  </div>
+  <button class="primary-cta" id="primaryCta" data-i18n="primaryCtaLabel">✨ Inizia il tuo percorso</button>
 </div>
 
 <!-- ============ HUB OVERLAY ============ -->
@@ -644,7 +632,6 @@
     <div class="tagline"><span class="c" id="i18n-tagC" data-i18n="tag_c">Evolvi.</span><span class="w" id="i18n-tagW" data-i18n="tag_w">Connettiti.</span><span class="m" id="i18n-tagM" data-i18n="tag_m">Domina.</span></div>
     <p class="lede" id="hubLede">La piattaforma che unisce <b>tecnologia</b>, <b>connessioni reali</b> e <b>crescita personale</b>. Il futuro è qui. E tu ne fai parte.</p>
     <div class="hub-hint" id="i18n-hubHint" data-i18n="hubHint">▸ Tocca un nodo per entrare nella sua dashboard</div>
-    <button class="primary-cta" id="primaryCta" data-i18n="primaryCtaLabel">✨ Inizia il tuo percorso</button>
   </header>
   <div class="bottombar">
     <div class="user-pill" id="userPillBtn" title="Centro Privacy" style="cursor:pointer"><span class="un" id="pillName">Ospite</span><span class="premium-badge" id="pillPremium" style="display:none">⭐</span><div class="av" id="pillAv">?</div></div>
@@ -832,6 +819,10 @@
     <label class="btn-full" for="debugImportInput" style="margin:0;text-align:center;cursor:pointer">📥 Importa dati di test
       <input type="file" id="debugImportInput" accept="application/json" style="display:none"></label>
     <button class="btn-full" id="debugOpenValidationBtn" style="margin:0">📊 Validazione prodotto</button>
+  </div>
+  <div class="privacy-toggle-row" style="margin:0 0 14px">
+    <div><b>Premium (test)</b><span>Attiva/disattiva Premium solo per provare, senza passare da Stripe.</span></div>
+    <label class="switch"><input type="checkbox" id="debugPremiumToggle"><span class="slider"></span></label>
   </div>
   <div class="archive-list" id="debugList"></div>
 </div>
@@ -1357,55 +1348,125 @@ function registerEvaMessage(){resetUsageIfNewMonth();DATA.usage.evaMessages++;pe
    quindi restano tra una sessione e l'altra sullo stesso browser.
    ============================================================ */
 const DEMO_COURSES = [
-  {id:'swift101', title:'Swift per principianti', tutor:'Prince Isaac', tutorInit:'P',
-    category:'Sviluppo', level:'Principiante', lang:'Italiano', duration:'6h', price:0,
-    priceDisplay:'Gratis', rating:4.8, students:1240, icon:'🧩', color:'linear-gradient(135deg,#4de1ff,#2e7bff)',
-    subtitle:'Le basi per creare la tua prima app iOS',
-    desc:'Un percorso pratico per imparare Swift da zero, pensato per chi non ha mai scritto una riga di codice. Costruirai passo passo la tua prima app.',
-    objectives:['Capire la sintassi di base di Swift','Creare la tua prima interfaccia con SwiftUI','Pubblicare un prototipo funzionante'],
-    requirements:['Un Mac con Xcode installato','Nessuna esperienza di programmazione richiesta']},
-  {id:'mindset-growth', title:'Mindset da campione', tutor:'Sara L.', tutorInit:'S',
-    category:'Crescita personale', level:'Intermedio', lang:'Italiano', duration:'3h', price:29,
-    priceDisplay:'€29', rating:4.6, students:860, icon:'🧠', color:'linear-gradient(135deg,#7c3aed,#c93be8)',
-    subtitle:'Costruisci abitudini che reggono nel tempo',
-    desc:'Un corso pratico su come costruire disciplina, gestire le ricadute e trasformare piccoli passi quotidiani in risultati duraturi.',
-    objectives:['Progettare un sistema di abitudini realistico','Gestire i momenti di calo motivazionale','Misurare i tuoi progressi reali'],
-    requirements:['Nessuno, adatto a tutti i livelli']},
-  {id:'public-speaking', title:'Parlare in pubblico senza paura', tutor:'Marco R.', tutorInit:'M',
-    category:'Comunicazione', level:'Principiante', lang:'Italiano', duration:'4h', price:39,
-    priceDisplay:'€39', rating:4.7, students:512, icon:'🎤', color:'linear-gradient(135deg,#2e7bff,#9b6bff)',
-    subtitle:'Dalla paura del palco alla sicurezza in scena',
-    desc:'Tecniche concrete per gestire l\'ansia da prestazione, strutturare un discorso efficace e catturare l\'attenzione del pubblico.',
-    objectives:['Gestire l\'ansia prima di parlare in pubblico','Strutturare un discorso in 3 parti','Usare voce e corpo in modo efficace'],
-    requirements:['Nessuno']},
-  {id:'personal-branding', title:'Personal Branding da zero', tutor:'Dev K.', tutorInit:'D',
-    category:'Business', level:'Intermedio', lang:'Italiano', duration:'5h', price:49,
-    priceDisplay:'€49', rating:4.5, students:390, icon:'🚀', color:'linear-gradient(135deg,#c93be8,#4de1ff)',
-    subtitle:'Costruisci un brand personale che genera opportunità',
-    desc:'Come definire il tuo posizionamento, raccontare la tua storia in modo autentico e trasformare la tua presenza online in un asset reale.',
-    objectives:['Definire il tuo posizionamento unico','Creare contenuti coerenti col tuo brand','Attrarre le opportunità giuste'],
-    requirements:['Un profilo social attivo (qualsiasi piattaforma)']},
-  {id:'deep-work', title:'Deep Work: il focus come vantaggio', tutor:'Sara L.', tutorInit:'S',
-    category:'Produttività', level:'Avanzato', lang:'Italiano', duration:'3.5h', price:0,
-    priceDisplay:'Gratis', rating:4.9, students:2010, icon:'⏱️', color:'linear-gradient(135deg,#4de1ff,#7c3aed)',
-    subtitle:'Proteggi la tua concentrazione in un mondo distratto',
-    desc:'Un metodo pratico per progettare blocchi di lavoro profondo, eliminare le distrazioni digitali e moltiplicare la qualità del tuo output.',
-    objectives:['Progettare blocchi di deep work efficaci','Ridurre le distrazioni digitali','Aumentare la qualità del lavoro prodotto'],
-    requirements:['Un obiettivo di lavoro su cui concentrarti']},
-  {id:'financial-basics', title:'Finanza personale: le basi', tutor:'Marco R.', tutorInit:'M',
-    category:'Business', level:'Principiante', lang:'Italiano', duration:'4h', price:25,
-    priceDisplay:'€25', rating:4.4, students:670, icon:'💠', color:'linear-gradient(135deg,#7c3aed,#2e7bff)',
-    subtitle:'Prendi in mano le tue finanze in modo semplice',
-    desc:'Concetti essenziali su budget, risparmio e primi investimenti, spiegati in modo chiaro e senza tecnicismi inutili.',
-    objectives:['Costruire un budget mensile realistico','Capire le basi del risparmio automatico','Muovere i primi passi negli investimenti'],
-    requirements:['Nessuno']},
-  {id:'digital-basics', title:'Fondamenti Digitali', tutor:'Dev K.', tutorInit:'D',
-    category:'Sviluppo', level:'Principiante', lang:'Italiano', duration:'2h', price:0,
-    priceDisplay:'Gratis', rating:4.7, students:980, icon:'💻', color:'linear-gradient(135deg,#4de1ff,#2e7bff)',
-    subtitle:'Le basi per muovere i primi passi in una competenza digitale',
-    desc:'Un corso introduttivo pensato per chi vuole costruire la sua prima vera competenza digitale, un passo alla volta.',
-    objectives:['Capire da dove iniziare','Completare la prima lezione pratica','Creare una piccola applicazione'],
-    requirements:['Nessuna esperienza richiesta']},
+  {id:'swift101', tutor:'Prince Isaac', tutorInit:'P', duration:'6h', price:0,
+    rating:4.8, students:1240, icon:'🧩', color:'linear-gradient(135deg,#4de1ff,#2e7bff)',
+    _t:{
+      it:{title:'Swift per principianti', subtitle:'Le basi per creare la tua prima app iOS', category:'Sviluppo', level:'Principiante', lang:'Italiano', priceDisplay:'Gratis',
+        desc:'Un percorso pratico per imparare Swift da zero, pensato per chi non ha mai scritto una riga di codice. Costruirai passo passo la tua prima app.', objectives:['Capire la sintassi di base di Swift','Creare la tua prima interfaccia con SwiftUI','Pubblicare un prototipo funzionante'], requirements:['Un Mac con Xcode installato','Nessuna esperienza di programmazione richiesta']},
+      en:{title:'Swift for Beginners', subtitle:'The basics for building your first iOS app', category:'Development', level:'Beginner', lang:'Italian', priceDisplay:'Free',
+        desc:'A hands-on path to learn Swift from scratch, designed for people who have never written a line of code. You\'ll build your first app step by step.', objectives:['Understand basic Swift syntax','Build your first interface with SwiftUI','Publish a working prototype'], requirements:['A Mac with Xcode installed','No programming experience required']},
+      es:{title:'Swift para principiantes', subtitle:'Las bases para crear tu primera app de iOS', category:'Desarrollo', level:'Principiante', lang:'Italiano', priceDisplay:'Gratis',
+        desc:'Un recorrido práctico para aprender Swift desde cero, pensado para quien nunca ha escrito una línea de código. Construirás tu primera app paso a paso.', objectives:['Entender la sintaxis básica de Swift','Crear tu primera interfaz con SwiftUI','Publicar un prototipo funcional'], requirements:['Un Mac con Xcode instalado','No se requiere experiencia previa en programación']},
+      fr:{title:'Swift pour débutants', subtitle:'Les bases pour créer ta première app iOS', category:'Développement', level:'Débutant', lang:'Italien', priceDisplay:'Gratuit',
+        desc:'Un parcours pratique pour apprendre Swift à partir de zéro, pensé pour ceux qui n\'ont jamais écrit une ligne de code. Tu construiras ta première app étape par étape.', objectives:['Comprendre la syntaxe de base de Swift','Créer ta première interface avec SwiftUI','Publier un prototype fonctionnel'], requirements:['Un Mac avec Xcode installé','Aucune expérience de programmation requise']},
+    },
+    get title(){return this._t[currentLang].title;}, get subtitle(){return this._t[currentLang].subtitle;},
+    get category(){return this._t[currentLang].category;}, get level(){return this._t[currentLang].level;},
+    get lang(){return this._t[currentLang].lang;}, get priceDisplay(){return this._t[currentLang].priceDisplay;},
+    get desc(){return this._t[currentLang].desc;}, get objectives(){return this._t[currentLang].objectives;},
+    get requirements(){return this._t[currentLang].requirements;} },
+  {id:'mindset-growth', tutor:'Sara L.', tutorInit:'S', duration:'3h', price:29,
+    rating:4.6, students:860, icon:'🧠', color:'linear-gradient(135deg,#7c3aed,#c93be8)',
+    _t:{
+      it:{title:'Mindset da campione', subtitle:'Costruisci abitudini che reggono nel tempo', category:'Crescita personale', level:'Intermedio', lang:'Italiano', priceDisplay:'€29',
+        desc:'Un corso pratico su come costruire disciplina, gestire le ricadute e trasformare piccoli passi quotidiani in risultati duraturi.', objectives:['Progettare un sistema di abitudini realistico','Gestire i momenti di calo motivazionale','Misurare i tuoi progressi reali'], requirements:['Nessuno, adatto a tutti i livelli']},
+      en:{title:'Champion Mindset', subtitle:'Build habits that last over time', category:'Personal Growth', level:'Intermediate', lang:'Italian', priceDisplay:'€29',
+        desc:'A practical course on building discipline, handling setbacks, and turning small daily steps into lasting results.', objectives:['Design a realistic habit system','Handle dips in motivation','Measure your real progress'], requirements:['None, suitable for all levels']},
+      es:{title:'Mentalidad de campeón', subtitle:'Construye hábitos que se mantengan en el tiempo', category:'Crecimiento personal', level:'Intermedio', lang:'Italiano', priceDisplay:'€29',
+        desc:'Un curso práctico sobre cómo construir disciplina, manejar las recaídas y transformar pequeños pasos diarios en resultados duraderos.', objectives:['Diseñar un sistema de hábitos realista','Manejar los bajones de motivación','Medir tu progreso real'], requirements:['Ninguno, apto para todos los niveles']},
+      fr:{title:'Mentalité de champion', subtitle:'Construis des habitudes qui durent dans le temps', category:'Développement personnel', level:'Intermédiaire', lang:'Italien', priceDisplay:'29 €',
+        desc:'Un cours pratique sur comment construire de la discipline, gérer les rechutes et transformer de petits pas quotidiens en résultats durables.', objectives:['Concevoir un système d\'habitudes réaliste','Gérer les baisses de motivation','Mesurer tes vrais progrès'], requirements:['Aucun, adapté à tous les niveaux']},
+    },
+    get title(){return this._t[currentLang].title;}, get subtitle(){return this._t[currentLang].subtitle;},
+    get category(){return this._t[currentLang].category;}, get level(){return this._t[currentLang].level;},
+    get lang(){return this._t[currentLang].lang;}, get priceDisplay(){return this._t[currentLang].priceDisplay;},
+    get desc(){return this._t[currentLang].desc;}, get objectives(){return this._t[currentLang].objectives;},
+    get requirements(){return this._t[currentLang].requirements;} },
+  {id:'public-speaking', tutor:'Marco R.', tutorInit:'M', duration:'4h', price:39,
+    rating:4.7, students:512, icon:'🎤', color:'linear-gradient(135deg,#2e7bff,#9b6bff)',
+    _t:{
+      it:{title:'Parlare in pubblico senza paura', subtitle:'Dalla paura del palco alla sicurezza in scena', category:'Comunicazione', level:'Principiante', lang:'Italiano', priceDisplay:'€39',
+        desc:'Tecniche concrete per gestire l\'ansia da prestazione, strutturare un discorso efficace e catturare l\'attenzione del pubblico.', objectives:['Gestire l\'ansia prima di parlare in pubblico','Strutturare un discorso in 3 parti','Usare voce e corpo in modo efficace'], requirements:['Nessuno']},
+      en:{title:'Public Speaking Without Fear', subtitle:'From stage fright to on-stage confidence', category:'Communication', level:'Beginner', lang:'Italian', priceDisplay:'€39',
+        desc:'Concrete techniques to manage performance anxiety, structure an effective speech, and capture your audience\'s attention.', objectives:['Manage anxiety before speaking in public','Structure a speech in 3 parts','Use voice and body effectively'], requirements:['None']},
+      es:{title:'Hablar en público sin miedo', subtitle:'Del miedo escénico a la seguridad en el escenario', category:'Comunicación', level:'Principiante', lang:'Italiano', priceDisplay:'€39',
+        desc:'Técnicas concretas para manejar la ansiedad escénica, estructurar un discurso eficaz y captar la atención del público.', objectives:['Manejar la ansiedad antes de hablar en público','Estructurar un discurso en 3 partes','Usar la voz y el cuerpo de forma eficaz'], requirements:['Ninguno']},
+      fr:{title:'Parler en public sans peur', subtitle:'Du trac à la confiance sur scène', category:'Communication', level:'Débutant', lang:'Italien', priceDisplay:'39 €',
+        desc:'Des techniques concrètes pour gérer le trac, structurer un discours efficace et capter l\'attention du public.', objectives:['Gérer l\'anxiété avant de parler en public','Structurer un discours en 3 parties','Utiliser la voix et le corps efficacement'], requirements:['Aucun']},
+    },
+    get title(){return this._t[currentLang].title;}, get subtitle(){return this._t[currentLang].subtitle;},
+    get category(){return this._t[currentLang].category;}, get level(){return this._t[currentLang].level;},
+    get lang(){return this._t[currentLang].lang;}, get priceDisplay(){return this._t[currentLang].priceDisplay;},
+    get desc(){return this._t[currentLang].desc;}, get objectives(){return this._t[currentLang].objectives;},
+    get requirements(){return this._t[currentLang].requirements;} },
+  {id:'personal-branding', tutor:'Dev K.', tutorInit:'D', duration:'5h', price:49,
+    rating:4.5, students:390, icon:'🚀', color:'linear-gradient(135deg,#c93be8,#4de1ff)',
+    _t:{
+      it:{title:'Personal Branding da zero', subtitle:'Costruisci un brand personale che genera opportunità', category:'Business', level:'Intermedio', lang:'Italiano', priceDisplay:'€49',
+        desc:'Come definire il tuo posizionamento, raccontare la tua storia in modo autentico e trasformare la tua presenza online in un asset reale.', objectives:['Definire il tuo posizionamento unico','Creare contenuti coerenti col tuo brand','Attrarre le opportunità giuste'], requirements:['Un profilo social attivo (qualsiasi piattaforma)']},
+      en:{title:'Personal Branding from Scratch', subtitle:'Build a personal brand that generates opportunities', category:'Business', level:'Intermediate', lang:'Italian', priceDisplay:'€49',
+        desc:'How to define your positioning, tell your story authentically, and turn your online presence into a real asset.', objectives:['Define your unique positioning','Create content consistent with your brand','Attract the right opportunities'], requirements:['An active social profile (any platform)']},
+      es:{title:'Marca personal desde cero', subtitle:'Construye una marca personal que genere oportunidades', category:'Negocios', level:'Intermedio', lang:'Italiano', priceDisplay:'€49',
+        desc:'Cómo definir tu posicionamiento, contar tu historia de forma auténtica y transformar tu presencia online en un activo real.', objectives:['Definir tu posicionamiento único','Crear contenido coherente con tu marca','Atraer las oportunidades adecuadas'], requirements:['Un perfil social activo (cualquier plataforma)']},
+      fr:{title:'Personal branding à partir de zéro', subtitle:'Construis une marque personnelle qui génère des opportunités', category:'Business', level:'Intermédiaire', lang:'Italien', priceDisplay:'49 €',
+        desc:'Comment définir ton positionnement, raconter ton histoire de façon authentique et transformer ta présence en ligne en un vrai atout.', objectives:['Définir ton positionnement unique','Créer du contenu cohérent avec ta marque','Attirer les bonnes opportunités'], requirements:['Un profil social actif (toute plateforme)']},
+    },
+    get title(){return this._t[currentLang].title;}, get subtitle(){return this._t[currentLang].subtitle;},
+    get category(){return this._t[currentLang].category;}, get level(){return this._t[currentLang].level;},
+    get lang(){return this._t[currentLang].lang;}, get priceDisplay(){return this._t[currentLang].priceDisplay;},
+    get desc(){return this._t[currentLang].desc;}, get objectives(){return this._t[currentLang].objectives;},
+    get requirements(){return this._t[currentLang].requirements;} },
+  {id:'deep-work', tutor:'Sara L.', tutorInit:'S', duration:'3.5h', price:0,
+    rating:4.9, students:2010, icon:'⏱️', color:'linear-gradient(135deg,#4de1ff,#7c3aed)',
+    _t:{
+      it:{title:'Deep Work: il focus come vantaggio', subtitle:'Proteggi la tua concentrazione in un mondo distratto', category:'Produttività', level:'Avanzato', lang:'Italiano', priceDisplay:'Gratis',
+        desc:'Un metodo pratico per progettare blocchi di lavoro profondo, eliminare le distrazioni digitali e moltiplicare la qualità del tuo output.', objectives:['Progettare blocchi di deep work efficaci','Ridurre le distrazioni digitali','Aumentare la qualità del lavoro prodotto'], requirements:['Un obiettivo di lavoro su cui concentrarti']},
+      en:{title:'Deep Work: Focus as an Advantage', subtitle:'Protect your concentration in a distracted world', category:'Productivity', level:'Advanced', lang:'Italian', priceDisplay:'Free',
+        desc:'A practical method for designing deep work blocks, eliminating digital distractions, and multiplying the quality of your output.', objectives:['Design effective deep work blocks','Reduce digital distractions','Increase the quality of your output'], requirements:['A work goal to focus on']},
+      es:{title:'Deep Work: el foco como ventaja', subtitle:'Protege tu concentración en un mundo distraído', category:'Productividad', level:'Avanzado', lang:'Italiano', priceDisplay:'Gratis',
+        desc:'Un método práctico para diseñar bloques de trabajo profundo, eliminar las distracciones digitales y multiplicar la calidad de tu trabajo.', objectives:['Diseñar bloques de deep work eficaces','Reducir las distracciones digitales','Aumentar la calidad del trabajo producido'], requirements:['Un objetivo de trabajo en el que concentrarte']},
+      fr:{title:'Deep Work : le focus comme avantage', subtitle:'Protège ta concentration dans un monde de distractions', category:'Productivité', level:'Avancé', lang:'Italien', priceDisplay:'Gratuit',
+        desc:'Une méthode pratique pour concevoir des blocs de travail profond, éliminer les distractions numériques et multiplier la qualité de ton travail.', objectives:['Concevoir des blocs de deep work efficaces','Réduire les distractions numériques','Augmenter la qualité du travail produit'], requirements:['Un objectif de travail sur lequel te concentrer']},
+    },
+    get title(){return this._t[currentLang].title;}, get subtitle(){return this._t[currentLang].subtitle;},
+    get category(){return this._t[currentLang].category;}, get level(){return this._t[currentLang].level;},
+    get lang(){return this._t[currentLang].lang;}, get priceDisplay(){return this._t[currentLang].priceDisplay;},
+    get desc(){return this._t[currentLang].desc;}, get objectives(){return this._t[currentLang].objectives;},
+    get requirements(){return this._t[currentLang].requirements;} },
+  {id:'financial-basics', tutor:'Marco R.', tutorInit:'M', duration:'4h', price:25,
+    rating:4.4, students:670, icon:'💠', color:'linear-gradient(135deg,#7c3aed,#2e7bff)',
+    _t:{
+      it:{title:'Finanza personale: le basi', subtitle:'Prendi in mano le tue finanze in modo semplice', category:'Business', level:'Principiante', lang:'Italiano', priceDisplay:'€25',
+        desc:'Concetti essenziali su budget, risparmio e primi investimenti, spiegati in modo chiaro e senza tecnicismi inutili.', objectives:['Costruire un budget mensile realistico','Capire le basi del risparmio automatico','Muovere i primi passi negli investimenti'], requirements:['Nessuno']},
+      en:{title:'Personal Finance: The Basics', subtitle:'Take control of your finances, simply', category:'Business', level:'Beginner', lang:'Italian', priceDisplay:'€25',
+        desc:'Essential concepts on budgeting, saving, and first investments, explained clearly without unnecessary jargon.', objectives:['Build a realistic monthly budget','Understand the basics of automatic saving','Take your first steps into investing'], requirements:['None']},
+      es:{title:'Finanzas personales: las bases', subtitle:'Toma el control de tus finanzas de forma sencilla', category:'Negocios', level:'Principiante', lang:'Italiano', priceDisplay:'€25',
+        desc:'Conceptos esenciales sobre presupuesto, ahorro y primeras inversiones, explicados con claridad y sin tecnicismos innecesarios.', objectives:['Construir un presupuesto mensual realista','Entender las bases del ahorro automático','Dar tus primeros pasos en inversiones'], requirements:['Ninguno']},
+      fr:{title:'Finances personnelles : les bases', subtitle:'Prends en main tes finances simplement', category:'Business', level:'Débutant', lang:'Italien', priceDisplay:'25 €',
+        desc:'Concepts essentiels sur le budget, l\'épargne et les premiers investissements, expliqués clairement et sans jargon inutile.', objectives:['Construire un budget mensuel réaliste','Comprendre les bases de l\'épargne automatique','Faire tes premiers pas dans l\'investissement'], requirements:['Aucun']},
+    },
+    get title(){return this._t[currentLang].title;}, get subtitle(){return this._t[currentLang].subtitle;},
+    get category(){return this._t[currentLang].category;}, get level(){return this._t[currentLang].level;},
+    get lang(){return this._t[currentLang].lang;}, get priceDisplay(){return this._t[currentLang].priceDisplay;},
+    get desc(){return this._t[currentLang].desc;}, get objectives(){return this._t[currentLang].objectives;},
+    get requirements(){return this._t[currentLang].requirements;} },
+  {id:'digital-basics', tutor:'Dev K.', tutorInit:'D', duration:'2h', price:0,
+    rating:4.7, students:980, icon:'💻', color:'linear-gradient(135deg,#4de1ff,#2e7bff)',
+    _t:{
+      it:{title:'Fondamenti Digitali', subtitle:'Le basi per muovere i primi passi in una competenza digitale', category:'Sviluppo', level:'Principiante', lang:'Italiano', priceDisplay:'Gratis',
+        desc:'Un corso introduttivo pensato per chi vuole costruire la sua prima vera competenza digitale, un passo alla volta.', objectives:['Capire da dove iniziare','Completare la prima lezione pratica','Creare una piccola applicazione'], requirements:['Nessuna esperienza richiesta']},
+      en:{title:'Digital Foundations', subtitle:'The basics to take your first steps in a digital skill', category:'Development', level:'Beginner', lang:'Italian', priceDisplay:'Free',
+        desc:'An introductory course for anyone who wants to build their first real digital skill, one step at a time.', objectives:['Understand where to start','Complete the first hands-on lesson','Create a small application'], requirements:['No experience required']},
+      es:{title:'Fundamentos Digitales', subtitle:'Las bases para dar tus primeros pasos en una competencia digital', category:'Desarrollo', level:'Principiante', lang:'Italiano', priceDisplay:'Gratis',
+        desc:'Un curso introductorio pensado para quien quiere construir su primera competencia digital real, paso a paso.', objectives:['Entender por dónde empezar','Completar la primera lección práctica','Crear una pequeña aplicación'], requirements:['No se requiere experiencia']},
+      fr:{title:'Fondamentaux du numérique', subtitle:'Les bases pour faire tes premiers pas dans une compétence numérique', category:'Développement', level:'Débutant', lang:'Italien', priceDisplay:'Gratuit',
+        desc:'Un cours d\'introduction pensé pour qui veut construire sa première vraie compétence numérique, un pas à la fois.', objectives:['Comprendre par où commencer','Terminer la première leçon pratique','Créer une petite application'], requirements:['Aucune expérience requise']},
+    },
+    get title(){return this._t[currentLang].title;}, get subtitle(){return this._t[currentLang].subtitle;},
+    get category(){return this._t[currentLang].category;}, get level(){return this._t[currentLang].level;},
+    get lang(){return this._t[currentLang].lang;}, get priceDisplay(){return this._t[currentLang].priceDisplay;},
+    get desc(){return this._t[currentLang].desc;}, get objectives(){return this._t[currentLang].objectives;},
+    get requirements(){return this._t[currentLang].requirements;} },
 ];
 let courseTab='explore', courseFilter='__ALL__', activeCourseId=null;
 function ownedCourseIds(){return DATA.courses.owned.map(o=>o.id);}
@@ -1641,8 +1702,7 @@ PILLARS.forEach(p=>{const g=new THREE.Group();
   group.add(g);nodeMeshes.push(g);p.mesh=g;});
 
 const labelsEl=document.getElementById('labels');
-const socialBadge=document.getElementById('socialBadge');
-socialBadge.onclick=()=>{show('socialFeed');loadSocialFeed();};
+const primaryCtaEl=document.getElementById('primaryCta');
 function renderNodeLabels(){
   PILLARS.forEach(p=>{
     if(!p.label){
@@ -1684,9 +1744,9 @@ function animate(){requestAnimationFrame(animate);const dt=Math.min(clock.getDel
     const vis=_v.z<1;p.label.style.opacity=vis?1:0;if(vis){p.label.style.left=((_v.x*.5+.5)*innerWidth)+'px';
     p.label.style.top=((-_v.y*.5+.5)*innerHeight+22)+'px';}});
     _v.setFromMatrixPosition(core.matrixWorld);_v.project(camera);
-    const svis=_v.z<1;socialBadge.style.opacity=svis?1:0;if(svis){
-      socialBadge.style.left=((_v.x*.5+.5)*innerWidth)+'px';
-      socialBadge.style.top=((-_v.y*.5+.5)*innerHeight+58)+'px';}}}
+    const svis=_v.z<1;primaryCtaEl.style.opacity=svis?1:0;if(svis){
+      primaryCtaEl.style.left=((_v.x*.5+.5)*innerWidth)+'px';
+      primaryCtaEl.style.top=((-_v.y*.5+.5)*innerHeight)+'px';}}}
 animate();
 
 /* ============================================================
@@ -2155,7 +2215,8 @@ document.getElementById('pathClose').onclick=()=>hide('pathPanel');
    Non è raggiungibile da nessun pulsante visibile agli utenti.
    ============================================================ */
 document.addEventListener('keydown',e=>{
-  if(e.ctrlKey&&e.shiftKey&&(e.key==='D'||e.key==='d')){e.preventDefault();renderDebug();show('debugPanel');}
+  if(e.ctrlKey&&e.shiftKey&&(e.key==='D'||e.key==='d')){e.preventDefault();renderDebug();
+    document.getElementById('debugPremiumToggle').checked=!!USER.premium;show('debugPanel');}
 });
 function renderDebug(){
   const events=loadEvents();const feedback=loadFeedback();
@@ -2185,6 +2246,11 @@ function renderDebug(){
 }
 function loadFeedback(){try{return JSON.parse(localStorage.getItem('eviterno_feedback')||'[]');}catch(e){return[];}}
 document.getElementById('debugClose').onclick=()=>hide('debugPanel');
+document.getElementById('debugPremiumToggle').onchange=e=>{
+  USER.premium=e.target.checked;
+  document.getElementById('pillPremium').style.display=USER.premium?'inline':'none';
+  persist();toast(USER.premium?'Premium attivato (test) ⭐':'Premium disattivato (test)');
+};
 document.getElementById('debugClearBtn').onclick=()=>{
   try{localStorage.removeItem('eviterno_events');}catch(e){}
   renderDebug();toast('Eventi svuotati');
@@ -2959,6 +3025,8 @@ Azioni disponibili:
 - {"type":"connect_person","person": indice_persona}   (connettiti a una persona della Community)
 - {"type":"set_focus","pillar":"crescita|community|obiettivi|successo"}   (cambia il focus dell'utente)
 - {"type":"open_dashboard","pillar":"crescita|community|obiettivi|successo|hub"}
+- {"type":"add_journal","text":"testo della nota di oggi"}   (scrive/aggiorna la nota del diario di oggi in Crescita)
+- {"type":"toggle_habit","habit": indice_abitudine}   (spunta/togli l'abitudine per oggi; usa gli indici da STATO ATTUALE)
 Dopo un'azione, conferma a parole in modo naturale (es. "Fatto, ho aggiunto l'obiettivo").
 
 GENERA IL SISTEMA (funzione speciale):
@@ -2983,9 +3051,11 @@ function stateBlock(){const c=DATA.crescita,cm=DATA.community;
   const pathLine=pth
     ? `Percorso attivo: "${pth.title}" (stato: ${pth.status}, ${pathProgress(pth)}% completato). Prossimo passo suggerito: ${pathNextAction(pth).text.replace(/<[^>]+>/g,'')}`
     : 'Percorso attivo: nessuno ancora creato.';
+  const hb=c.habits.map((h,i)=>`[${i}] ${h.name}${habitDoneToday(h)?' (fatta oggi)':''}`).join(', ')||'(nessuna)';
   return `STATO ATTUALE (usa questi indici per le azioni)\n${planLine}\n${pathLine}\n`+
     `Focus utente: ${P(USER.focus).t}.\n`+
     `Crescita: livello ${c.level}, ${c.xp}/${c.xpMax} XP, streak ${c.streak}. Percorsi: ${tr}.\n`+
+    `Abitudini: ${hb}.\n`+
     `Community persone: ${pp}.\n`+
     `Obiettivi:\n${gs||'  (nessun obiettivo)'}`;}
 
@@ -3049,6 +3119,16 @@ function runActions(actions){let changed=new Set(),opened=null;
       if(el)el.innerHTML=t('welcomeBack')(escapeHtml(USER.name)||'esploratore',P(USER.focus).t);
       toast('Focus aggiornato: '+P(a.pillar).t);}
     else if(a.type==='open_dashboard'&&a.pillar){if(a.pillar==='hub')goHub();else opened=a.pillar;}
+    else if(a.type==='add_journal'&&a.text){
+      const today=new Date().toISOString().slice(0,10);
+      const existing=DATA.crescita.journal.find(j=>j.date.slice(0,10)===today);
+      if(existing)existing.text=a.text;else DATA.crescita.journal.push({date:new Date().toISOString(),text:a.text});
+      changed.add('crescita');toast('Nota aggiunta al diario 📝');}
+    else if(a.type==='toggle_habit'&&a.habit!=null){
+      const h=DATA.crescita.habits[a.habit];
+      if(h){const k=dayKey(new Date());const i=h.doneDates.indexOf(k);
+        if(i>=0)h.doneDates.splice(i,1);else h.doneDates.push(k);
+        changed.add('crescita');toast('Abitudine aggiornata ✓');}}
   }catch(e){}});
   if(opened)openDashboard(opened);
   else changed.forEach(id=>{const v=document.getElementById('view-'+id);if(v&&v.classList.contains('show'))renderDashboard(id);});
